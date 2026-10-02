@@ -1,0 +1,115 @@
+name: CI
+
+on:
+  push:
+    branches: [main, "dev/**"]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+env:
+  GODOT_VERSION: "4.6.3"          # pinned; change deliberately and update blueprint.md
+  GODOT_TAG: "4.6.3-stable"
+  JAVA_VERSION: "17"
+  ANDROID_PLATFORM: "android-35"
+  ANDROID_BUILD_TOOLS: "35.0.1"
+  ANDROID_NDK: "28.1.13356709"
+  ANDROID_CMAKE: "3.10.2.4988404"
+
+jobs:
+  validate:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: "3.12" }
+      - name: Static repo validation (data, docs, secrets)
+        run: python3 tools/validate_repo.py
+
+  android-debug:
+    needs: validate
+    runs-on: ubuntu-24.04
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-java@v4
+        with: { distribution: temurin, java-version: "${{ env.JAVA_VERSION }}" }
+
+      - name: Cache Godot binaries
+        uses: actions/cache@v4
+        with:
+          path: ~/godot-dl
+          key: godot-${{ env.GODOT_TAG }}
+
+      - name: Download + verify Godot editor and export templates
+        run: |
+          set -euo pipefail
+          mkdir -p ~/godot-dl && cd ~/godot-dl
+          BASE="https://github.com/godotengine/godot-builds/releases/download/${GODOT_TAG}"
+          EDITOR="Godot_v${GODOT_TAG}_linux.x86_64.zip"
+          TPL="Godot_v${GODOT_TAG}_export_templates.tpz"
+          for f in "$EDITOR" "$TPL" SHA512-SUMS.txt; do
+            [ -f "$f" ] || curl -fsSL -o "$f" "$BASE/$f"
+          done
+          grep -E " ($EDITOR|$TPL)\$" SHA512-SUMS.txt | sha512sum -c -
+          unzip -oq "$EDITOR"
+          sudo install -m755 "Godot_v${GODOT_TAG}_linux.x86_64" /usr/local/bin/godot
+          TPL_DIR="$HOME/.local/share/godot/export_templates/${GODOT_VERSION}.stable"
+          mkdir -p "$TPL_DIR" && unzip -oq "$TPL" -d tpl && mv tpl/templates/* "$TPL_DIR/"
+          godot --version
+
+      - name: Install Android SDK components
+        run: |
+          set -euo pipefail
+          SDK="${ANDROID_HOME:-$ANDROID_SDK_ROOT}"
+          yes | "$SDK/cmdline-tools/latest/bin/sdkmanager" --licenses >/dev/null || true
+          "$SDK/cmdline-tools/latest/bin/sdkmanager" "platform-tools" "platforms;${ANDROID_PLATFORM}" \
+            "build-tools;${ANDROID_BUILD_TOOLS}" "ndk;${ANDROID_NDK}" "cmake;${ANDROID_CMAKE}"
+          echo "SDK=$SDK" >> "$GITHUB_ENV"
+
+      - name: Configure Godot editor settings + debug keystore
+        run: |
+          set -euo pipefail
+          keytool -keyalg RSA -genkeypair -alias androiddebugkey -keypass android \
+            -keystore "$HOME/debug.keystore" -storepass android \
+            -dname "CN=Android Debug,O=Android,C=US" -validity 9999 -deststoretype pkcs12
+          mkdir -p ~/.config/godot
+          cat > ~/.config/godot/editor_settings-4.6.tres <<EOT
+          [gd_resource type="EditorSettings" format=3]
+          [resource]
+          export/android/android_sdk_path = "${SDK}"
+          export/android/java_sdk_path = "${JAVA_HOME}"
+          export/android/debug_keystore = "${HOME}/debug.keystore"
+          export/android/debug_keystore_user = "androiddebugkey"
+          export/android/debug_keystore_pass = "android"
+          EOT
+          sed -i 's/^          //' ~/.config/godot/editor_settings-4.6.tres
+          cp ~/.config/godot/editor_settings-4.6.tres ~/.config/godot/editor_settings-4.tres
+
+      - name: Stamp version
+        run: python3 tools/stamp_version.py "${{ github.run_number }}" "${{ github.sha }}"
+
+      - name: Import project (generates .godot cache)
+        run: godot --headless --path . --import || true   # first import may exit non-zero on cache build
+
+      - name: Run headless tests
+        run: godot --headless --path . --script res://tests/run_tests.gd
+
+      - name: Export Android DEBUG apk
+        run: |
+          mkdir -p build
+          godot --headless --path . --export-debug "Android Debug" build/mini-commandoes-debug.apk
+          ls -l build
+
+      - name: Checksums
+        run: cd build && sha256sum *.apk | tee SHA256SUMS.txt
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: mini-commandoes-DEBUG-${{ github.run_number }}
+          path: build/
+          retention-days: 14
+          
