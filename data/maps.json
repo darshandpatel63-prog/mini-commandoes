@@ -1,0 +1,10 @@
+{
+ "schema": 1,
+ "maps": [
+  {"id":"verdant_outpost","name":"Verdant Outpost","theme":"Jungle commando base","size":[9000,3200],"max_players":40,"milestone":"M1","status":"planned"},
+  {"id":"ember_flats","name":"Ember Flats","theme":"Desert warzone","size":[10000,3000],"max_players":40,"milestone":"M1","status":"planned"},
+  {"id":"foundry_nine","name":"Foundry Nine","theme":"Industrial factory","size":[9000,3600],"max_players":40,"milestone":"M2","status":"planned"},
+  {"id":"glacier_station","name":"Glacier Station","theme":"Frozen military facility","size":[9500,3400],"max_players":40,"milestone":"M2","status":"planned"},
+  {"id":"hollow_district","name":"Hollow District","theme":"Urban ruins","size":[10000,3800],"max_players":40,"milestone":"M2","status":"planned"}
+ ]
+}

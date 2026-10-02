@@ -1,0 +1,10 @@
+{
+ "schema": 1,
+ "modes": [
+  {"id":"tdm","name":"Team Deathmatch","teams":2,"respawn":true,"score":"kills","status":"planned"},
+  {"id":"ffa","name":"Free-for-All","teams":0,"respawn":true,"score":"kills","status":"planned"},
+  {"id":"control","name":"Control","teams":2,"respawn":true,"score":"zone_time","status":"planned"},
+  {"id":"survival","name":"Survival","teams":1,"respawn":false,"score":"waves","status":"planned"},
+  {"id":"training","name":"Training","teams":1,"respawn":true,"score":"none","status":"planned"}
+ ]
+}
