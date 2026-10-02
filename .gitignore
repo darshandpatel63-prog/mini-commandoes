@@ -1,0 +1,12 @@
+.godot/
+build/
+*.apk
+*.aab
+*.idsig
+*.jks
+*.keystore
+*.p12
+.import/
+export_credentials.cfg
+.DS_Store
+__pycache__/
