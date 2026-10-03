@@ -7,17 +7,25 @@ config/description="Original 2D multiplayer commando action game."
 run/main_scene="res://scenes/boot/boot.tscn"
 config/features=PackedStringArray("4.6", "GL Compatibility")
 config/icon="res://icon.svg"
+config/quit_on_go_back=false
 
 [autoload]
+
 Version="*res://src/core/version.gd"
 DataRegistry="*res://src/autoload/data_registry.gd"
+Settings="*res://src/autoload/settings.gd"
+SaveManager="*res://src/autoload/save_manager.gd"
+AudioManager="*res://src/autoload/audio_manager.gd"
+InputRouter="*res://src/autoload/input_router.gd"
+GameState="*res://src/autoload/game_state.gd"
+SceneRouter="*res://src/autoload/scene_router.gd"
 
 [display]
 window/size/viewport_width=1920
 window/size/viewport_height=1080
 window/stretch/mode="canvas_items"
 window/stretch/aspect="expand"
-window/handheld/orientation=6
+window/handheld/orientation=4
 
 [input_devices]
 pointing/emulate_touch_from_mouse=true

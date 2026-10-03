@@ -16,6 +16,7 @@ Original 2D multiplayer commando game, **Android first**, then desktop. Godot **
 - Typed GDScript (`var x: int`, return types). No per-frame allocations in sim loops. Pool projectiles, pickups, particles, floating text.
 - Simulation code does not reference UI/view nodes. Sim must be runnable headless.
 - Host-authoritative: clients send inputs only; never trust client HP/ammo/score/cooldowns.
+- No `class_name`; use `const X := preload("res://…")` and `extends "res://…"` (blueprint D9). Lambdas capture locals **by value**: create nodes first, then connect; avoid multi-line lambdas followed by more call arguments (use `Callable.bind` / named methods). No autoload references inside `const` expressions.
 - No new dependency/addon without a decision record in `blueprint.md §0`.
 
 ## Git & branches

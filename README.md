@@ -7,7 +7,14 @@ Original 2D multiplayer commando action game (Godot 4.6.3, Android first). Start
 3. **Actions → Unpack bootstrap zip → Run workflow.** It extracts the project and commits it.
 4. Create `.github/workflows/ci.yml` (same way) and paste the contents of `ci.yml`. Commit.
 5. **Actions → CI → Run workflow**, wait, open the run, download artifact `mini-commandoes-DEBUG-<n>` (APK). Allow "install unknown apps" for your browser/files app, install, open.
-6. Expected on screen: the MINI COMMANDOES title, version line, and counts (characters 4, skills 24, pets 4, weapons 12, throwables 7, maps 5, modes 5). That is only an infrastructure boot screen, not the game.
-7. Send me the Actions log (or screenshot) if anything fails.
+6. **Uninstall the previous Mini Commandoes first** (every CI build is signed with a new debug key; Android refuses to update in place), then install the new APK.
+7. Device checklist for v0.0.2 (tell me pass/fail for each):
+   - Opens in **landscape**; boot screen shows `v0.0.2 (build N, sha)` and `save: none`, then goes to the main menu by itself.
+   - Main menu shows 11 buttons; PLAY, LOADOUT, MISSIONS, TRAINING are greyed out with a phase label (that is intended).
+   - CHARACTERS: tap each commando, SELECT one other than Rook, force-close the app, reopen: the menu says your choice.
+   - SETTINGS: change music/sfx +/-, FPS, vibration; force-close and reopen: values kept. Buttons click and vibrate.
+   - PETS / SKILLS / ARSENAL / MAPS open and show details. ABOUT shows version, window size, engine license toggle.
+   - Android Back button goes back to the menu; Back on the main menu closes the app.
+8. If anything fails, send the Actions log or a screenshot.
 
 This is a DEBUG build; there is no release build yet.

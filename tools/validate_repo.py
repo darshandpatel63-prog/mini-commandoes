@@ -88,6 +88,40 @@ for p in ROOT.rglob("*"):
         if re.search(r'(keystore_pass|keystore_password|storepass)\s*[=:]\s*"?[A-Za-z0-9+/_\-]{6,}', t) and "secrets." not in t and "${" not in t:
             err(f"possible hardcoded signing password in {p.relative_to(ROOT)}")
 
+# res:// path integrity: every referenced file must exist (catches typos in scenes/scripts/project.godot)
+REQUIRED_ASSETS = ["assets/audio/sfx/ui_click.wav", "assets/audio/sfx/ui_back.wav", "assets/audio/sfx/ui_confirm.wav"]
+for a in REQUIRED_ASSETS:
+    if not (ROOT / a).is_file(): err(f"missing required asset: {a}")
+for p in list(ROOT.rglob("*.gd")) + list(ROOT.rglob("*.tscn")) + [ROOT / "project.godot", ROOT / "export_presets.cfg"]:
+    if not p.is_file() or ".git" in p.parts: continue
+    txt = p.read_text(encoding="utf-8", errors="ignore")
+    for m in re.finditer(r'res://[A-Za-z0-9_/.\-]+', txt):
+        ref = m.group(0)
+        nxt = txt[m.end():m.end() + 1]
+        if ref.endswith("/") or nxt == "%": continue   # directory prefix / format string
+        if not (ROOT / ref[len("res://"):]).exists():
+            err(f"{p.relative_to(ROOT)}: references missing file {ref}")
+
+# GDScript sanity (no engine here): no mixed tab/space indentation, balanced brackets, autoloads exist
+for p in ROOT.rglob("*.gd"):
+    if ".git" in p.parts: continue
+    lines = p.read_text(encoding="utf-8").splitlines()
+    kinds = set()
+    depth = {"(": 0, "[": 0, "{": 0}
+    pair = {")": "(", "]": "[", "}": "{"}
+    for i, l in enumerate(lines, 1):
+        ind = l[:len(l) - len(l.lstrip())]
+        if ind:
+            if "\t" in ind and " " in ind: err(f"{p.relative_to(ROOT)}:{i}: mixed tab/space indent")
+            kinds.add("t" if "\t" in ind else "s")
+        code = re.sub(r'"(?:[^"\\]|\\.)*"|\'(?:[^\'\\]|\\.)*\'', '""', l)   # blank out string literals
+        code = code.split("#")[0]                                            # then strip comments
+        for ch in code:
+            if ch in depth: depth[ch] += 1
+            elif ch in pair: depth[pair[ch]] -= 1
+    if len(kinds) > 1: err(f"{p.relative_to(ROOT)}: file mixes tab and space indentation")
+    if any(v != 0 for v in depth.values()): err(f"{p.relative_to(ROOT)}: unbalanced brackets {depth}")
+
 # markdown sanity: even number of code fences
 for md in list(ROOT.glob("*.md")) + list((ROOT / "docs").glob("*.md")):
     n = sum(1 for l in md.read_text(encoding="utf-8").splitlines() if l.lstrip().startswith("```"))
