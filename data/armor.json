@@ -1,0 +1,47 @@
+{
+ "schema": 1,
+ "helmet": [
+  {
+   "level": 0,
+   "reduction": 0.0,
+   "durability": 0
+  },
+  {
+   "level": 1,
+   "reduction": 0.2,
+   "durability": 40
+  },
+  {
+   "level": 2,
+   "reduction": 0.3,
+   "durability": 60
+  },
+  {
+   "level": 3,
+   "reduction": 0.4,
+   "durability": 80
+  }
+ ],
+ "vest": [
+  {
+   "level": 0,
+   "reduction": 0.0,
+   "durability": 0
+  },
+  {
+   "level": 1,
+   "reduction": 0.15,
+   "durability": 80
+  },
+  {
+   "level": 2,
+   "reduction": 0.25,
+   "durability": 110
+  },
+  {
+   "level": 3,
+   "reduction": 0.35,
+   "durability": 140
+  }
+ ]
+}
