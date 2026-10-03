@@ -1,0 +1,5534 @@
+{
+ "scenarios": [
+  {
+   "name": "ar_body_no_armor",
+   "init": {},
+   "steps": [
+    {
+     "op": "hit",
+     "hit": {
+      "damage": 14,
+      "zone": "body"
+     },
+     "now": 0.0
+    }
+   ],
+   "expect": {
+    "hp": 186.0,
+    "max_hp": 200.0,
+    "ep": 100.0,
+    "helmet_dur": 0.0,
+    "vest_dur": 0.0,
+    "shield": 0.0,
+    "alive": true,
+    "downed": false,
+    "using": false,
+    "hots": 0,
+    "health_kit": 1
+   },
+   "last": {
+    "hp_damage": 14.0,
+    "armor_absorbed": 0.0,
+    "shield_absorbed": 0.0,
+    "ep_absorbed": 0.0,
+    "piece": "",
+    "piece_broken": false,
+    "killed": false,
+    "downed": false,
+    "interrupted": false,
+    "blocked": false
+   }
+  },
+  {
+   "name": "ar_head_no_armor",
+   "init": {},
+   "steps": [
+    {
+     "op": "hit",
+     "hit": {
+      "damage": 14,
+      "zone": "head",
+      "head_mult": 2.0
+     },
+     "now": 0.0
+    }
+   ],
+   "expect": {
+    "hp": 172.0,
+    "max_hp": 200.0,
+    "ep": 100.0,
+    "helmet_dur": 0.0,
+    "vest_dur": 0.0,
+    "shield": 0.0,
+    "alive": true,
+    "downed": false,
+    "using": false,
+    "hots": 0,
+    "health_kit": 1
+   },
+   "last": {
+    "hp_damage": 28.0,
+    "armor_absorbed": 0.0,
+    "shield_absorbed": 0.0,
+    "ep_absorbed": 0.0,
+    "piece": "",
+    "piece_broken": false,
+    "killed": false,
+    "downed": false,
+    "interrupted": false,
+    "blocked": false
+   }
+  },
+  {
+   "name": "vest3_body",
+   "init": {
+    "vest": [
+     3
+    ]
+   },
+   "steps": [
+    {
+     "op": "hit",
+     "hit": {
+      "damage": 14,
+      "zone": "body"
+     },
+     "now": 0.0
+    }
+   ],
+   "expect": {
+    "hp": 190.9,
+    "max_hp": 200.0,
+    "ep": 100.0,
+    "helmet_dur": 0.0,
+    "vest_dur": 135.1,
+    "shield": 0.0,
+    "alive": true,
+    "downed": false,
+    "using": false,
+    "hots": 0,
+    "health_kit": 1
+   },
+   "last": {
+    "hp_damage": 9.100000000000001,
+    "armor_absorbed": 4.8999999999999995,
+    "shield_absorbed": 0.0,
+    "ep_absorbed": 0.0,
+    "piece": "vest",
+    "piece_broken": false,
+    "killed": false,
+    "downed": false,
+    "interrupted": false,
+    "blocked": false
+   }
+  },
+  {
+   "name": "helm3_sniper_head",
+   "init": {
+    "helmet": [
+     3
+    ]
+   },
+   "steps": [
+    {
+     "op": "hit",
+     "hit": {
+      "damage": 85,
+      "zone": "head",
+      "head_mult": 2.5,
+      "armor_pen": 0.3
+     },
+     "now": 0.0
+    }
+   ],
+   "expect": {
+    "hp": 47.0,
+    "max_hp": 200.0,
+    "ep": 100.0,
+    "helmet_dur": 20.500000000000007,
+    "vest_dur": 0.0,
+    "shield": 0.0,
+    "alive": true,
+    "downed": false,
+    "using": false,
+    "hots": 0,
+    "health_kit": 1
+   },
+   "last": {
+    "hp_damage": 153.0,
+    "armor_absorbed": 59.49999999999999,
+    "shield_absorbed": 0.0,
+    "ep_absorbed": 0.0,
+    "piece": "helmet",
+    "piece_broken": false,
+    "killed": false,
+    "downed": false,
+    "interrupted": false,
+    "blocked": false
+   }
+  },
+  {
+   "name": "helm3_low_durability_sniper",
+   "init": {
+    "helmet": [
+     3,
+     10
+    ]
+   },
+   "steps": [
+    {
+     "op": "hit",
+     "hit": {
+      "damage": 85,
+      "zone": "head",
+      "head_mult": 2.5,
+      "armor_pen": 0.3
+     },
+     "now": 0.0
+    }
+   ],
+   "expect": {
+    "hp": 0.0,
+    "max_hp": 200.0,
+    "ep": 100.0,
+    "helmet_dur": 0.0,
+    "vest_dur": 0.0,
+    "shield": 0.0,
+    "alive": false,
+    "downed": false,
+    "using": false,
+    "hots": 0,
+    "health_kit": 1
+   },
+   "last": {
+    "hp_damage": 202.5,
+    "armor_absorbed": 10.0,
+    "shield_absorbed": 0.0,
+    "ep_absorbed": 0.0,
+    "piece": "helmet",
+    "piece_broken": true,
+    "killed": true,
+    "downed": false,
+    "interrupted": false,
+    "blocked": false
+   }
+  },
+  {
+   "name": "no_helmet_sniper_one_shot",
+   "init": {},
+   "steps": [
+    {
+     "op": "hit",
+     "hit": {
+      "damage": 85,
+      "zone": "head",
+      "head_mult": 2.5,
+      "armor_pen": 0.3
+     },
+     "now": 0.0
+    }
+   ],
+   "expect": {
+    "hp": 0.0,
+    "max_hp": 200.0,
+    "ep": 100.0,
+    "helmet_dur": 0.0,
+    "vest_dur": 0.0,
+    "shield": 0.0,
+    "alive": false,
+    "downed": false,
+    "using": false,
+    "hots": 0,
+    "health_kit": 1
+   },
+   "last": {
+    "hp_damage": 212.5,
+    "armor_absorbed": 0.0,
+    "shield_absorbed": 0.0,
+    "ep_absorbed": 0.0,
+    "piece": "",
+    "piece_broken": false,
+    "killed": true,
+    "downed": false,
+    "interrupted": false,
+    "blocked": false
+   }
+  },
+  {
+   "name": "helm1_sniper_survives",
+   "init": {
+    "helmet": [
+     1
+    ]
+   },
+   "steps": [
+    {
+     "op": "hit",
+     "hit": {
+      "damage": 85,
+      "zone": "head",
+      "head_mult": 2.5,
+      "armor_pen": 0.3
+     },
+     "now": 0.0
+    }
+   ],
+   "expect": {
+    "hp": 17.25,
+    "max_hp": 200.0,
+    "ep": 100.0,
+    "helmet_dur": 10.250000000000004,
+    "vest_dur": 0.0,
+    "shield": 0.0,
+    "alive": true,
+    "downed": false,
+    "using": false,
+    "hots": 0,
+    "health_kit": 1
+   },
+   "last": {
+    "hp_damage": 182.75,
+    "armor_absorbed": 29.749999999999996,
+    "shield_absorbed": 0.0,
+    "ep_absorbed": 0.0,
+    "piece": "helmet",
+    "piece_broken": false,
+    "killed": false,
+    "downed": false,
+    "interrupted": false,
+    "blocked": false
+   }
+  },
+  {
+   "name": "energy_barrier_absorbs",
+   "init": {
+    "passives": [
+     "energy_barrier"
+    ]
+   },
+   "steps": [
+    {
+     "op": "hit",
+     "hit": {
+      "damage": 100,
+      "zone": "body"
+     },
+     "now": 0.0
+    }
+   ],
+   "expect": {
+    "hp": 120.0,
+    "max_hp": 200.0,
+    "ep": 80.0,
+    "helmet_dur": 0.0,
+    "vest_dur": 0.0,
+    "shield": 0.0,
+    "alive": true,
+    "downed": false,
+    "using": false,
+    "hots": 0,
+    "health_kit": 1
+   },
+   "last": {
+    "hp_damage": 80.0,
+    "armor_absorbed": 0.0,
+    "shield_absorbed": 0.0,
+    "ep_absorbed": 20.0,
+    "piece": "",
+    "piece_broken": false,
+    "killed": false,
+    "downed": false,
+    "interrupted": false,
+    "blocked": false
+   }
+  },
+  {
+   "name": "energy_barrier_limited_by_ep",
+   "init": {
+    "passives": [
+     "energy_barrier"
+    ],
+    "ep": 5
+   },
+   "steps": [
+    {
+     "op": "hit",
+     "hit": {
+      "damage": 100,
+      "zone": "body"
+     },
+     "now": 0.0
+    }
+   ],
+   "expect": {
+    "hp": 105.0,
+    "max_hp": 200.0,
+    "ep": 0.0,
+    "helmet_dur": 0.0,
+    "vest_dur": 0.0,
+    "shield": 0.0,
+    "alive": true,
+    "downed": false,
+    "using": false,
+    "hots": 0,
+    "health_kit": 1
+   },
+   "last": {
+    "hp_damage": 95.0,
+    "armor_absorbed": 0.0,
+    "shield_absorbed": 0.0,
+    "ep_absorbed": 5.0,
+    "piece": "",
+    "piece_broken": false,
+    "killed": false,
+    "downed": false,
+    "interrupted": false,
+    "blocked": false
+   }
+  },
+  {
+   "name": "shield_absorbs_then_hp",
+   "init": {},
+   "steps": [
+    {
+     "op": "skill",
+     "id": "bulwark_ward",
+     "now": 0.0
+    },
+    {
+     "op": "hit",
+     "hit": {
+      "damage": 100,
+      "zone": "body"
+     },
+     "now": 1.0
+    }
+   ],
+   "expect": {
+    "hp": 140.0,
+    "max_hp": 200.0,
+    "ep": 80.0,
+    "helmet_dur": 0.0,
+    "vest_dur": 0.0,
+    "shield": 0.0,
+    "alive": true,
+    "downed": false,
+    "using": false,
+    "hots": 0,
+    "health_kit": 1
+   },
+   "last": {
+    "hp_damage": 60.0,
+    "armor_absorbed": 0.0,
+    "shield_absorbed": 40.0,
+    "ep_absorbed": 0.0,
+    "piece": "",
+    "piece_broken": false,
+    "killed": false,
+    "downed": false,
+    "interrupted": false,
+    "blocked": false
+   }
+  },
+  {
+   "name": "shield_expires",
+   "init": {},
+   "steps": [
+    {
+     "op": "skill",
+     "id": "bulwark_ward",
+     "now": 0.0
+    },
+    {
+     "op": "tick",
+     "dt": 1.0,
+     "now": 7.0
+    }
+   ],
+   "expect": {
+    "hp": 200.0,
+    "max_hp": 200.0,
+    "ep": 86.0,
+    "helmet_dur": 0.0,
+    "vest_dur": 0.0,
+    "shield": 0.0,
+    "alive": true,
+    "downed": false,
+    "using": false,
+    "hots": 0,
+    "health_kit": 1
+   },
+   "last": {}
+  },
+  {
+   "name": "ep_regen_delay",
+   "init": {},
+   "steps": [
+    {
+     "op": "skill",
+     "id": "pip_mark",
+     "now": 0.0
+    },
+    {
+     "op": "tick",
+     "dt": 1.0,
+     "now": 1.0
+    },
+    {
+     "op": "tick",
+     "dt": 1.0,
+     "now": 3.0
+    }
+   ],
+   "expect": {
+    "hp": 200.0,
+    "max_hp": 200.0,
+    "ep": 91.0,
+    "helmet_dur": 0.0,
+    "vest_dur": 0.0,
+    "shield": 0.0,
+    "alive": true,
+    "downed": false,
+    "using": false,
+    "hots": 0,
+    "health_kit": 1
+   },
+   "last": {}
+  },
+  {
+   "name": "ep_regen_quick_charge",
+   "init": {
+    "passives": [
+     "quick_charge"
+    ]
+   },
+   "steps": [
+    {
+     "op": "skill",
+     "id": "pip_mark",
+     "now": 0.0
+    },
+    {
+     "op": "tick",
+     "dt": 1.0,
+     "now": 3.0
+    }
+   ],
+   "expect": {
+    "hp": 200.0,
+    "max_hp": 200.0,
+    "ep": 92.8,
+    "helmet_dur": 0.0,
+    "vest_dur": 0.0,
+    "shield": 0.0,
+    "alive": true,
+    "downed": false,
+    "using": false,
+    "hots": 0,
+    "health_kit": 1
+   },
+   "last": {}
+  },
+  {
+   "name": "ep_cell_capacitor_bank",
+   "init": {
+    "passives": [
+     "capacitor_bank"
+    ],
+    "ep": 100
+   },
+   "steps": [
+    {
+     "op": "item",
+     "id": "ep_cell",
+     "now": 0.0
+    },
+    {
+     "op": "tick",
+     "dt": 1.5,
+     "now": 1.5
+    }
+   ],
+   "expect": {
+    "hp": 200.0,
+    "max_hp": 200.0,
+    "ep": 125.0,
+    "helmet_dur": 0.0,
+    "vest_dur": 0.0,
+    "shield": 0.0,
+    "alive": true,
+    "downed": false,
+    "using": false,
+    "hots": 0,
+    "health_kit": 1
+   },
+   "last": {}
+  },
+  {
+   "name": "ep_cell_when_full_rejected",
+   "init": {},
+   "steps": [
+    {
+     "op": "item",
+     "id": "ep_cell",
+     "now": 0.0
+    }
+   ],
+   "expect": {
+    "hp": 200.0,
+    "max_hp": 200.0,
+    "ep": 100.0,
+    "helmet_dur": 0.0,
+    "vest_dur": 0.0,
+    "shield": 0.0,
+    "alive": true,
+    "downed": false,
+    "using": false,
+    "hots": 0,
+    "health_kit": 1
+   },
+   "last": {
+    "err": "FULL"
+   }
+  },
+  {
+   "name": "health_kit_quick_hands",
+   "init": {
+    "hp": 100,
+    "passives": [
+     "quick_hands"
+    ]
+   },
+   "steps": [
+    {
+     "op": "item",
+     "id": "health_kit",
+     "now": 0.0
+    },
+    {
+     "op": "tick",
+     "dt": 0.1,
+     "now": 1.7
+    }
+   ],
+   "expect": {
+    "hp": 100.0,
+    "max_hp": 200.0,
+    "ep": 100.0,
+    "helmet_dur": 0.0,
+    "vest_dur": 0.0,
+    "shield": 0.0,
+    "alive": true,
+    "downed": false,
+    "using": true,
+    "hots": 0,
+    "health_kit": 1
+   },
+   "last": {}
+  },
+  {
+   "name": "health_kit_completes",
+   "init": {
+    "hp": 100,
+    "passives": [
+     "quick_hands"
+    ]
+   },
+   "steps": [
+    {
+     "op": "item",
+     "id": "health_kit",
+     "now": 0.0
+    },
+    {
+     "op": "tick",
+     "dt": 0.1,
+     "now": 1.7
+    },
+    {
+     "op": "tick",
+     "dt": 0.1,
+     "now": 1.8
+    }
+   ],
+   "expect": {
+    "hp": 175.0,
+    "max_hp": 200.0,
+    "ep": 100.0,
+    "helmet_dur": 0.0,
+    "vest_dur": 0.0,
+    "shield": 0.0,
+    "alive": true,
+    "downed": false,
+    "using": false,
+    "hots": 0,
+    "health_kit": 0
+   },
+   "last": {}
+  },
+  {
+   "name": "heal_interrupted_by_damage",
+   "init": {
+    "hp": 100
+   },
+   "steps": [
+    {
+     "op": "item",
+     "id": "health_kit",
+     "now": 0.0
+    },
+    {
+     "op": "hit",
+     "hit": {
+      "damage": 10,
+      "zone": "body"
+     },
+     "now": 1.0
+    },
+    {
+     "op": "tick",
+     "dt": 4.0,
+     "now": 5.0
+    }
+   ],
+   "expect": {
+    "hp": 90.0,
+    "max_hp": 200.0,
+    "ep": 100.0,
+    "helmet_dur": 0.0,
+    "vest_dur": 0.0,
+    "shield": 0.0,
+    "alive": true,
+    "downed": false,
+    "using": false,
+    "hots": 0,
+    "health_kit": 1
+   },
+   "last": {}
+  },
+  {
+   "name": "item_cooldown",
+   "init": {
+    "hp": 50
+   },
+   "steps": [
+    {
+     "op": "item",
+     "id": "health_kit",
+     "now": 0.0
+    },
+    {
+     "op": "tick",
+     "dt": 3.0,
+     "now": 3.0
+    },
+    {
+     "op": "item",
+     "id": "bandage",
+     "now": 3.5
+    }
+   ],
+   "expect": {
+    "hp": 125.0,
+    "max_hp": 200.0,
+    "ep": 100.0,
+    "helmet_dur": 0.0,
+    "vest_dur": 0.0,
+    "shield": 0.0,
+    "alive": true,
+    "downed": false,
+    "using": false,
+    "hots": 0,
+    "health_kit": 0
+   },
+   "last": {
+    "err": "COOLDOWN"
+   }
+  },
+  {
+   "name": "item_after_cooldown",
+   "init": {
+    "hp": 50
+   },
+   "steps": [
+    {
+     "op": "item",
+     "id": "health_kit",
+     "now": 0.0
+    },
+    {
+     "op": "tick",
+     "dt": 3.0,
+     "now": 3.0
+    },
+    {
+     "op": "item",
+     "id": "bandage",
+     "now": 4.0
+    }
+   ],
+   "expect": {
+    "hp": 125.0,
+    "max_hp": 200.0,
+    "ep": 100.0,
+    "helmet_dur": 0.0,
+    "vest_dur": 0.0,
+    "shield": 0.0,
+    "alive": true,
+    "downed": false,
+    "using": true,
+    "hots": 0,
+    "health_kit": 0
+   },
+   "last": {
+    "err": ""
+   }
+  },
+  {
+   "name": "hp_item_when_full_rejected",
+   "init": {},
+   "steps": [
+    {
+     "op": "item",
+     "id": "bandage",
+     "now": 0.0
+    }
+   ],
+   "expect": {
+    "hp": 200.0,
+    "max_hp": 200.0,
+    "ep": 100.0,
+    "helmet_dur": 0.0,
+    "vest_dur": 0.0,
+    "shield": 0.0,
+    "alive": true,
+    "downed": false,
+    "using": false,
+    "hots": 0,
+    "health_kit": 1
+   },
+   "last": {
+    "err": "FULL"
+   }
+  },
+  {
+   "name": "heal_never_exceeds_max",
+   "init": {
+    "hp": 190
+   },
+   "steps": [
+    {
+     "op": "item",
+     "id": "health_kit",
+     "now": 0.0
+    },
+    {
+     "op": "tick",
+     "dt": 3.0,
+     "now": 3.0
+    }
+   ],
+   "expect": {
+    "hp": 200.0,
+    "max_hp": 200.0,
+    "ep": 100.0,
+    "helmet_dur": 0.0,
+    "vest_dur": 0.0,
+    "shield": 0.0,
+    "alive": true,
+    "downed": false,
+    "using": false,
+    "hots": 0,
+    "health_kit": 0
+   },
+   "last": {}
+  },
+  {
+   "name": "energy_mender_converts",
+   "init": {
+    "hp": 100
+   },
+   "steps": [
+    {
+     "op": "skill",
+     "id": "energy_mender",
+     "now": 0.0
+    },
+    {
+     "op": "tick",
+     "dt": 0.5,
+     "now": 0.5
+    },
+    {
+     "op": "tick",
+     "dt": 0.5,
+     "now": 1.0
+    },
+    {
+     "op": "tick",
+     "dt": 0.5,
+     "now": 1.5
+    },
+    {
+     "op": "tick",
+     "dt": 0.5,
+     "now": 2.0
+    },
+    {
+     "op": "tick",
+     "dt": 0.5,
+     "now": 2.5
+    },
+    {
+     "op": "tick",
+     "dt": 0.5,
+     "now": 3.0
+    },
+    {
+     "op": "tick",
+     "dt": 0.5,
+     "now": 3.5
+    },
+    {
+     "op": "tick",
+     "dt": 0.5,
+     "now": 4.0
+    }
+   ],
+   "expect": {
+    "hp": 120.0,
+    "max_hp": 200.0,
+    "ep": 60.0,
+    "helmet_dur": 0.0,
+    "vest_dur": 0.0,
+    "shield": 0.0,
+    "alive": true,
+    "downed": false,
+    "using": false,
+    "hots": 0,
+    "health_kit": 1
+   },
+   "last": {}
+  },
+  {
+   "name": "energy_mender_needs_missing_hp",
+   "init": {},
+   "steps": [
+    {
+     "op": "skill",
+     "id": "energy_mender",
+     "now": 0.0
+    }
+   ],
+   "expect": {
+    "hp": 200.0,
+    "max_hp": 200.0,
+    "ep": 100.0,
+    "helmet_dur": 0.0,
+    "vest_dur": 0.0,
+    "shield": 0.0,
+    "alive": true,
+    "downed": false,
+    "using": false,
+    "hots": 0,
+    "health_kit": 1
+   },
+   "last": {
+    "err": "NOTHING_TO_DO"
+   }
+  },
+  {
+   "name": "aegis_pulse_reduces_then_expires",
+   "init": {},
+   "steps": [
+    {
+     "op": "skill",
+     "id": "aegis_pulse",
+     "now": 0.0
+    },
+    {
+     "op": "hit",
+     "hit": {
+      "damage": 100,
+      "zone": "body"
+     },
+     "now": 1.0
+    },
+    {
+     "op": "hit",
+     "hit": {
+      "damage": 100,
+      "zone": "body"
+     },
+     "now": 3.0
+    }
+   ],
+   "expect": {
+    "hp": 30.0,
+    "max_hp": 200.0,
+    "ep": 60.0,
+    "helmet_dur": 0.0,
+    "vest_dur": 0.0,
+    "shield": 0.0,
+    "alive": true,
+    "downed": false,
+    "using": false,
+    "hots": 0,
+    "health_kit": 1
+   },
+   "last": {
+    "hp_damage": 100.0,
+    "armor_absorbed": 0.0,
+    "shield_absorbed": 0.0,
+    "ep_absorbed": 0.0,
+    "piece": "",
+    "piece_broken": false,
+    "killed": false,
+    "downed": false,
+    "interrupted": false,
+    "blocked": false
+   }
+  },
+  {
+   "name": "triage_regen_to_40pct",
+   "init": {
+    "hp": 50,
+    "passives": [
+     "triage"
+    ]
+   },
+   "steps": [
+    {
+     "op": "tick",
+     "dt": 1.0,
+     "now": 1.0
+    },
+    {
+     "op": "tick",
+     "dt": 1.0,
+     "now": 2.0
+    },
+    {
+     "op": "tick",
+     "dt": 1.0,
+     "now": 3.0
+    },
+    {
+     "op": "tick",
+     "dt": 1.0,
+     "now": 4.0
+    },
+    {
+     "op": "tick",
+     "dt": 1.0,
+     "now": 5.0
+    },
+    {
+     "op": "tick",
+     "dt": 1.0,
+     "now": 6.0
+    },
+    {
+     "op": "tick",
+     "dt": 1.0,
+     "now": 7.0
+    },
+    {
+     "op": "tick",
+     "dt": 1.0,
+     "now": 8.0
+    },
+    {
+     "op": "tick",
+     "dt": 1.0,
+     "now": 9.0
+    },
+    {
+     "op": "tick",
+     "dt": 1.0,
+     "now": 10.0
+    },
+    {
+     "op": "tick",
+     "dt": 1.0,
+     "now": 11.0
+    },
+    {
+     "op": "tick",
+     "dt": 1.0,
+     "now": 12.0
+    },
+    {
+     "op": "tick",
+     "dt": 1.0,
+     "now": 13.0
+    },
+    {
+     "op": "tick",
+     "dt": 1.0,
+     "now": 14.0
+    },
+    {
+     "op": "tick",
+     "dt": 1.0,
+     "now": 15.0
+    },
+    {
+     "op": "tick",
+     "dt": 1.0,
+     "now": 16.0
+    }
+   ],
+   "expect": {
+    "hp": 80.0,
+    "max_hp": 200.0,
+    "ep": 100.0,
+    "helmet_dur": 0.0,
+    "vest_dur": 0.0,
+    "shield": 0.0,
+    "alive": true,
+    "downed": false,
+    "using": false,
+    "hots": 0,
+    "health_kit": 1
+   },
+   "last": {}
+  },
+  {
+   "name": "knockdown_then_death",
+   "init": {
+    "hp": 10,
+    "allow_knockdown": true
+   },
+   "steps": [
+    {
+     "op": "hit",
+     "hit": {
+      "damage": 50,
+      "zone": "body"
+     },
+     "now": 0.0
+    },
+    {
+     "op": "hit",
+     "hit": {
+      "damage": 60,
+      "zone": "body"
+     },
+     "now": 1.0
+    }
+   ],
+   "expect": {
+    "hp": 0.0,
+    "max_hp": 200.0,
+    "ep": 100.0,
+    "helmet_dur": 0.0,
+    "vest_dur": 0.0,
+    "shield": 0.0,
+    "alive": false,
+    "downed": false,
+    "using": false,
+    "hots": 0,
+    "health_kit": 1
+   },
+   "last": {
+    "hp_damage": 60.0,
+    "armor_absorbed": 0.0,
+    "shield_absorbed": 0.0,
+    "ep_absorbed": 0.0,
+    "piece": "",
+    "piece_broken": false,
+    "killed": true,
+    "downed": false,
+    "interrupted": false,
+    "blocked": false
+   }
+  },
+  {
+   "name": "knockdown_state",
+   "init": {
+    "hp": 10,
+    "allow_knockdown": true
+   },
+   "steps": [
+    {
+     "op": "hit",
+     "hit": {
+      "damage": 50,
+      "zone": "body"
+     },
+     "now": 0.0
+    }
+   ],
+   "expect": {
+    "hp": 0.0,
+    "max_hp": 200.0,
+    "ep": 100.0,
+    "helmet_dur": 0.0,
+    "vest_dur": 0.0,
+    "shield": 0.0,
+    "alive": true,
+    "downed": true,
+    "using": false,
+    "hots": 0,
+    "health_kit": 1
+   },
+   "last": {
+    "hp_damage": 50.0,
+    "armor_absorbed": 0.0,
+    "shield_absorbed": 0.0,
+    "ep_absorbed": 0.0,
+    "piece": "",
+    "piece_broken": false,
+    "killed": false,
+    "downed": true,
+    "interrupted": false,
+    "blocked": false
+   }
+  },
+  {
+   "name": "no_knockdown_dies",
+   "init": {
+    "hp": 10
+   },
+   "steps": [
+    {
+     "op": "hit",
+     "hit": {
+      "damage": 50,
+      "zone": "body"
+     },
+     "now": 0.0
+    }
+   ],
+   "expect": {
+    "hp": 0.0,
+    "max_hp": 200.0,
+    "ep": 100.0,
+    "helmet_dur": 0.0,
+    "vest_dur": 0.0,
+    "shield": 0.0,
+    "alive": false,
+    "downed": false,
+    "using": false,
+    "hots": 0,
+    "health_kit": 1
+   },
+   "last": {
+    "hp_damage": 50.0,
+    "armor_absorbed": 0.0,
+    "shield_absorbed": 0.0,
+    "ep_absorbed": 0.0,
+    "piece": "",
+    "piece_broken": false,
+    "killed": true,
+    "downed": false,
+    "interrupted": false,
+    "blocked": false
+   }
+  },
+  {
+   "name": "armor_never_raises_max_hp",
+   "init": {
+    "helmet": [
+     3
+    ],
+    "vest": [
+     3
+    ]
+   },
+   "steps": [],
+   "expect": {
+    "hp": 200.0,
+    "max_hp": 200.0,
+    "ep": 100.0,
+    "helmet_dur": 80.0,
+    "vest_dur": 140.0,
+    "shield": 0.0,
+    "alive": true,
+    "downed": false,
+    "using": false,
+    "hots": 0,
+    "health_kit": 1
+   },
+   "last": {}
+  },
+  {
+   "name": "reinforced_plating_durability",
+   "init": {
+    "passives": [
+     "reinforced_plating"
+    ],
+    "vest": [
+     3
+    ]
+   },
+   "steps": [
+    {
+     "op": "hit",
+     "hit": {
+      "damage": 14,
+      "zone": "body"
+     },
+     "now": 0.0
+    }
+   ],
+   "expect": {
+    "hp": 190.9,
+    "max_hp": 200.0,
+    "ep": 100.0,
+    "helmet_dur": 0.0,
+    "vest_dur": 136.325,
+    "shield": 0.0,
+    "alive": true,
+    "downed": false,
+    "using": false,
+    "hots": 0,
+    "health_kit": 1
+   },
+   "last": {
+    "hp_damage": 9.100000000000001,
+    "armor_absorbed": 4.8999999999999995,
+    "shield_absorbed": 0.0,
+    "ep_absorbed": 0.0,
+    "piece": "vest",
+    "piece_broken": false,
+    "killed": false,
+    "downed": false,
+    "interrupted": false,
+    "blocked": false
+   }
+  },
+  {
+   "name": "armor_break_melee",
+   "init": {
+    "vest": [
+     1
+    ]
+   },
+   "steps": [
+    {
+     "op": "hit",
+     "hit": {
+      "damage": 24,
+      "zone": "body",
+      "armor_break": 5
+     },
+     "now": 0.0
+    }
+   ],
+   "expect": {
+    "hp": 179.6,
+    "max_hp": 200.0,
+    "ep": 100.0,
+    "helmet_dur": 0.0,
+    "vest_dur": 71.4,
+    "shield": 0.0,
+    "alive": true,
+    "downed": false,
+    "using": false,
+    "hots": 0,
+    "health_kit": 1
+   },
+   "last": {
+    "hp_damage": 20.4,
+    "armor_absorbed": 3.5999999999999996,
+    "shield_absorbed": 0.0,
+    "ep_absorbed": 0.0,
+    "piece": "vest",
+    "piece_broken": false,
+    "killed": false,
+    "downed": false,
+    "interrupted": false,
+    "blocked": false
+   }
+  },
+  {
+   "name": "repair_kit_restores_durability",
+   "init": {
+    "vest": [
+     2,
+     50
+    ]
+   },
+   "steps": [
+    {
+     "op": "item",
+     "id": "repair_kit",
+     "now": 0.0
+    },
+    {
+     "op": "tick",
+     "dt": 2.0,
+     "now": 2.0
+    }
+   ],
+   "expect": {
+    "hp": 200.0,
+    "max_hp": 200.0,
+    "ep": 100.0,
+    "helmet_dur": 0.0,
+    "vest_dur": 90.0,
+    "shield": 0.0,
+    "alive": true,
+    "downed": false,
+    "using": false,
+    "hots": 0,
+    "health_kit": 1
+   },
+   "last": {}
+  },
+  {
+   "name": "hardened_helm_headshot",
+   "init": {
+    "passives": [
+     "hardened_helm"
+    ]
+   },
+   "steps": [
+    {
+     "op": "hit",
+     "hit": {
+      "damage": 14,
+      "zone": "head",
+      "head_mult": 2.0
+     },
+     "now": 0.0
+    }
+   ],
+   "expect": {
+    "hp": 174.8,
+    "max_hp": 200.0,
+    "ep": 100.0,
+    "helmet_dur": 0.0,
+    "vest_dur": 0.0,
+    "shield": 0.0,
+    "alive": true,
+    "downed": false,
+    "using": false,
+    "hots": 0,
+    "health_kit": 1
+   },
+   "last": {
+    "hp_damage": 25.2,
+    "armor_absorbed": 0.0,
+    "shield_absorbed": 0.0,
+    "ep_absorbed": 0.0,
+    "piece": "",
+    "piece_broken": false,
+    "killed": false,
+    "downed": false,
+    "interrupted": false,
+    "blocked": false
+   }
+  },
+  {
+   "name": "skill_cooldown",
+   "init": {},
+   "steps": [
+    {
+     "op": "skill",
+     "id": "bulwark_ward",
+     "now": 0.0
+    },
+    {
+     "op": "skill",
+     "id": "bulwark_ward",
+     "now": 10.0
+    }
+   ],
+   "expect": {
+    "hp": 200.0,
+    "max_hp": 200.0,
+    "ep": 80.0,
+    "helmet_dur": 0.0,
+    "vest_dur": 0.0,
+    "shield": 40.0,
+    "alive": true,
+    "downed": false,
+    "using": false,
+    "hots": 0,
+    "health_kit": 1
+   },
+   "last": {
+    "err": "COOLDOWN"
+   }
+  },
+  {
+   "name": "skill_ready_after_cooldown",
+   "init": {},
+   "steps": [
+    {
+     "op": "skill",
+     "id": "bulwark_ward",
+     "now": 0.0
+    },
+    {
+     "op": "skill",
+     "id": "bulwark_ward",
+     "now": 30.0
+    }
+   ],
+   "expect": {
+    "hp": 200.0,
+    "max_hp": 200.0,
+    "ep": 60.0,
+    "helmet_dur": 0.0,
+    "vest_dur": 0.0,
+    "shield": 40.0,
+    "alive": true,
+    "downed": false,
+    "using": false,
+    "hots": 0,
+    "health_kit": 1
+   },
+   "last": {
+    "err": ""
+   }
+  },
+  {
+   "name": "skill_needs_ep",
+   "init": {
+    "ep": 10
+   },
+   "steps": [
+    {
+     "op": "skill",
+     "id": "aegis_pulse",
+     "now": 0.0
+    }
+   ],
+   "expect": {
+    "hp": 200.0,
+    "max_hp": 200.0,
+    "ep": 10.0,
+    "helmet_dur": 0.0,
+    "vest_dur": 0.0,
+    "shield": 0.0,
+    "alive": true,
+    "downed": false,
+    "using": false,
+    "hots": 0,
+    "health_kit": 1
+   },
+   "last": {
+    "err": "NO_EP"
+   }
+  },
+  {
+   "name": "downed_cannot_use_skill",
+   "init": {
+    "hp": 10,
+    "allow_knockdown": true
+   },
+   "steps": [
+    {
+     "op": "hit",
+     "hit": {
+      "damage": 50,
+      "zone": "body"
+     },
+     "now": 0.0
+    },
+    {
+     "op": "skill",
+     "id": "bulwark_ward",
+     "now": 1.0
+    }
+   ],
+   "expect": {
+    "hp": 0.0,
+    "max_hp": 200.0,
+    "ep": 100.0,
+    "helmet_dur": 0.0,
+    "vest_dur": 0.0,
+    "shield": 0.0,
+    "alive": true,
+    "downed": true,
+    "using": false,
+    "hots": 0,
+    "health_kit": 1
+   },
+   "last": {
+    "err": "DOWNED"
+   }
+  },
+  {
+   "name": "downed_cannot_use_item",
+   "init": {
+    "hp": 10,
+    "allow_knockdown": true
+   },
+   "steps": [
+    {
+     "op": "hit",
+     "hit": {
+      "damage": 50,
+      "zone": "body"
+     },
+     "now": 0.0
+    },
+    {
+     "op": "item",
+     "id": "bandage",
+     "now": 1.0
+    }
+   ],
+   "expect": {
+    "hp": 0.0,
+    "max_hp": 200.0,
+    "ep": 100.0,
+    "helmet_dur": 0.0,
+    "vest_dur": 0.0,
+    "shield": 0.0,
+    "alive": true,
+    "downed": true,
+    "using": false,
+    "hots": 0,
+    "health_kit": 1
+   },
+   "last": {
+    "err": "DOWNED"
+   }
+  },
+  {
+   "name": "thrown_explosion_ignores_armor_flag",
+   "init": {
+    "vest": [
+     3
+    ]
+   },
+   "steps": [
+    {
+     "op": "hit",
+     "hit": {
+      "damage": 50,
+      "zone": "body",
+      "ignore_armor": true
+     },
+     "now": 0.0
+    }
+   ],
+   "expect": {
+    "hp": 150.0,
+    "max_hp": 200.0,
+    "ep": 100.0,
+    "helmet_dur": 0.0,
+    "vest_dur": 140.0,
+    "shield": 0.0,
+    "alive": true,
+    "downed": false,
+    "using": false,
+    "hots": 0,
+    "health_kit": 1
+   },
+   "last": {
+    "hp_damage": 50.0,
+    "armor_absorbed": 0.0,
+    "shield_absorbed": 0.0,
+    "ep_absorbed": 0.0,
+    "piece": "",
+    "piece_broken": false,
+    "killed": false,
+    "downed": false,
+    "interrupted": false,
+    "blocked": false
+   }
+  }
+ ],
+ "stats": [
+  {
+   "name": "damage_reduction_capped",
+   "mods": [
+    {
+     "stat": "damage_taken_mult",
+     "op": "mult",
+     "value": 0.7
+    },
+    {
+     "stat": "damage_taken_mult",
+     "op": "mult",
+     "value": 0.7
+    },
+    {
+     "stat": "damage_taken_mult",
+     "op": "mult",
+     "value": 0.7
+    }
+   ],
+   "expect": {
+    "damage_taken_mult": 0.6
+   }
+  },
+  {
+   "name": "cooldown_cannot_reach_zero",
+   "mods": [
+    {
+     "stat": "skill_cooldown_mult",
+     "op": "mult",
+     "value": 0.0
+    }
+   ],
+   "expect": {
+    "skill_cooldown_mult": 0.8
+   }
+  },
+  {
+   "name": "ep_bonus_capped",
+   "mods": [
+    {
+     "stat": "ep_max_bonus",
+     "op": "add",
+     "value": 25
+    },
+    {
+     "stat": "ep_max_bonus",
+     "op": "add",
+     "value": 25
+    },
+    {
+     "stat": "ep_max_bonus",
+     "op": "add",
+     "value": 25
+    },
+    {
+     "stat": "ep_max_bonus",
+     "op": "add",
+     "value": 25
+    },
+    {
+     "stat": "ep_max_bonus",
+     "op": "add",
+     "value": 25
+    }
+   ],
+   "expect": {
+    "ep_max_bonus": 50.0
+   }
+  },
+  {
+   "name": "barrier_capped",
+   "mods": [
+    {
+     "stat": "ep_barrier",
+     "op": "add",
+     "value": 0.2
+    },
+    {
+     "stat": "ep_barrier",
+     "op": "add",
+     "value": 0.2
+    },
+    {
+     "stat": "ep_barrier",
+     "op": "add",
+     "value": 0.2
+    }
+   ],
+   "expect": {
+    "ep_barrier": 0.25
+   }
+  },
+  {
+   "name": "move_speed_capped",
+   "mods": [
+    {
+     "stat": "move_speed_mult",
+     "op": "mult",
+     "value": 3.0
+    }
+   ],
+   "expect": {
+    "move_speed_mult": 1.15
+   }
+  },
+  {
+   "name": "durability_loss_floor",
+   "mods": [
+    {
+     "stat": "durability_loss_mult",
+     "op": "mult",
+     "value": 0.5
+    }
+   ],
+   "expect": {
+    "durability_loss_mult": 0.7
+   }
+  },
+  {
+   "name": "two_mults_multiply",
+   "mods": [
+    {
+     "stat": "damage_taken_mult",
+     "op": "mult",
+     "value": 0.95
+    },
+    {
+     "stat": "damage_taken_mult",
+     "op": "mult",
+     "value": 0.9
+    }
+   ],
+   "expect": {
+    "damage_taken_mult": 0.855
+   }
+  },
+  {
+   "name": "unknown_stat_ignored",
+   "mods": [
+    {
+     "stat": "hp_bonus",
+     "op": "add",
+     "value": 9999
+    },
+    {
+     "stat": "max_hp",
+     "op": "mult",
+     "value": 50
+    }
+   ],
+   "expect": {
+    "damage_taken_mult": 1.0
+   }
+  }
+ ],
+ "loadouts": [
+  {
+   "name": "preset_assault",
+   "loadout": {
+    "character": "rook",
+    "active": "shockwave_slam",
+    "passives": [
+     "iron_knuckles",
+     "quick_hands",
+     "steady_footing",
+     "capacitor_bank"
+    ],
+    "pet": "bulwark",
+    "primary": "hammerhead_sg",
+    "secondary": "peacekeeper_pistol",
+    "melee": "impact_gauntlet",
+    "throwable": "splinter",
+    "start_helmet": 1,
+    "start_vest": 1
+   },
+   "expect_codes": []
+  },
+  {
+   "name": "preset_defensive",
+   "loadout": {
+    "character": "kade",
+    "active": "aegis_pulse",
+    "passives": [
+     "hardened_helm",
+     "reinforced_plating",
+     "quick_hands",
+     "pressure_seal"
+    ],
+    "pet": "bulwark",
+    "primary": "vanguard_ar",
+    "secondary": "burst_pistol",
+    "melee": "machete",
+    "throwable": "veil",
+    "start_helmet": 1,
+    "start_vest": 1
+   },
+   "expect_codes": []
+  },
+  {
+   "name": "preset_mobility",
+   "loadout": {
+    "character": "juno",
+    "active": "rapid_dash",
+    "passives": [
+     "jet_tuning",
+     "soft_landing",
+     "slide_reload",
+     "steady_footing"
+    ],
+    "pet": "pip",
+    "primary": "sidewinder_smg",
+    "secondary": "peacekeeper_pistol",
+    "melee": "fists",
+    "throwable": "glare",
+    "start_helmet": 0,
+    "start_vest": 1
+   },
+   "expect_codes": []
+  },
+  {
+   "name": "preset_support",
+   "loadout": {
+    "character": "mirelle",
+    "active": "energy_mender",
+    "passives": [
+     "quick_hands",
+     "triage",
+     "capacitor_bank",
+     "pack_mule"
+    ],
+    "pet": "biscuit",
+    "primary": "arc_lance",
+    "secondary": "peacekeeper_pistol",
+    "melee": "fists",
+    "throwable": "mend_can",
+    "start_helmet": 1,
+    "start_vest": 1
+   },
+   "expect_codes": []
+  },
+  {
+   "name": "empty_slots_ok",
+   "loadout": {
+    "character": "rook",
+    "active": "",
+    "passives": [
+     "",
+     "",
+     "",
+     ""
+    ],
+    "pet": "",
+    "primary": "hammerhead_sg",
+    "secondary": "peacekeeper_pistol",
+    "melee": "impact_gauntlet",
+    "throwable": "splinter",
+    "start_helmet": 1,
+    "start_vest": 1
+   },
+   "expect_codes": []
+  },
+  {
+   "name": "five_passives",
+   "loadout": {
+    "character": "rook",
+    "active": "shockwave_slam",
+    "passives": [
+     "iron_knuckles",
+     "quick_hands",
+     "steady_footing",
+     "capacitor_bank",
+     "soft_landing"
+    ],
+    "pet": "bulwark",
+    "primary": "hammerhead_sg",
+    "secondary": "peacekeeper_pistol",
+    "melee": "impact_gauntlet",
+    "throwable": "splinter",
+    "start_helmet": 1,
+    "start_vest": 1
+   },
+   "expect_codes": [
+    "E_PASSIVE_COUNT"
+   ]
+  },
+  {
+   "name": "duplicate_passive",
+   "loadout": {
+    "character": "rook",
+    "active": "shockwave_slam",
+    "passives": [
+     "quick_hands",
+     "quick_hands",
+     "",
+     ""
+    ],
+    "pet": "bulwark",
+    "primary": "hammerhead_sg",
+    "secondary": "peacekeeper_pistol",
+    "melee": "impact_gauntlet",
+    "throwable": "splinter",
+    "start_helmet": 1,
+    "start_vest": 1
+   },
+   "expect_codes": [
+    "E_PASSIVE_DUP"
+   ]
+  },
+  {
+   "name": "passive_in_active_slot",
+   "loadout": {
+    "character": "rook",
+    "active": "quick_hands",
+    "passives": [
+     "iron_knuckles",
+     "quick_hands",
+     "steady_footing",
+     "capacitor_bank"
+    ],
+    "pet": "bulwark",
+    "primary": "hammerhead_sg",
+    "secondary": "peacekeeper_pistol",
+    "melee": "impact_gauntlet",
+    "throwable": "splinter",
+    "start_helmet": 1,
+    "start_vest": 1
+   },
+   "expect_codes": [
+    "E_ACTIVE"
+   ]
+  },
+  {
+   "name": "active_in_passive_slot",
+   "loadout": {
+    "character": "rook",
+    "active": "shockwave_slam",
+    "passives": [
+     "rapid_dash",
+     "",
+     "",
+     ""
+    ],
+    "pet": "bulwark",
+    "primary": "hammerhead_sg",
+    "secondary": "peacekeeper_pistol",
+    "melee": "impact_gauntlet",
+    "throwable": "splinter",
+    "start_helmet": 1,
+    "start_vest": 1
+   },
+   "expect_codes": [
+    "E_PASSIVE_KIND"
+   ]
+  },
+  {
+   "name": "unknown_skill",
+   "loadout": {
+    "character": "rook",
+    "active": "shockwave_slam",
+    "passives": [
+     "god_mode",
+     "",
+     "",
+     ""
+    ],
+    "pet": "bulwark",
+    "primary": "hammerhead_sg",
+    "secondary": "peacekeeper_pistol",
+    "melee": "impact_gauntlet",
+    "throwable": "splinter",
+    "start_helmet": 1,
+    "start_vest": 1
+   },
+   "expect_codes": [
+    "E_PASSIVE_KIND"
+   ]
+  },
+  {
+   "name": "budget_exceeded",
+   "loadout": {
+    "character": "rook",
+    "active": "shockwave_slam",
+    "passives": [
+     "triage",
+     "jet_tuning",
+     "ghost_cloak",
+     "momentum_strike"
+    ],
+    "pet": "bulwark",
+    "primary": "hammerhead_sg",
+    "secondary": "peacekeeper_pistol",
+    "melee": "impact_gauntlet",
+    "throwable": "splinter",
+    "start_helmet": 1,
+    "start_vest": 1
+   },
+   "expect_codes": [
+    "E_BUDGET"
+   ]
+  },
+  {
+   "name": "group_ep_economy",
+   "loadout": {
+    "character": "rook",
+    "active": "shockwave_slam",
+    "passives": [
+     "capacitor_bank",
+     "quick_charge",
+     "",
+     ""
+    ],
+    "pet": "bulwark",
+    "primary": "hammerhead_sg",
+    "secondary": "peacekeeper_pistol",
+    "melee": "impact_gauntlet",
+    "throwable": "splinter",
+    "start_helmet": 1,
+    "start_vest": 1
+   },
+   "expect_codes": [
+    "E_GROUP"
+   ]
+  },
+  {
+   "name": "group_mitigation",
+   "loadout": {
+    "character": "rook",
+    "active": "shockwave_slam",
+    "passives": [
+     "hardened_helm",
+     "combat_conditioning",
+     "",
+     ""
+    ],
+    "pet": "bulwark",
+    "primary": "hammerhead_sg",
+    "secondary": "peacekeeper_pistol",
+    "melee": "impact_gauntlet",
+    "throwable": "splinter",
+    "start_helmet": 1,
+    "start_vest": 1
+   },
+   "expect_codes": [
+    "E_GROUP"
+   ]
+  },
+  {
+   "name": "excludes_triage_barrier",
+   "loadout": {
+    "character": "rook",
+    "active": "shockwave_slam",
+    "passives": [
+     "triage",
+     "energy_barrier",
+     "",
+     ""
+    ],
+    "pet": "bulwark",
+    "primary": "hammerhead_sg",
+    "secondary": "peacekeeper_pistol",
+    "melee": "impact_gauntlet",
+    "throwable": "splinter",
+    "start_helmet": 1,
+    "start_vest": 1
+   },
+   "expect_codes": [
+    "E_EXCLUDES"
+   ]
+  },
+  {
+   "name": "excludes_pet_and_passive",
+   "loadout": {
+    "character": "rook",
+    "active": "shockwave_slam",
+    "passives": [
+     "spotters_eye",
+     "",
+     "",
+     ""
+    ],
+    "pet": "pip",
+    "primary": "hammerhead_sg",
+    "secondary": "peacekeeper_pistol",
+    "melee": "impact_gauntlet",
+    "throwable": "splinter",
+    "start_helmet": 1,
+    "start_vest": 1
+   },
+   "expect_codes": [
+    "E_EXCLUDES"
+   ]
+  },
+  {
+   "name": "pet_with_any_character_ok",
+   "loadout": {
+    "character": "kade",
+    "active": "shockwave_slam",
+    "passives": [
+     "iron_knuckles",
+     "quick_hands",
+     "steady_footing",
+     "capacitor_bank"
+    ],
+    "pet": "biscuit",
+    "primary": "hammerhead_sg",
+    "secondary": "peacekeeper_pistol",
+    "melee": "impact_gauntlet",
+    "throwable": "splinter",
+    "start_helmet": 1,
+    "start_vest": 1
+   },
+   "expect_codes": []
+  },
+  {
+   "name": "unknown_pet",
+   "loadout": {
+    "character": "rook",
+    "active": "shockwave_slam",
+    "passives": [
+     "iron_knuckles",
+     "quick_hands",
+     "steady_footing",
+     "capacitor_bank"
+    ],
+    "pet": "dragon",
+    "primary": "hammerhead_sg",
+    "secondary": "peacekeeper_pistol",
+    "melee": "impact_gauntlet",
+    "throwable": "splinter",
+    "start_helmet": 1,
+    "start_vest": 1
+   },
+   "expect_codes": [
+    "E_PET"
+   ]
+  },
+  {
+   "name": "unknown_character",
+   "loadout": {
+    "character": "nobody",
+    "active": "shockwave_slam",
+    "passives": [
+     "iron_knuckles",
+     "quick_hands",
+     "steady_footing",
+     "capacitor_bank"
+    ],
+    "pet": "bulwark",
+    "primary": "hammerhead_sg",
+    "secondary": "peacekeeper_pistol",
+    "melee": "impact_gauntlet",
+    "throwable": "splinter",
+    "start_helmet": 1,
+    "start_vest": 1
+   },
+   "expect_codes": [
+    "E_CHARACTER"
+   ]
+  },
+  {
+   "name": "pistol_as_primary",
+   "loadout": {
+    "character": "rook",
+    "active": "shockwave_slam",
+    "passives": [
+     "iron_knuckles",
+     "quick_hands",
+     "steady_footing",
+     "capacitor_bank"
+    ],
+    "pet": "bulwark",
+    "primary": "peacekeeper_pistol",
+    "secondary": "burst_pistol",
+    "melee": "impact_gauntlet",
+    "throwable": "splinter",
+    "start_helmet": 1,
+    "start_vest": 1
+   },
+   "expect_codes": [
+    "E_PRIMARY"
+   ]
+  },
+  {
+   "name": "sniper_as_secondary",
+   "loadout": {
+    "character": "rook",
+    "active": "shockwave_slam",
+    "passives": [
+     "iron_knuckles",
+     "quick_hands",
+     "steady_footing",
+     "capacitor_bank"
+    ],
+    "pet": "bulwark",
+    "primary": "hammerhead_sg",
+    "secondary": "longshot_sr",
+    "melee": "impact_gauntlet",
+    "throwable": "splinter",
+    "start_helmet": 1,
+    "start_vest": 1
+   },
+   "expect_codes": [
+    "E_SECONDARY"
+   ]
+  },
+  {
+   "name": "same_weapon_twice",
+   "loadout": {
+    "character": "rook",
+    "active": "shockwave_slam",
+    "passives": [
+     "iron_knuckles",
+     "quick_hands",
+     "steady_footing",
+     "capacitor_bank"
+    ],
+    "pet": "bulwark",
+    "primary": "sidewinder_smg",
+    "secondary": "sidewinder_smg",
+    "melee": "impact_gauntlet",
+    "throwable": "splinter",
+    "start_helmet": 1,
+    "start_vest": 1
+   },
+   "expect_codes": [
+    "E_WEAPON_DUP"
+   ]
+  },
+  {
+   "name": "unknown_melee",
+   "loadout": {
+    "character": "rook",
+    "active": "shockwave_slam",
+    "passives": [
+     "iron_knuckles",
+     "quick_hands",
+     "steady_footing",
+     "capacitor_bank"
+    ],
+    "pet": "bulwark",
+    "primary": "hammerhead_sg",
+    "secondary": "peacekeeper_pistol",
+    "melee": "lightsaber",
+    "throwable": "splinter",
+    "start_helmet": 1,
+    "start_vest": 1
+   },
+   "expect_codes": [
+    "E_MELEE"
+   ]
+  },
+  {
+   "name": "unknown_throwable",
+   "loadout": {
+    "character": "rook",
+    "active": "shockwave_slam",
+    "passives": [
+     "iron_knuckles",
+     "quick_hands",
+     "steady_footing",
+     "capacitor_bank"
+    ],
+    "pet": "bulwark",
+    "primary": "hammerhead_sg",
+    "secondary": "peacekeeper_pistol",
+    "melee": "impact_gauntlet",
+    "throwable": "nuke",
+    "start_helmet": 1,
+    "start_vest": 1
+   },
+   "expect_codes": [
+    "E_THROWABLE"
+   ]
+  },
+  {
+   "name": "start_armor_too_high",
+   "loadout": {
+    "character": "rook",
+    "active": "shockwave_slam",
+    "passives": [
+     "iron_knuckles",
+     "quick_hands",
+     "steady_footing",
+     "capacitor_bank"
+    ],
+    "pet": "bulwark",
+    "primary": "hammerhead_sg",
+    "secondary": "peacekeeper_pistol",
+    "melee": "impact_gauntlet",
+    "throwable": "splinter",
+    "start_helmet": 1,
+    "start_vest": 3
+   },
+   "expect_codes": [
+    "E_START_ARMOR"
+   ]
+  },
+  {
+   "name": "hostile_types",
+   "loadout": {
+    "character": [
+     "a"
+    ],
+    "active": "shockwave_slam",
+    "passives": [
+     [
+      "x"
+     ],
+     5,
+     null,
+     ""
+    ],
+    "pet": {
+     "a": 1
+    },
+    "primary": "hammerhead_sg",
+    "secondary": "peacekeeper_pistol",
+    "melee": "impact_gauntlet",
+    "throwable": "splinter",
+    "start_helmet": 1,
+    "start_vest": 1
+   },
+   "expect_codes": [
+    "E_CHARACTER",
+    "E_PASSIVE_KIND",
+    "E_PET"
+   ]
+  }
+ ],
+ "authority": [
+  {
+   "name": "tampered_extra_stats_ignored",
+   "claimed": {
+    "character": "rook",
+    "active": "shockwave_slam",
+    "passives": [
+     "iron_knuckles",
+     "quick_hands",
+     "steady_footing",
+     "capacitor_bank"
+    ],
+    "pet": "bulwark",
+    "primary": "hammerhead_sg",
+    "secondary": "peacekeeper_pistol",
+    "melee": "impact_gauntlet",
+    "throwable": "splinter",
+    "start_helmet": 1,
+    "start_vest": 1,
+    "hp": 9999,
+    "max_hp": 9999,
+    "ep": 99999,
+    "damage_mult": 50,
+    "cooldown_mult": 0,
+    "armor": 9999,
+    "move_speed": 99
+   },
+   "expect_ok": true,
+   "expect_codes": []
+  },
+  {
+   "name": "claim_is_not_dict",
+   "claimed": "godmode",
+   "expect_ok": false,
+   "expect_codes": [
+    "E_CHARACTER",
+    "E_MELEE",
+    "E_PASSIVE_COUNT",
+    "E_PRIMARY",
+    "E_SECONDARY",
+    "E_START_ARMOR",
+    "E_THROWABLE"
+   ]
+  },
+  {
+   "name": "illegal_armor_claim",
+   "claimed": {
+    "character": "rook",
+    "active": "shockwave_slam",
+    "passives": [
+     "iron_knuckles",
+     "quick_hands",
+     "steady_footing",
+     "capacitor_bank"
+    ],
+    "pet": "bulwark",
+    "primary": "hammerhead_sg",
+    "secondary": "peacekeeper_pistol",
+    "melee": "impact_gauntlet",
+    "throwable": "splinter",
+    "start_helmet": 3,
+    "start_vest": 3
+   },
+   "expect_ok": false,
+   "expect_codes": [
+    "E_START_ARMOR"
+   ]
+  },
+  {
+   "name": "illegal_stacking_claim",
+   "claimed": {
+    "character": "rook",
+    "active": "shockwave_slam",
+    "passives": [
+     "hardened_helm",
+     "combat_conditioning",
+     "energy_barrier",
+     "reinforced_plating"
+    ],
+    "pet": "bulwark",
+    "primary": "hammerhead_sg",
+    "secondary": "peacekeeper_pistol",
+    "melee": "impact_gauntlet",
+    "throwable": "splinter",
+    "start_helmet": 1,
+    "start_vest": 1
+   },
+   "expect_ok": false,
+   "expect_codes": [
+    "E_BUDGET",
+    "E_GROUP"
+   ]
+  }
+ ],
+ "haptics": [
+  {
+   "name": "default_fire_medium",
+   "cfg": {
+    "master_enabled": true,
+    "master_intensity": 1.0,
+    "controls": {
+     "fire": {
+      "enabled": true,
+      "preset": "medium",
+      "intensity": 0.6,
+      "duration_ms": 30
+     },
+     "jump": {
+      "enabled": true,
+      "preset": "low",
+      "intensity": 0.3,
+      "duration_ms": 15
+     },
+     "melee": {
+      "enabled": true,
+      "preset": "medium",
+      "intensity": 0.6,
+      "duration_ms": 30
+     },
+     "grenade": {
+      "enabled": true,
+      "preset": "medium",
+      "intensity": 0.6,
+      "duration_ms": 30
+     },
+     "skill": {
+      "enabled": true,
+      "preset": "high",
+      "intensity": 1.0,
+      "duration_ms": 60
+     },
+     "pet": {
+      "enabled": true,
+      "preset": "low",
+      "intensity": 0.3,
+      "duration_ms": 15
+     },
+     "reload": {
+      "enabled": true,
+      "preset": "low",
+      "intensity": 0.3,
+      "duration_ms": 15
+     },
+     "jet": {
+      "enabled": true,
+      "preset": "low",
+      "intensity": 0.3,
+      "duration_ms": 15
+     },
+     "swap": {
+      "enabled": true,
+      "preset": "low",
+      "intensity": 0.3,
+      "duration_ms": 15
+     },
+     "interact": {
+      "enabled": true,
+      "preset": "low",
+      "intensity": 0.3,
+      "duration_ms": 15
+     },
+     "heal": {
+      "enabled": true,
+      "preset": "medium",
+      "intensity": 0.6,
+      "duration_ms": 30
+     },
+     "ep_item": {
+      "enabled": true,
+      "preset": "medium",
+      "intensity": 0.6,
+      "duration_ms": 30
+     },
+     "crouch": {
+      "enabled": true,
+      "preset": "low",
+      "intensity": 0.3,
+      "duration_ms": 15
+     },
+     "move": {
+      "enabled": true,
+      "preset": "low",
+      "intensity": 0.3,
+      "duration_ms": 15
+     },
+     "aim": {
+      "enabled": true,
+      "preset": "low",
+      "intensity": 0.3,
+      "duration_ms": 15
+     },
+     "ui_button": {
+      "enabled": true,
+      "preset": "low",
+      "intensity": 0.3,
+      "duration_ms": 15
+     }
+    }
+   },
+   "control": "fire",
+   "expect": {
+    "fire": true,
+    "duration_ms": 30,
+    "amplitude": 0.6
+   }
+  },
+  {
+   "name": "default_skill_high",
+   "cfg": {
+    "master_enabled": true,
+    "master_intensity": 1.0,
+    "controls": {
+     "fire": {
+      "enabled": true,
+      "preset": "medium",
+      "intensity": 0.6,
+      "duration_ms": 30
+     },
+     "jump": {
+      "enabled": true,
+      "preset": "low",
+      "intensity": 0.3,
+      "duration_ms": 15
+     },
+     "melee": {
+      "enabled": true,
+      "preset": "medium",
+      "intensity": 0.6,
+      "duration_ms": 30
+     },
+     "grenade": {
+      "enabled": true,
+      "preset": "medium",
+      "intensity": 0.6,
+      "duration_ms": 30
+     },
+     "skill": {
+      "enabled": true,
+      "preset": "high",
+      "intensity": 1.0,
+      "duration_ms": 60
+     },
+     "pet": {
+      "enabled": true,
+      "preset": "low",
+      "intensity": 0.3,
+      "duration_ms": 15
+     },
+     "reload": {
+      "enabled": true,
+      "preset": "low",
+      "intensity": 0.3,
+      "duration_ms": 15
+     },
+     "jet": {
+      "enabled": true,
+      "preset": "low",
+      "intensity": 0.3,
+      "duration_ms": 15
+     },
+     "swap": {
+      "enabled": true,
+      "preset": "low",
+      "intensity": 0.3,
+      "duration_ms": 15
+     },
+     "interact": {
+      "enabled": true,
+      "preset": "low",
+      "intensity": 0.3,
+      "duration_ms": 15
+     },
+     "heal": {
+      "enabled": true,
+      "preset": "medium",
+      "intensity": 0.6,
+      "duration_ms": 30
+     },
+     "ep_item": {
+      "enabled": true,
+      "preset": "medium",
+      "intensity": 0.6,
+      "duration_ms": 30
+     },
+     "crouch": {
+      "enabled": true,
+      "preset": "low",
+      "intensity": 0.3,
+      "duration_ms": 15
+     },
+     "move": {
+      "enabled": true,
+      "preset": "low",
+      "intensity": 0.3,
+      "duration_ms": 15
+     },
+     "aim": {
+      "enabled": true,
+      "preset": "low",
+      "intensity": 0.3,
+      "duration_ms": 15
+     },
+     "ui_button": {
+      "enabled": true,
+      "preset": "low",
+      "intensity": 0.3,
+      "duration_ms": 15
+     }
+    }
+   },
+   "control": "skill",
+   "expect": {
+    "fire": true,
+    "duration_ms": 60,
+    "amplitude": 1.0
+   }
+  },
+  {
+   "name": "default_jump_low",
+   "cfg": {
+    "master_enabled": true,
+    "master_intensity": 1.0,
+    "controls": {
+     "fire": {
+      "enabled": true,
+      "preset": "medium",
+      "intensity": 0.6,
+      "duration_ms": 30
+     },
+     "jump": {
+      "enabled": true,
+      "preset": "low",
+      "intensity": 0.3,
+      "duration_ms": 15
+     },
+     "melee": {
+      "enabled": true,
+      "preset": "medium",
+      "intensity": 0.6,
+      "duration_ms": 30
+     },
+     "grenade": {
+      "enabled": true,
+      "preset": "medium",
+      "intensity": 0.6,
+      "duration_ms": 30
+     },
+     "skill": {
+      "enabled": true,
+      "preset": "high",
+      "intensity": 1.0,
+      "duration_ms": 60
+     },
+     "pet": {
+      "enabled": true,
+      "preset": "low",
+      "intensity": 0.3,
+      "duration_ms": 15
+     },
+     "reload": {
+      "enabled": true,
+      "preset": "low",
+      "intensity": 0.3,
+      "duration_ms": 15
+     },
+     "jet": {
+      "enabled": true,
+      "preset": "low",
+      "intensity": 0.3,
+      "duration_ms": 15
+     },
+     "swap": {
+      "enabled": true,
+      "preset": "low",
+      "intensity": 0.3,
+      "duration_ms": 15
+     },
+     "interact": {
+      "enabled": true,
+      "preset": "low",
+      "intensity": 0.3,
+      "duration_ms": 15
+     },
+     "heal": {
+      "enabled": true,
+      "preset": "medium",
+      "intensity": 0.6,
+      "duration_ms": 30
+     },
+     "ep_item": {
+      "enabled": true,
+      "preset": "medium",
+      "intensity": 0.6,
+      "duration_ms": 30
+     },
+     "crouch": {
+      "enabled": true,
+      "preset": "low",
+      "intensity": 0.3,
+      "duration_ms": 15
+     },
+     "move": {
+      "enabled": true,
+      "preset": "low",
+      "intensity": 0.3,
+      "duration_ms": 15
+     },
+     "aim": {
+      "enabled": true,
+      "preset": "low",
+      "intensity": 0.3,
+      "duration_ms": 15
+     },
+     "ui_button": {
+      "enabled": true,
+      "preset": "low",
+      "intensity": 0.3,
+      "duration_ms": 15
+     }
+    }
+   },
+   "control": "jump",
+   "expect": {
+    "fire": true,
+    "duration_ms": 15,
+    "amplitude": 0.3
+   }
+  },
+  {
+   "name": "master_off",
+   "cfg": {
+    "master_enabled": false,
+    "master_intensity": 1.0,
+    "controls": {
+     "fire": {
+      "enabled": true,
+      "preset": "medium",
+      "intensity": 0.6,
+      "duration_ms": 30
+     },
+     "jump": {
+      "enabled": true,
+      "preset": "low",
+      "intensity": 0.3,
+      "duration_ms": 15
+     },
+     "melee": {
+      "enabled": true,
+      "preset": "medium",
+      "intensity": 0.6,
+      "duration_ms": 30
+     },
+     "grenade": {
+      "enabled": true,
+      "preset": "medium",
+      "intensity": 0.6,
+      "duration_ms": 30
+     },
+     "skill": {
+      "enabled": true,
+      "preset": "high",
+      "intensity": 1.0,
+      "duration_ms": 60
+     },
+     "pet": {
+      "enabled": true,
+      "preset": "low",
+      "intensity": 0.3,
+      "duration_ms": 15
+     },
+     "reload": {
+      "enabled": true,
+      "preset": "low",
+      "intensity": 0.3,
+      "duration_ms": 15
+     },
+     "jet": {
+      "enabled": true,
+      "preset": "low",
+      "intensity": 0.3,
+      "duration_ms": 15
+     },
+     "swap": {
+      "enabled": true,
+      "preset": "low",
+      "intensity": 0.3,
+      "duration_ms": 15
+     },
+     "interact": {
+      "enabled": true,
+      "preset": "low",
+      "intensity": 0.3,
+      "duration_ms": 15
+     },
+     "heal": {
+      "enabled": true,
+      "preset": "medium",
+      "intensity": 0.6,
+      "duration_ms": 30
+     },
+     "ep_item": {
+      "enabled": true,
+      "preset": "medium",
+      "intensity": 0.6,
+      "duration_ms": 30
+     },
+     "crouch": {
+      "enabled": true,
+      "preset": "low",
+      "intensity": 0.3,
+      "duration_ms": 15
+     },
+     "move": {
+      "enabled": true,
+      "preset": "low",
+      "intensity": 0.3,
+      "duration_ms": 15
+     },
+     "aim": {
+      "enabled": true,
+      "preset": "low",
+      "intensity": 0.3,
+      "duration_ms": 15
+     },
+     "ui_button": {
+      "enabled": true,
+      "preset": "low",
+      "intensity": 0.3,
+      "duration_ms": 15
+     }
+    }
+   },
+   "control": "fire",
+   "expect": {
+    "fire": false
+   }
+  },
+  {
+   "name": "master_intensity_scales",
+   "cfg": {
+    "master_enabled": true,
+    "master_intensity": 0.5,
+    "controls": {
+     "fire": {
+      "enabled": true,
+      "preset": "medium",
+      "intensity": 0.6,
+      "duration_ms": 30
+     },
+     "jump": {
+      "enabled": true,
+      "preset": "low",
+      "intensity": 0.3,
+      "duration_ms": 15
+     },
+     "melee": {
+      "enabled": true,
+      "preset": "medium",
+      "intensity": 0.6,
+      "duration_ms": 30
+     },
+     "grenade": {
+      "enabled": true,
+      "preset": "medium",
+      "intensity": 0.6,
+      "duration_ms": 30
+     },
+     "skill": {
+      "enabled": true,
+      "preset": "high",
+      "intensity": 1.0,
+      "duration_ms": 60
+     },
+     "pet": {
+      "enabled": true,
+      "preset": "low",
+      "intensity": 0.3,
+      "duration_ms": 15
+     },
+     "reload": {
+      "enabled": true,
+      "preset": "low",
+      "intensity": 0.3,
+      "duration_ms": 15
+     },
+     "jet": {
+      "enabled": true,
+      "preset": "low",
+      "intensity": 0.3,
+      "duration_ms": 15
+     },
+     "swap": {
+      "enabled": true,
+      "preset": "low",
+      "intensity": 0.3,
+      "duration_ms": 15
+     },
+     "interact": {
+      "enabled": true,
+      "preset": "low",
+      "intensity": 0.3,
+      "duration_ms": 15
+     },
+     "heal": {
+      "enabled": true,
+      "preset": "medium",
+      "intensity": 0.6,
+      "duration_ms": 30
+     },
+     "ep_item": {
+      "enabled": true,
+      "preset": "medium",
+      "intensity": 0.6,
+      "duration_ms": 30
+     },
+     "crouch": {
+      "enabled": true,
+      "preset": "low",
+      "intensity": 0.3,
+      "duration_ms": 15
+     },
+     "move": {
+      "enabled": true,
+      "preset": "low",
+      "intensity": 0.3,
+      "duration_ms": 15
+     },
+     "aim": {
+      "enabled": true,
+      "preset": "low",
+      "intensity": 0.3,
+      "duration_ms": 15
+     },
+     "ui_button": {
+      "enabled": true,
+      "preset": "low",
+      "intensity": 0.3,
+      "duration_ms": 15
+     }
+    }
+   },
+   "control": "fire",
+   "expect": {
+    "fire": true,
+    "duration_ms": 30,
+    "amplitude": 0.3
+   }
+  },
+  {
+   "name": "control_off",
+   "cfg": {
+    "master_enabled": true,
+    "master_intensity": 1.0,
+    "controls": {
+     "fire": {
+      "enabled": false,
+      "preset": "medium",
+      "intensity": 0.6,
+      "duration_ms": 30
+     },
+     "jump": {
+      "enabled": true,
+      "preset": "low",
+      "intensity": 0.3,
+      "duration_ms": 15
+     },
+     "melee": {
+      "enabled": true,
+      "preset": "medium",
+      "intensity": 0.6,
+      "duration_ms": 30
+     },
+     "grenade": {
+      "enabled": true,
+      "preset": "medium",
+      "intensity": 0.6,
+      "duration_ms": 30
+     },
+     "skill": {
+      "enabled": true,
+      "preset": "high",
+      "intensity": 1.0,
+      "duration_ms": 60
+     },
+     "pet": {
+      "enabled": true,
+      "preset": "low",
+      "intensity": 0.3,
+      "duration_ms": 15
+     },
+     "reload": {
+      "enabled": true,
+      "preset": "low",
+      "intensity": 0.3,
+      "duration_ms": 15
+     },
+     "jet": {
+      "enabled": true,
+      "preset": "low",
+      "intensity": 0.3,
+      "duration_ms": 15
+     },
+     "swap": {
+      "enabled": true,
+      "preset": "low",
+      "intensity": 0.3,
+      "duration_ms": 15
+     },
+     "interact": {
+      "enabled": true,
+      "preset": "low",
+      "intensity": 0.3,
+      "duration_ms": 15
+     },
+     "heal": {
+      "enabled": true,
+      "preset": "medium",
+      "intensity": 0.6,
+      "duration_ms": 30
+     },
+     "ep_item": {
+      "enabled": true,
+      "preset": "medium",
+      "intensity": 0.6,
+      "duration_ms": 30
+     },
+     "crouch": {
+      "enabled": true,
+      "preset": "low",
+      "intensity": 0.3,
+      "duration_ms": 15
+     },
+     "move": {
+      "enabled": true,
+      "preset": "low",
+      "intensity": 0.3,
+      "duration_ms": 15
+     },
+     "aim": {
+      "enabled": true,
+      "preset": "low",
+      "intensity": 0.3,
+      "duration_ms": 15
+     },
+     "ui_button": {
+      "enabled": true,
+      "preset": "low",
+      "intensity": 0.3,
+      "duration_ms": 15
+     }
+    }
+   },
+   "control": "fire",
+   "expect": {
+    "fire": false
+   }
+  },
+  {
+   "name": "control_off_does_not_affect_others",
+   "cfg": {
+    "master_enabled": true,
+    "master_intensity": 1.0,
+    "controls": {
+     "fire": {
+      "enabled": false,
+      "preset": "medium",
+      "intensity": 0.6,
+      "duration_ms": 30
+     },
+     "jump": {
+      "enabled": true,
+      "preset": "low",
+      "intensity": 0.3,
+      "duration_ms": 15
+     },
+     "melee": {
+      "enabled": true,
+      "preset": "medium",
+      "intensity": 0.6,
+      "duration_ms": 30
+     },
+     "grenade": {
+      "enabled": true,
+      "preset": "medium",
+      "intensity": 0.6,
+      "duration_ms": 30
+     },
+     "skill": {
+      "enabled": true,
+      "preset": "high",
+      "intensity": 1.0,
+      "duration_ms": 60
+     },
+     "pet": {
+      "enabled": true,
+      "preset": "low",
+      "intensity": 0.3,
+      "duration_ms": 15
+     },
+     "reload": {
+      "enabled": true,
+      "preset": "low",
+      "intensity": 0.3,
+      "duration_ms": 15
+     },
+     "jet": {
+      "enabled": true,
+      "preset": "low",
+      "intensity": 0.3,
+      "duration_ms": 15
+     },
+     "swap": {
+      "enabled": true,
+      "preset": "low",
+      "intensity": 0.3,
+      "duration_ms": 15
+     },
+     "interact": {
+      "enabled": true,
+      "preset": "low",
+      "intensity": 0.3,
+      "duration_ms": 15
+     },
+     "heal": {
+      "enabled": true,
+      "preset": "medium",
+      "intensity": 0.6,
+      "duration_ms": 30
+     },
+     "ep_item": {
+      "enabled": true,
+      "preset": "medium",
+      "intensity": 0.6,
+      "duration_ms": 30
+     },
+     "crouch": {
+      "enabled": true,
+      "preset": "low",
+      "intensity": 0.3,
+      "duration_ms": 15
+     },
+     "move": {
+      "enabled": true,
+      "preset": "low",
+      "intensity": 0.3,
+      "duration_ms": 15
+     },
+     "aim": {
+      "enabled": true,
+      "preset": "low",
+      "intensity": 0.3,
+      "duration_ms": 15
+     },
+     "ui_button": {
+      "enabled": true,
+      "preset": "low",
+      "intensity": 0.3,
+      "duration_ms": 15
+     }
+    }
+   },
+   "control": "jump",
+   "expect": {
+    "fire": true,
+    "duration_ms": 15,
+    "amplitude": 0.3
+   }
+  },
+  {
+   "name": "zero_intensity_is_off",
+   "cfg": {
+    "master_enabled": true,
+    "master_intensity": 1.0,
+    "controls": {
+     "fire": {
+      "enabled": true,
+      "preset": "medium",
+      "intensity": 0.0,
+      "duration_ms": 30
+     },
+     "jump": {
+      "enabled": true,
+      "preset": "low",
+      "intensity": 0.3,
+      "duration_ms": 15
+     },
+     "melee": {
+      "enabled": true,
+      "preset": "medium",
+      "intensity": 0.6,
+      "duration_ms": 30
+     },
+     "grenade": {
+      "enabled": true,
+      "preset": "medium",
+      "intensity": 0.6,
+      "duration_ms": 30
+     },
+     "skill": {
+      "enabled": true,
+      "preset": "high",
+      "intensity": 1.0,
+      "duration_ms": 60
+     },
+     "pet": {
+      "enabled": true,
+      "preset": "low",
+      "intensity": 0.3,
+      "duration_ms": 15
+     },
+     "reload": {
+      "enabled": true,
+      "preset": "low",
+      "intensity": 0.3,
+      "duration_ms": 15
+     },
+     "jet": {
+      "enabled": true,
+      "preset": "low",
+      "intensity": 0.3,
+      "duration_ms": 15
+     },
+     "swap": {
+      "enabled": true,
+      "preset": "low",
+      "intensity": 0.3,
+      "duration_ms": 15
+     },
+     "interact": {
+      "enabled": true,
+      "preset": "low",
+      "intensity": 0.3,
+      "duration_ms": 15
+     },
+     "heal": {
+      "enabled": true,
+      "preset": "medium",
+      "intensity": 0.6,
+      "duration_ms": 30
+     },
+     "ep_item": {
+      "enabled": true,
+      "preset": "medium",
+      "intensity": 0.6,
+      "duration_ms": 30
+     },
+     "crouch": {
+      "enabled": true,
+      "preset": "low",
+      "intensity": 0.3,
+      "duration_ms": 15
+     },
+     "move": {
+      "enabled": true,
+      "preset": "low",
+      "intensity": 0.3,
+      "duration_ms": 15
+     },
+     "aim": {
+      "enabled": true,
+      "preset": "low",
+      "intensity": 0.3,
+      "duration_ms": 15
+     },
+     "ui_button": {
+      "enabled": true,
+      "preset": "low",
+      "intensity": 0.3,
+      "duration_ms": 15
+     }
+    }
+   },
+   "control": "fire",
+   "expect": {
+    "fire": false
+   }
+  },
+  {
+   "name": "duration_clamped",
+   "cfg": {
+    "master_enabled": true,
+    "master_intensity": 1.0,
+    "controls": {
+     "fire": {
+      "enabled": true,
+      "preset": "medium",
+      "intensity": 0.6,
+      "duration_ms": 999
+     },
+     "jump": {
+      "enabled": true,
+      "preset": "low",
+      "intensity": 0.3,
+      "duration_ms": 15
+     },
+     "melee": {
+      "enabled": true,
+      "preset": "medium",
+      "intensity": 0.6,
+      "duration_ms": 30
+     },
+     "grenade": {
+      "enabled": true,
+      "preset": "medium",
+      "intensity": 0.6,
+      "duration_ms": 30
+     },
+     "skill": {
+      "enabled": true,
+      "preset": "high",
+      "intensity": 1.0,
+      "duration_ms": 60
+     },
+     "pet": {
+      "enabled": true,
+      "preset": "low",
+      "intensity": 0.3,
+      "duration_ms": 15
+     },
+     "reload": {
+      "enabled": true,
+      "preset": "low",
+      "intensity": 0.3,
+      "duration_ms": 15
+     },
+     "jet": {
+      "enabled": true,
+      "preset": "low",
+      "intensity": 0.3,
+      "duration_ms": 15
+     },
+     "swap": {
+      "enabled": true,
+      "preset": "low",
+      "intensity": 0.3,
+      "duration_ms": 15
+     },
+     "interact": {
+      "enabled": true,
+      "preset": "low",
+      "intensity": 0.3,
+      "duration_ms": 15
+     },
+     "heal": {
+      "enabled": true,
+      "preset": "medium",
+      "intensity": 0.6,
+      "duration_ms": 30
+     },
+     "ep_item": {
+      "enabled": true,
+      "preset": "medium",
+      "intensity": 0.6,
+      "duration_ms": 30
+     },
+     "crouch": {
+      "enabled": true,
+      "preset": "low",
+      "intensity": 0.3,
+      "duration_ms": 15
+     },
+     "move": {
+      "enabled": true,
+      "preset": "low",
+      "intensity": 0.3,
+      "duration_ms": 15
+     },
+     "aim": {
+      "enabled": true,
+      "preset": "low",
+      "intensity": 0.3,
+      "duration_ms": 15
+     },
+     "ui_button": {
+      "enabled": true,
+      "preset": "low",
+      "intensity": 0.3,
+      "duration_ms": 15
+     }
+    }
+   },
+   "control": "fire",
+   "expect": {
+    "fire": true,
+    "duration_ms": 200,
+    "amplitude": 0.6
+   }
+  },
+  {
+   "name": "unknown_control",
+   "cfg": {
+    "master_enabled": true,
+    "master_intensity": 1.0,
+    "controls": {
+     "fire": {
+      "enabled": true,
+      "preset": "medium",
+      "intensity": 0.6,
+      "duration_ms": 30
+     },
+     "jump": {
+      "enabled": true,
+      "preset": "low",
+      "intensity": 0.3,
+      "duration_ms": 15
+     },
+     "melee": {
+      "enabled": true,
+      "preset": "medium",
+      "intensity": 0.6,
+      "duration_ms": 30
+     },
+     "grenade": {
+      "enabled": true,
+      "preset": "medium",
+      "intensity": 0.6,
+      "duration_ms": 30
+     },
+     "skill": {
+      "enabled": true,
+      "preset": "high",
+      "intensity": 1.0,
+      "duration_ms": 60
+     },
+     "pet": {
+      "enabled": true,
+      "preset": "low",
+      "intensity": 0.3,
+      "duration_ms": 15
+     },
+     "reload": {
+      "enabled": true,
+      "preset": "low",
+      "intensity": 0.3,
+      "duration_ms": 15
+     },
+     "jet": {
+      "enabled": true,
+      "preset": "low",
+      "intensity": 0.3,
+      "duration_ms": 15
+     },
+     "swap": {
+      "enabled": true,
+      "preset": "low",
+      "intensity": 0.3,
+      "duration_ms": 15
+     },
+     "interact": {
+      "enabled": true,
+      "preset": "low",
+      "intensity": 0.3,
+      "duration_ms": 15
+     },
+     "heal": {
+      "enabled": true,
+      "preset": "medium",
+      "intensity": 0.6,
+      "duration_ms": 30
+     },
+     "ep_item": {
+      "enabled": true,
+      "preset": "medium",
+      "intensity": 0.6,
+      "duration_ms": 30
+     },
+     "crouch": {
+      "enabled": true,
+      "preset": "low",
+      "intensity": 0.3,
+      "duration_ms": 15
+     },
+     "move": {
+      "enabled": true,
+      "preset": "low",
+      "intensity": 0.3,
+      "duration_ms": 15
+     },
+     "aim": {
+      "enabled": true,
+      "preset": "low",
+      "intensity": 0.3,
+      "duration_ms": 15
+     },
+     "ui_button": {
+      "enabled": true,
+      "preset": "low",
+      "intensity": 0.3,
+      "duration_ms": 15
+     }
+    }
+   },
+   "control": "laser",
+   "expect": {
+    "fire": false
+   }
+  }
+ ],
+ "hud": [
+  {
+   "name": "default_unchanged",
+   "layout": {
+    "move": {
+     "x": 0.11,
+     "y": 0.72,
+     "scale": 1.0,
+     "opacity": 0.7,
+     "visible": true
+    },
+    "aim": {
+     "x": 0.89,
+     "y": 0.72,
+     "scale": 1.0,
+     "opacity": 0.7,
+     "visible": true
+    },
+    "fire": {
+     "x": 0.74,
+     "y": 0.8,
+     "scale": 1.0,
+     "opacity": 0.7,
+     "visible": true
+    },
+    "jump": {
+     "x": 0.8,
+     "y": 0.55,
+     "scale": 1.0,
+     "opacity": 0.7,
+     "visible": true
+    },
+    "jet": {
+     "x": 0.68,
+     "y": 0.62,
+     "scale": 1.0,
+     "opacity": 0.7,
+     "visible": true
+    },
+    "reload": {
+     "x": 0.62,
+     "y": 0.84,
+     "scale": 1.0,
+     "opacity": 0.7,
+     "visible": true
+    },
+    "melee": {
+     "x": 0.9,
+     "y": 0.46,
+     "scale": 1.0,
+     "opacity": 0.7,
+     "visible": true
+    },
+    "grenade": {
+     "x": 0.56,
+     "y": 0.7,
+     "scale": 1.0,
+     "opacity": 0.7,
+     "visible": true
+    },
+    "swap": {
+     "x": 0.5,
+     "y": 0.88,
+     "scale": 1.0,
+     "opacity": 0.7,
+     "visible": true
+    },
+    "skill": {
+     "x": 0.93,
+     "y": 0.3,
+     "scale": 1.0,
+     "opacity": 0.7,
+     "visible": true
+    },
+    "pet": {
+     "x": 0.84,
+     "y": 0.3,
+     "scale": 1.0,
+     "opacity": 0.7,
+     "visible": true
+    },
+    "interact": {
+     "x": 0.3,
+     "y": 0.55,
+     "scale": 1.0,
+     "opacity": 0.7,
+     "visible": true
+    },
+    "heal": {
+     "x": 0.18,
+     "y": 0.4,
+     "scale": 1.0,
+     "opacity": 0.7,
+     "visible": true
+    },
+    "ep_item": {
+     "x": 0.27,
+     "y": 0.4,
+     "scale": 1.0,
+     "opacity": 0.7,
+     "visible": true
+    },
+    "crouch": {
+     "x": 0.24,
+     "y": 0.88,
+     "scale": 1.0,
+     "opacity": 0.7,
+     "visible": true
+    }
+   },
+   "screen": [
+    2400,
+    1080
+   ],
+   "insets": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "expect": {
+    "move": {
+     "x": 0.11,
+     "y": 0.72,
+     "scale": 1.0,
+     "opacity": 0.7,
+     "visible": true
+    },
+    "aim": {
+     "x": 0.89,
+     "y": 0.72,
+     "scale": 1.0,
+     "opacity": 0.7,
+     "visible": true
+    },
+    "fire": {
+     "x": 0.74,
+     "y": 0.8,
+     "scale": 1.0,
+     "opacity": 0.7,
+     "visible": true
+    },
+    "jump": {
+     "x": 0.8,
+     "y": 0.55,
+     "scale": 1.0,
+     "opacity": 0.7,
+     "visible": true
+    },
+    "jet": {
+     "x": 0.68,
+     "y": 0.62,
+     "scale": 1.0,
+     "opacity": 0.7,
+     "visible": true
+    },
+    "reload": {
+     "x": 0.62,
+     "y": 0.84,
+     "scale": 1.0,
+     "opacity": 0.7,
+     "visible": true
+    },
+    "melee": {
+     "x": 0.9,
+     "y": 0.46,
+     "scale": 1.0,
+     "opacity": 0.7,
+     "visible": true
+    },
+    "grenade": {
+     "x": 0.56,
+     "y": 0.7,
+     "scale": 1.0,
+     "opacity": 0.7,
+     "visible": true
+    },
+    "swap": {
+     "x": 0.5,
+     "y": 0.88,
+     "scale": 1.0,
+     "opacity": 0.7,
+     "visible": true
+    },
+    "skill": {
+     "x": 0.93,
+     "y": 0.3,
+     "scale": 1.0,
+     "opacity": 0.7,
+     "visible": true
+    },
+    "pet": {
+     "x": 0.84,
+     "y": 0.3,
+     "scale": 1.0,
+     "opacity": 0.7,
+     "visible": true
+    },
+    "interact": {
+     "x": 0.3,
+     "y": 0.55,
+     "scale": 1.0,
+     "opacity": 0.7,
+     "visible": true
+    },
+    "heal": {
+     "x": 0.18,
+     "y": 0.4,
+     "scale": 1.0,
+     "opacity": 0.7,
+     "visible": true
+    },
+    "ep_item": {
+     "x": 0.27,
+     "y": 0.4,
+     "scale": 1.0,
+     "opacity": 0.7,
+     "visible": true
+    },
+    "crouch": {
+     "x": 0.24,
+     "y": 0.88,
+     "scale": 1.0,
+     "opacity": 0.7,
+     "visible": true
+    }
+   },
+   "overlaps": []
+  },
+  {
+   "name": "moved_offscreen_is_clamped",
+   "layout": {
+    "move": {
+     "x": 0.11,
+     "y": 0.72,
+     "scale": 1.0,
+     "opacity": 0.7,
+     "visible": true
+    },
+    "aim": {
+     "x": 0.89,
+     "y": 0.72,
+     "scale": 1.0,
+     "opacity": 0.7,
+     "visible": true
+    },
+    "fire": {
+     "x": 0.74,
+     "y": 0.8,
+     "scale": 1.0,
+     "opacity": 0.7,
+     "visible": true
+    },
+    "jump": {
+     "x": 2.0,
+     "y": -1.0,
+     "scale": 1.0,
+     "opacity": 0.7,
+     "visible": true
+    },
+    "jet": {
+     "x": 0.68,
+     "y": 0.62,
+     "scale": 1.0,
+     "opacity": 0.7,
+     "visible": true
+    },
+    "reload": {
+     "x": 0.62,
+     "y": 0.84,
+     "scale": 1.0,
+     "opacity": 0.7,
+     "visible": true
+    },
+    "melee": {
+     "x": 0.9,
+     "y": 0.46,
+     "scale": 1.0,
+     "opacity": 0.7,
+     "visible": true
+    },
+    "grenade": {
+     "x": 0.56,
+     "y": 0.7,
+     "scale": 1.0,
+     "opacity": 0.7,
+     "visible": true
+    },
+    "swap": {
+     "x": 0.5,
+     "y": 0.88,
+     "scale": 1.0,
+     "opacity": 0.7,
+     "visible": true
+    },
+    "skill": {
+     "x": 0.93,
+     "y": 0.3,
+     "scale": 1.0,
+     "opacity": 0.7,
+     "visible": true
+    },
+    "pet": {
+     "x": 0.84,
+     "y": 0.3,
+     "scale": 1.0,
+     "opacity": 0.7,
+     "visible": true
+    },
+    "interact": {
+     "x": 0.3,
+     "y": 0.55,
+     "scale": 1.0,
+     "opacity": 0.7,
+     "visible": true
+    },
+    "heal": {
+     "x": 0.18,
+     "y": 0.4,
+     "scale": 1.0,
+     "opacity": 0.7,
+     "visible": true
+    },
+    "ep_item": {
+     "x": 0.27,
+     "y": 0.4,
+     "scale": 1.0,
+     "opacity": 0.7,
+     "visible": true
+    },
+    "crouch": {
+     "x": 0.24,
+     "y": 0.88,
+     "scale": 1.0,
+     "opacity": 0.7,
+     "visible": true
+    }
+   },
+   "screen": [
+    2400,
+    1080
+   ],
+   "insets": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "expect": {
+    "move": {
+     "x": 0.11,
+     "y": 0.72,
+     "scale": 1.0,
+     "opacity": 0.7,
+     "visible": true
+    },
+    "aim": {
+     "x": 0.89,
+     "y": 0.72,
+     "scale": 1.0,
+     "opacity": 0.7,
+     "visible": true
+    },
+    "fire": {
+     "x": 0.74,
+     "y": 0.8,
+     "scale": 1.0,
+     "opacity": 0.7,
+     "visible": true
+    },
+    "jump": {
+     "x": 0.95875,
+     "y": 0.20944,
+     "scale": 1.0,
+     "opacity": 0.7,
+     "visible": true
+    },
+    "jet": {
+     "x": 0.68,
+     "y": 0.62,
+     "scale": 1.0,
+     "opacity": 0.7,
+     "visible": true
+    },
+    "reload": {
+     "x": 0.62,
+     "y": 0.84,
+     "scale": 1.0,
+     "opacity": 0.7,
+     "visible": true
+    },
+    "melee": {
+     "x": 0.9,
+     "y": 0.46,
+     "scale": 1.0,
+     "opacity": 0.7,
+     "visible": true
+    },
+    "grenade": {
+     "x": 0.56,
+     "y": 0.7,
+     "scale": 1.0,
+     "opacity": 0.7,
+     "visible": true
+    },
+    "swap": {
+     "x": 0.5,
+     "y": 0.88,
+     "scale": 1.0,
+     "opacity": 0.7,
+     "visible": true
+    },
+    "skill": {
+     "x": 0.93,
+     "y": 0.3,
+     "scale": 1.0,
+     "opacity": 0.7,
+     "visible": true
+    },
+    "pet": {
+     "x": 0.84,
+     "y": 0.3,
+     "scale": 1.0,
+     "opacity": 0.7,
+     "visible": true
+    },
+    "interact": {
+     "x": 0.3,
+     "y": 0.55,
+     "scale": 1.0,
+     "opacity": 0.7,
+     "visible": true
+    },
+    "heal": {
+     "x": 0.18,
+     "y": 0.4,
+     "scale": 1.0,
+     "opacity": 0.7,
+     "visible": true
+    },
+    "ep_item": {
+     "x": 0.27,
+     "y": 0.4,
+     "scale": 1.0,
+     "opacity": 0.7,
+     "visible": true
+    },
+    "crouch": {
+     "x": 0.24,
+     "y": 0.88,
+     "scale": 1.0,
+     "opacity": 0.7,
+     "visible": true
+    }
+   },
+   "overlaps": [
+    [
+     "jump",
+     "skill"
+    ]
+   ]
+  },
+  {
+   "name": "scale_and_opacity_limited",
+   "layout": {
+    "move": {
+     "x": 0.11,
+     "y": 0.72,
+     "scale": 1.0,
+     "opacity": 0.7,
+     "visible": true
+    },
+    "aim": {
+     "x": 0.89,
+     "y": 0.72,
+     "scale": 1.0,
+     "opacity": 0.7,
+     "visible": true
+    },
+    "fire": {
+     "x": 0.74,
+     "y": 0.8,
+     "scale": 5.0,
+     "opacity": 0.0,
+     "visible": true
+    },
+    "jump": {
+     "x": 0.8,
+     "y": 0.55,
+     "scale": 1.0,
+     "opacity": 0.7,
+     "visible": true
+    },
+    "jet": {
+     "x": 0.68,
+     "y": 0.62,
+     "scale": 1.0,
+     "opacity": 0.7,
+     "visible": true
+    },
+    "reload": {
+     "x": 0.62,
+     "y": 0.84,
+     "scale": 1.0,
+     "opacity": 0.7,
+     "visible": true
+    },
+    "melee": {
+     "x": 0.9,
+     "y": 0.46,
+     "scale": 1.0,
+     "opacity": 0.7,
+     "visible": true
+    },
+    "grenade": {
+     "x": 0.56,
+     "y": 0.7,
+     "scale": 1.0,
+     "opacity": 0.7,
+     "visible": true
+    },
+    "swap": {
+     "x": 0.5,
+     "y": 0.88,
+     "scale": 1.0,
+     "opacity": 0.7,
+     "visible": true
+    },
+    "skill": {
+     "x": 0.93,
+     "y": 0.3,
+     "scale": 1.0,
+     "opacity": 0.7,
+     "visible": true
+    },
+    "pet": {
+     "x": 0.84,
+     "y": 0.3,
+     "scale": 1.0,
+     "opacity": 0.7,
+     "visible": true
+    },
+    "interact": {
+     "x": 0.3,
+     "y": 0.55,
+     "scale": 1.0,
+     "opacity": 0.7,
+     "visible": true
+    },
+    "heal": {
+     "x": 0.18,
+     "y": 0.4,
+     "scale": 1.0,
+     "opacity": 0.7,
+     "visible": true
+    },
+    "ep_item": {
+     "x": 0.27,
+     "y": 0.4,
+     "scale": 1.0,
+     "opacity": 0.7,
+     "visible": true
+    },
+    "crouch": {
+     "x": 0.24,
+     "y": 0.88,
+     "scale": 1.0,
+     "opacity": 0.7,
+     "visible": true
+    }
+   },
+   "screen": [
+    2400,
+    1080
+   ],
+   "insets": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "expect": {
+    "move": {
+     "x": 0.11,
+     "y": 0.72,
+     "scale": 1.0,
+     "opacity": 0.7,
+     "visible": true
+    },
+    "aim": {
+     "x": 0.89,
+     "y": 0.72,
+     "scale": 1.0,
+     "opacity": 0.7,
+     "visible": true
+    },
+    "fire": {
+     "x": 0.74,
+     "y": 0.8,
+     "scale": 1.6,
+     "opacity": 0.2,
+     "visible": true
+    },
+    "jump": {
+     "x": 0.8,
+     "y": 0.55,
+     "scale": 1.0,
+     "opacity": 0.7,
+     "visible": true
+    },
+    "jet": {
+     "x": 0.68,
+     "y": 0.62,
+     "scale": 1.0,
+     "opacity": 0.7,
+     "visible": true
+    },
+    "reload": {
+     "x": 0.62,
+     "y": 0.84,
+     "scale": 1.0,
+     "opacity": 0.7,
+     "visible": true
+    },
+    "melee": {
+     "x": 0.9,
+     "y": 0.46,
+     "scale": 1.0,
+     "opacity": 0.7,
+     "visible": true
+    },
+    "grenade": {
+     "x": 0.56,
+     "y": 0.7,
+     "scale": 1.0,
+     "opacity": 0.7,
+     "visible": true
+    },
+    "swap": {
+     "x": 0.5,
+     "y": 0.88,
+     "scale": 1.0,
+     "opacity": 0.7,
+     "visible": true
+    },
+    "skill": {
+     "x": 0.93,
+     "y": 0.3,
+     "scale": 1.0,
+     "opacity": 0.7,
+     "visible": true
+    },
+    "pet": {
+     "x": 0.84,
+     "y": 0.3,
+     "scale": 1.0,
+     "opacity": 0.7,
+     "visible": true
+    },
+    "interact": {
+     "x": 0.3,
+     "y": 0.55,
+     "scale": 1.0,
+     "opacity": 0.7,
+     "visible": true
+    },
+    "heal": {
+     "x": 0.18,
+     "y": 0.4,
+     "scale": 1.0,
+     "opacity": 0.7,
+     "visible": true
+    },
+    "ep_item": {
+     "x": 0.27,
+     "y": 0.4,
+     "scale": 1.0,
+     "opacity": 0.7,
+     "visible": true
+    },
+    "crouch": {
+     "x": 0.24,
+     "y": 0.88,
+     "scale": 1.0,
+     "opacity": 0.7,
+     "visible": true
+    }
+   },
+   "overlaps": []
+  },
+  {
+   "name": "required_stays_visible",
+   "layout": {
+    "move": {
+     "x": 0.11,
+     "y": 0.72,
+     "scale": 1.0,
+     "opacity": 0.7,
+     "visible": false
+    },
+    "aim": {
+     "x": 0.89,
+     "y": 0.72,
+     "scale": 1.0,
+     "opacity": 0.7,
+     "visible": true
+    },
+    "fire": {
+     "x": 0.74,
+     "y": 0.8,
+     "scale": 1.0,
+     "opacity": 0.7,
+     "visible": true
+    },
+    "jump": {
+     "x": 0.8,
+     "y": 0.55,
+     "scale": 1.0,
+     "opacity": 0.7,
+     "visible": true
+    },
+    "jet": {
+     "x": 0.68,
+     "y": 0.62,
+     "scale": 1.0,
+     "opacity": 0.7,
+     "visible": true
+    },
+    "reload": {
+     "x": 0.62,
+     "y": 0.84,
+     "scale": 1.0,
+     "opacity": 0.7,
+     "visible": true
+    },
+    "melee": {
+     "x": 0.9,
+     "y": 0.46,
+     "scale": 1.0,
+     "opacity": 0.7,
+     "visible": true
+    },
+    "grenade": {
+     "x": 0.56,
+     "y": 0.7,
+     "scale": 1.0,
+     "opacity": 0.7,
+     "visible": true
+    },
+    "swap": {
+     "x": 0.5,
+     "y": 0.88,
+     "scale": 1.0,
+     "opacity": 0.7,
+     "visible": true
+    },
+    "skill": {
+     "x": 0.93,
+     "y": 0.3,
+     "scale": 1.0,
+     "opacity": 0.7,
+     "visible": true
+    },
+    "pet": {
+     "x": 0.84,
+     "y": 0.3,
+     "scale": 1.0,
+     "opacity": 0.7,
+     "visible": false
+    },
+    "interact": {
+     "x": 0.3,
+     "y": 0.55,
+     "scale": 1.0,
+     "opacity": 0.7,
+     "visible": true
+    },
+    "heal": {
+     "x": 0.18,
+     "y": 0.4,
+     "scale": 1.0,
+     "opacity": 0.7,
+     "visible": true
+    },
+    "ep_item": {
+     "x": 0.27,
+     "y": 0.4,
+     "scale": 1.0,
+     "opacity": 0.7,
+     "visible": true
+    },
+    "crouch": {
+     "x": 0.24,
+     "y": 0.88,
+     "scale": 1.0,
+     "opacity": 0.7,
+     "visible": true
+    }
+   },
+   "screen": [
+    2400,
+    1080
+   ],
+   "insets": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "expect": {
+    "move": {
+     "x": 0.11,
+     "y": 0.72,
+     "scale": 1.0,
+     "opacity": 0.7,
+     "visible": true
+    },
+    "aim": {
+     "x": 0.89,
+     "y": 0.72,
+     "scale": 1.0,
+     "opacity": 0.7,
+     "visible": true
+    },
+    "fire": {
+     "x": 0.74,
+     "y": 0.8,
+     "scale": 1.0,
+     "opacity": 0.7,
+     "visible": true
+    },
+    "jump": {
+     "x": 0.8,
+     "y": 0.55,
+     "scale": 1.0,
+     "opacity": 0.7,
+     "visible": true
+    },
+    "jet": {
+     "x": 0.68,
+     "y": 0.62,
+     "scale": 1.0,
+     "opacity": 0.7,
+     "visible": true
+    },
+    "reload": {
+     "x": 0.62,
+     "y": 0.84,
+     "scale": 1.0,
+     "opacity": 0.7,
+     "visible": true
+    },
+    "melee": {
+     "x": 0.9,
+     "y": 0.46,
+     "scale": 1.0,
+     "opacity": 0.7,
+     "visible": true
+    },
+    "grenade": {
+     "x": 0.56,
+     "y": 0.7,
+     "scale": 1.0,
+     "opacity": 0.7,
+     "visible": true
+    },
+    "swap": {
+     "x": 0.5,
+     "y": 0.88,
+     "scale": 1.0,
+     "opacity": 0.7,
+     "visible": true
+    },
+    "skill": {
+     "x": 0.93,
+     "y": 0.3,
+     "scale": 1.0,
+     "opacity": 0.7,
+     "visible": true
+    },
+    "pet": {
+     "x": 0.84,
+     "y": 0.3,
+     "scale": 1.0,
+     "opacity": 0.7,
+     "visible": false
+    },
+    "interact": {
+     "x": 0.3,
+     "y": 0.55,
+     "scale": 1.0,
+     "opacity": 0.7,
+     "visible": true
+    },
+    "heal": {
+     "x": 0.18,
+     "y": 0.4,
+     "scale": 1.0,
+     "opacity": 0.7,
+     "visible": true
+    },
+    "ep_item": {
+     "x": 0.27,
+     "y": 0.4,
+     "scale": 1.0,
+     "opacity": 0.7,
+     "visible": true
+    },
+    "crouch": {
+     "x": 0.24,
+     "y": 0.88,
+     "scale": 1.0,
+     "opacity": 0.7,
+     "visible": true
+    }
+   },
+   "overlaps": []
+  },
+  {
+   "name": "independent_size_and_opacity",
+   "layout": {
+    "move": {
+     "x": 0.11,
+     "y": 0.72,
+     "scale": 1.0,
+     "opacity": 0.7,
+     "visible": true
+    },
+    "aim": {
+     "x": 0.89,
+     "y": 0.72,
+     "scale": 1.0,
+     "opacity": 0.7,
+     "visible": true
+    },
+    "fire": {
+     "x": 0.74,
+     "y": 0.8,
+     "scale": 1.0,
+     "opacity": 0.7,
+     "visible": true
+    },
+    "jump": {
+     "x": 0.8,
+     "y": 0.55,
+     "scale": 1.0,
+     "opacity": 0.7,
+     "visible": true
+    },
+    "jet": {
+     "x": 0.68,
+     "y": 0.62,
+     "scale": 1.0,
+     "opacity": 0.7,
+     "visible": true
+    },
+    "reload": {
+     "x": 0.62,
+     "y": 0.84,
+     "scale": 1.2,
+     "opacity": 0.4,
+     "visible": true
+    },
+    "melee": {
+     "x": 0.5,
+     "y": 0.46,
+     "scale": 1.0,
+     "opacity": 0.7,
+     "visible": true
+    },
+    "grenade": {
+     "x": 0.56,
+     "y": 0.7,
+     "scale": 1.0,
+     "opacity": 0.7,
+     "visible": true
+    },
+    "swap": {
+     "x": 0.5,
+     "y": 0.88,
+     "scale": 1.0,
+     "opacity": 0.7,
+     "visible": true
+    },
+    "skill": {
+     "x": 0.93,
+     "y": 0.3,
+     "scale": 1.0,
+     "opacity": 0.7,
+     "visible": true
+    },
+    "pet": {
+     "x": 0.84,
+     "y": 0.3,
+     "scale": 1.0,
+     "opacity": 0.7,
+     "visible": true
+    },
+    "interact": {
+     "x": 0.3,
+     "y": 0.55,
+     "scale": 1.0,
+     "opacity": 0.7,
+     "visible": true
+    },
+    "heal": {
+     "x": 0.18,
+     "y": 0.4,
+     "scale": 1.0,
+     "opacity": 0.7,
+     "visible": true
+    },
+    "ep_item": {
+     "x": 0.27,
+     "y": 0.4,
+     "scale": 1.0,
+     "opacity": 0.7,
+     "visible": true
+    },
+    "crouch": {
+     "x": 0.24,
+     "y": 0.88,
+     "scale": 1.0,
+     "opacity": 0.7,
+     "visible": true
+    }
+   },
+   "screen": [
+    2400,
+    1080
+   ],
+   "insets": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "expect": {
+    "move": {
+     "x": 0.11,
+     "y": 0.72,
+     "scale": 1.0,
+     "opacity": 0.7,
+     "visible": true
+    },
+    "aim": {
+     "x": 0.89,
+     "y": 0.72,
+     "scale": 1.0,
+     "opacity": 0.7,
+     "visible": true
+    },
+    "fire": {
+     "x": 0.74,
+     "y": 0.8,
+     "scale": 1.0,
+     "opacity": 0.7,
+     "visible": true
+    },
+    "jump": {
+     "x": 0.8,
+     "y": 0.55,
+     "scale": 1.0,
+     "opacity": 0.7,
+     "visible": true
+    },
+    "jet": {
+     "x": 0.68,
+     "y": 0.62,
+     "scale": 1.0,
+     "opacity": 0.7,
+     "visible": true
+    },
+    "reload": {
+     "x": 0.62,
+     "y": 0.84,
+     "scale": 1.2,
+     "opacity": 0.4,
+     "visible": true
+    },
+    "melee": {
+     "x": 0.5,
+     "y": 0.46,
+     "scale": 1.0,
+     "opacity": 0.7,
+     "visible": true
+    },
+    "grenade": {
+     "x": 0.56,
+     "y": 0.7,
+     "scale": 1.0,
+     "opacity": 0.7,
+     "visible": true
+    },
+    "swap": {
+     "x": 0.5,
+     "y": 0.88,
+     "scale": 1.0,
+     "opacity": 0.7,
+     "visible": true
+    },
+    "skill": {
+     "x": 0.93,
+     "y": 0.3,
+     "scale": 1.0,
+     "opacity": 0.7,
+     "visible": true
+    },
+    "pet": {
+     "x": 0.84,
+     "y": 0.3,
+     "scale": 1.0,
+     "opacity": 0.7,
+     "visible": true
+    },
+    "interact": {
+     "x": 0.3,
+     "y": 0.55,
+     "scale": 1.0,
+     "opacity": 0.7,
+     "visible": true
+    },
+    "heal": {
+     "x": 0.18,
+     "y": 0.4,
+     "scale": 1.0,
+     "opacity": 0.7,
+     "visible": true
+    },
+    "ep_item": {
+     "x": 0.27,
+     "y": 0.4,
+     "scale": 1.0,
+     "opacity": 0.7,
+     "visible": true
+    },
+    "crouch": {
+     "x": 0.24,
+     "y": 0.88,
+     "scale": 1.0,
+     "opacity": 0.7,
+     "visible": true
+    }
+   },
+   "overlaps": []
+  },
+  {
+   "name": "notch_inset_respected",
+   "layout": {
+    "move": {
+     "x": 0.0,
+     "y": 0.7
+    }
+   },
+   "screen": [
+    2400,
+    1080
+   ],
+   "insets": [
+    100,
+    0,
+    0,
+    0
+   ],
+   "expect": {
+    "move": {
+     "x": 0.1,
+     "y": 0.7,
+     "scale": 1.0,
+     "opacity": 0.7,
+     "visible": true
+    },
+    "aim": {
+     "x": 0.89,
+     "y": 0.72,
+     "scale": 1.0,
+     "opacity": 0.7,
+     "visible": true
+    },
+    "fire": {
+     "x": 0.74,
+     "y": 0.8,
+     "scale": 1.0,
+     "opacity": 0.7,
+     "visible": true
+    },
+    "jump": {
+     "x": 0.8,
+     "y": 0.55,
+     "scale": 1.0,
+     "opacity": 0.7,
+     "visible": true
+    },
+    "jet": {
+     "x": 0.68,
+     "y": 0.62,
+     "scale": 1.0,
+     "opacity": 0.7,
+     "visible": true
+    },
+    "reload": {
+     "x": 0.62,
+     "y": 0.84,
+     "scale": 1.0,
+     "opacity": 0.7,
+     "visible": true
+    },
+    "melee": {
+     "x": 0.9,
+     "y": 0.46,
+     "scale": 1.0,
+     "opacity": 0.7,
+     "visible": true
+    },
+    "grenade": {
+     "x": 0.56,
+     "y": 0.7,
+     "scale": 1.0,
+     "opacity": 0.7,
+     "visible": true
+    },
+    "swap": {
+     "x": 0.5,
+     "y": 0.88,
+     "scale": 1.0,
+     "opacity": 0.7,
+     "visible": true
+    },
+    "skill": {
+     "x": 0.93,
+     "y": 0.3,
+     "scale": 1.0,
+     "opacity": 0.7,
+     "visible": true
+    },
+    "pet": {
+     "x": 0.84,
+     "y": 0.3,
+     "scale": 1.0,
+     "opacity": 0.7,
+     "visible": true
+    },
+    "interact": {
+     "x": 0.3,
+     "y": 0.55,
+     "scale": 1.0,
+     "opacity": 0.7,
+     "visible": true
+    },
+    "heal": {
+     "x": 0.18,
+     "y": 0.4,
+     "scale": 1.0,
+     "opacity": 0.7,
+     "visible": true
+    },
+    "ep_item": {
+     "x": 0.27,
+     "y": 0.4,
+     "scale": 1.0,
+     "opacity": 0.7,
+     "visible": true
+    },
+    "crouch": {
+     "x": 0.24,
+     "y": 0.88,
+     "scale": 1.0,
+     "opacity": 0.7,
+     "visible": true
+    }
+   },
+   "overlaps": []
+  },
+  {
+   "name": "missing_entries_get_defaults",
+   "layout": {},
+   "screen": [
+    2400,
+    1080
+   ],
+   "insets": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "expect": {
+    "move": {
+     "x": 0.11,
+     "y": 0.72,
+     "scale": 1.0,
+     "opacity": 0.7,
+     "visible": true
+    },
+    "aim": {
+     "x": 0.89,
+     "y": 0.72,
+     "scale": 1.0,
+     "opacity": 0.7,
+     "visible": true
+    },
+    "fire": {
+     "x": 0.74,
+     "y": 0.8,
+     "scale": 1.0,
+     "opacity": 0.7,
+     "visible": true
+    },
+    "jump": {
+     "x": 0.8,
+     "y": 0.55,
+     "scale": 1.0,
+     "opacity": 0.7,
+     "visible": true
+    },
+    "jet": {
+     "x": 0.68,
+     "y": 0.62,
+     "scale": 1.0,
+     "opacity": 0.7,
+     "visible": true
+    },
+    "reload": {
+     "x": 0.62,
+     "y": 0.84,
+     "scale": 1.0,
+     "opacity": 0.7,
+     "visible": true
+    },
+    "melee": {
+     "x": 0.9,
+     "y": 0.46,
+     "scale": 1.0,
+     "opacity": 0.7,
+     "visible": true
+    },
+    "grenade": {
+     "x": 0.56,
+     "y": 0.7,
+     "scale": 1.0,
+     "opacity": 0.7,
+     "visible": true
+    },
+    "swap": {
+     "x": 0.5,
+     "y": 0.88,
+     "scale": 1.0,
+     "opacity": 0.7,
+     "visible": true
+    },
+    "skill": {
+     "x": 0.93,
+     "y": 0.3,
+     "scale": 1.0,
+     "opacity": 0.7,
+     "visible": true
+    },
+    "pet": {
+     "x": 0.84,
+     "y": 0.3,
+     "scale": 1.0,
+     "opacity": 0.7,
+     "visible": true
+    },
+    "interact": {
+     "x": 0.3,
+     "y": 0.55,
+     "scale": 1.0,
+     "opacity": 0.7,
+     "visible": true
+    },
+    "heal": {
+     "x": 0.18,
+     "y": 0.4,
+     "scale": 1.0,
+     "opacity": 0.7,
+     "visible": true
+    },
+    "ep_item": {
+     "x": 0.27,
+     "y": 0.4,
+     "scale": 1.0,
+     "opacity": 0.7,
+     "visible": true
+    },
+    "crouch": {
+     "x": 0.24,
+     "y": 0.88,
+     "scale": 1.0,
+     "opacity": 0.7,
+     "visible": true
+    }
+   },
+   "overlaps": []
+  },
+  {
+   "name": "garbage_layout",
+   "layout": "nonsense",
+   "screen": [
+    2400,
+    1080
+   ],
+   "insets": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "expect": {
+    "move": {
+     "x": 0.11,
+     "y": 0.72,
+     "scale": 1.0,
+     "opacity": 0.7,
+     "visible": true
+    },
+    "aim": {
+     "x": 0.89,
+     "y": 0.72,
+     "scale": 1.0,
+     "opacity": 0.7,
+     "visible": true
+    },
+    "fire": {
+     "x": 0.74,
+     "y": 0.8,
+     "scale": 1.0,
+     "opacity": 0.7,
+     "visible": true
+    },
+    "jump": {
+     "x": 0.8,
+     "y": 0.55,
+     "scale": 1.0,
+     "opacity": 0.7,
+     "visible": true
+    },
+    "jet": {
+     "x": 0.68,
+     "y": 0.62,
+     "scale": 1.0,
+     "opacity": 0.7,
+     "visible": true
+    },
+    "reload": {
+     "x": 0.62,
+     "y": 0.84,
+     "scale": 1.0,
+     "opacity": 0.7,
+     "visible": true
+    },
+    "melee": {
+     "x": 0.9,
+     "y": 0.46,
+     "scale": 1.0,
+     "opacity": 0.7,
+     "visible": true
+    },
+    "grenade": {
+     "x": 0.56,
+     "y": 0.7,
+     "scale": 1.0,
+     "opacity": 0.7,
+     "visible": true
+    },
+    "swap": {
+     "x": 0.5,
+     "y": 0.88,
+     "scale": 1.0,
+     "opacity": 0.7,
+     "visible": true
+    },
+    "skill": {
+     "x": 0.93,
+     "y": 0.3,
+     "scale": 1.0,
+     "opacity": 0.7,
+     "visible": true
+    },
+    "pet": {
+     "x": 0.84,
+     "y": 0.3,
+     "scale": 1.0,
+     "opacity": 0.7,
+     "visible": true
+    },
+    "interact": {
+     "x": 0.3,
+     "y": 0.55,
+     "scale": 1.0,
+     "opacity": 0.7,
+     "visible": true
+    },
+    "heal": {
+     "x": 0.18,
+     "y": 0.4,
+     "scale": 1.0,
+     "opacity": 0.7,
+     "visible": true
+    },
+    "ep_item": {
+     "x": 0.27,
+     "y": 0.4,
+     "scale": 1.0,
+     "opacity": 0.7,
+     "visible": true
+    },
+    "crouch": {
+     "x": 0.24,
+     "y": 0.88,
+     "scale": 1.0,
+     "opacity": 0.7,
+     "visible": true
+    }
+   },
+   "overlaps": []
+  },
+  {
+   "name": "overlap_detected",
+   "layout": {
+    "move": {
+     "x": 0.11,
+     "y": 0.72,
+     "scale": 1.0,
+     "opacity": 0.7,
+     "visible": true
+    },
+    "aim": {
+     "x": 0.89,
+     "y": 0.72,
+     "scale": 1.0,
+     "opacity": 0.7,
+     "visible": true
+    },
+    "fire": {
+     "x": 0.74,
+     "y": 0.8,
+     "scale": 1.0,
+     "opacity": 0.7,
+     "visible": true
+    },
+    "jump": {
+     "x": 0.74,
+     "y": 0.8,
+     "scale": 1.0,
+     "opacity": 0.7,
+     "visible": true
+    },
+    "jet": {
+     "x": 0.68,
+     "y": 0.62,
+     "scale": 1.0,
+     "opacity": 0.7,
+     "visible": true
+    },
+    "reload": {
+     "x": 0.62,
+     "y": 0.84,
+     "scale": 1.0,
+     "opacity": 0.7,
+     "visible": true
+    },
+    "melee": {
+     "x": 0.9,
+     "y": 0.46,
+     "scale": 1.0,
+     "opacity": 0.7,
+     "visible": true
+    },
+    "grenade": {
+     "x": 0.56,
+     "y": 0.7,
+     "scale": 1.0,
+     "opacity": 0.7,
+     "visible": true
+    },
+    "swap": {
+     "x": 0.5,
+     "y": 0.88,
+     "scale": 1.0,
+     "opacity": 0.7,
+     "visible": true
+    },
+    "skill": {
+     "x": 0.93,
+     "y": 0.3,
+     "scale": 1.0,
+     "opacity": 0.7,
+     "visible": true
+    },
+    "pet": {
+     "x": 0.84,
+     "y": 0.3,
+     "scale": 1.0,
+     "opacity": 0.7,
+     "visible": true
+    },
+    "interact": {
+     "x": 0.3,
+     "y": 0.55,
+     "scale": 1.0,
+     "opacity": 0.7,
+     "visible": true
+    },
+    "heal": {
+     "x": 0.18,
+     "y": 0.4,
+     "scale": 1.0,
+     "opacity": 0.7,
+     "visible": true
+    },
+    "ep_item": {
+     "x": 0.27,
+     "y": 0.4,
+     "scale": 1.0,
+     "opacity": 0.7,
+     "visible": true
+    },
+    "crouch": {
+     "x": 0.24,
+     "y": 0.88,
+     "scale": 1.0,
+     "opacity": 0.7,
+     "visible": true
+    }
+   },
+   "screen": [
+    2400,
+    1080
+   ],
+   "insets": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "expect": {
+    "move": {
+     "x": 0.11,
+     "y": 0.72,
+     "scale": 1.0,
+     "opacity": 0.7,
+     "visible": true
+    },
+    "aim": {
+     "x": 0.89,
+     "y": 0.72,
+     "scale": 1.0,
+     "opacity": 0.7,
+     "visible": true
+    },
+    "fire": {
+     "x": 0.74,
+     "y": 0.8,
+     "scale": 1.0,
+     "opacity": 0.7,
+     "visible": true
+    },
+    "jump": {
+     "x": 0.74,
+     "y": 0.8,
+     "scale": 1.0,
+     "opacity": 0.7,
+     "visible": true
+    },
+    "jet": {
+     "x": 0.68,
+     "y": 0.62,
+     "scale": 1.0,
+     "opacity": 0.7,
+     "visible": true
+    },
+    "reload": {
+     "x": 0.62,
+     "y": 0.84,
+     "scale": 1.0,
+     "opacity": 0.7,
+     "visible": true
+    },
+    "melee": {
+     "x": 0.9,
+     "y": 0.46,
+     "scale": 1.0,
+     "opacity": 0.7,
+     "visible": true
+    },
+    "grenade": {
+     "x": 0.56,
+     "y": 0.7,
+     "scale": 1.0,
+     "opacity": 0.7,
+     "visible": true
+    },
+    "swap": {
+     "x": 0.5,
+     "y": 0.88,
+     "scale": 1.0,
+     "opacity": 0.7,
+     "visible": true
+    },
+    "skill": {
+     "x": 0.93,
+     "y": 0.3,
+     "scale": 1.0,
+     "opacity": 0.7,
+     "visible": true
+    },
+    "pet": {
+     "x": 0.84,
+     "y": 0.3,
+     "scale": 1.0,
+     "opacity": 0.7,
+     "visible": true
+    },
+    "interact": {
+     "x": 0.3,
+     "y": 0.55,
+     "scale": 1.0,
+     "opacity": 0.7,
+     "visible": true
+    },
+    "heal": {
+     "x": 0.18,
+     "y": 0.4,
+     "scale": 1.0,
+     "opacity": 0.7,
+     "visible": true
+    },
+    "ep_item": {
+     "x": 0.27,
+     "y": 0.4,
+     "scale": 1.0,
+     "opacity": 0.7,
+     "visible": true
+    },
+    "crouch": {
+     "x": 0.24,
+     "y": 0.88,
+     "scale": 1.0,
+     "opacity": 0.7,
+     "visible": true
+    }
+   },
+   "overlaps": [
+    [
+     "fire",
+     "jump"
+    ]
+   ]
+  }
+ ],
+ "hud_presets": {
+  "left_handed": {
+   "move": {
+    "x": 0.89,
+    "y": 0.72,
+    "scale": 1.0,
+    "opacity": 0.7,
+    "visible": true
+   },
+   "aim": {
+    "x": 0.11,
+    "y": 0.72,
+    "scale": 1.0,
+    "opacity": 0.7,
+    "visible": true
+   },
+   "fire": {
+    "x": 0.26,
+    "y": 0.8,
+    "scale": 1.0,
+    "opacity": 0.7,
+    "visible": true
+   },
+   "jump": {
+    "x": 0.2,
+    "y": 0.55,
+    "scale": 1.0,
+    "opacity": 0.7,
+    "visible": true
+   },
+   "jet": {
+    "x": 0.32,
+    "y": 0.62,
+    "scale": 1.0,
+    "opacity": 0.7,
+    "visible": true
+   },
+   "reload": {
+    "x": 0.38,
+    "y": 0.84,
+    "scale": 1.0,
+    "opacity": 0.7,
+    "visible": true
+   },
+   "melee": {
+    "x": 0.1,
+    "y": 0.46,
+    "scale": 1.0,
+    "opacity": 0.7,
+    "visible": true
+   },
+   "grenade": {
+    "x": 0.44,
+    "y": 0.7,
+    "scale": 1.0,
+    "opacity": 0.7,
+    "visible": true
+   },
+   "swap": {
+    "x": 0.5,
+    "y": 0.88,
+    "scale": 1.0,
+    "opacity": 0.7,
+    "visible": true
+   },
+   "skill": {
+    "x": 0.07,
+    "y": 0.3,
+    "scale": 1.0,
+    "opacity": 0.7,
+    "visible": true
+   },
+   "pet": {
+    "x": 0.16,
+    "y": 0.3,
+    "scale": 1.0,
+    "opacity": 0.7,
+    "visible": true
+   },
+   "interact": {
+    "x": 0.7,
+    "y": 0.55,
+    "scale": 1.0,
+    "opacity": 0.7,
+    "visible": true
+   },
+   "heal": {
+    "x": 0.82,
+    "y": 0.4,
+    "scale": 1.0,
+    "opacity": 0.7,
+    "visible": true
+   },
+   "ep_item": {
+    "x": 0.73,
+    "y": 0.4,
+    "scale": 1.0,
+    "opacity": 0.7,
+    "visible": true
+   },
+   "crouch": {
+    "x": 0.76,
+    "y": 0.88,
+    "scale": 1.0,
+    "opacity": 0.7,
+    "visible": true
+   }
+  },
+  "compact": {
+   "move": {
+    "x": 0.11,
+    "y": 0.72,
+    "scale": 0.85,
+    "opacity": 0.7,
+    "visible": true
+   },
+   "aim": {
+    "x": 0.89,
+    "y": 0.72,
+    "scale": 0.85,
+    "opacity": 0.7,
+    "visible": true
+   },
+   "fire": {
+    "x": 0.74,
+    "y": 0.8,
+    "scale": 0.85,
+    "opacity": 0.7,
+    "visible": true
+   },
+   "jump": {
+    "x": 0.8,
+    "y": 0.55,
+    "scale": 0.85,
+    "opacity": 0.7,
+    "visible": true
+   },
+   "jet": {
+    "x": 0.68,
+    "y": 0.62,
+    "scale": 0.85,
+    "opacity": 0.7,
+    "visible": true
+   },
+   "reload": {
+    "x": 0.62,
+    "y": 0.84,
+    "scale": 0.85,
+    "opacity": 0.7,
+    "visible": true
+   },
+   "melee": {
+    "x": 0.9,
+    "y": 0.46,
+    "scale": 0.85,
+    "opacity": 0.7,
+    "visible": true
+   },
+   "grenade": {
+    "x": 0.56,
+    "y": 0.7,
+    "scale": 0.85,
+    "opacity": 0.7,
+    "visible": true
+   },
+   "swap": {
+    "x": 0.5,
+    "y": 0.88,
+    "scale": 0.85,
+    "opacity": 0.7,
+    "visible": true
+   },
+   "skill": {
+    "x": 0.93,
+    "y": 0.3,
+    "scale": 0.85,
+    "opacity": 0.7,
+    "visible": true
+   },
+   "pet": {
+    "x": 0.84,
+    "y": 0.3,
+    "scale": 0.85,
+    "opacity": 0.7,
+    "visible": true
+   },
+   "interact": {
+    "x": 0.3,
+    "y": 0.55,
+    "scale": 0.85,
+    "opacity": 0.7,
+    "visible": true
+   },
+   "heal": {
+    "x": 0.18,
+    "y": 0.4,
+    "scale": 0.85,
+    "opacity": 0.7,
+    "visible": true
+   },
+   "ep_item": {
+    "x": 0.27,
+    "y": 0.4,
+    "scale": 0.85,
+    "opacity": 0.7,
+    "visible": true
+   },
+   "crouch": {
+    "x": 0.24,
+    "y": 0.88,
+    "scale": 0.85,
+    "opacity": 0.7,
+    "visible": true
+   }
+  }
+ }
+}
