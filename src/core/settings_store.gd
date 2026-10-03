@@ -8,9 +8,6 @@ const DEFAULTS := {
 	"voice_volume": 0.9,
 	"graphics_quality": 1,
 	"fps_limit": 60,
-	"vibration": true,
-	"control_size": 1.0,
-	"control_opacity": 0.7,
 	"sensitivity": 1.0,
 	"aim_mode": 0,
 	"battery_mode": false,
@@ -20,8 +17,6 @@ const RANGES := {
 	"music_volume": [0.0, 1.0],
 	"sfx_volume": [0.0, 1.0],
 	"voice_volume": [0.0, 1.0],
-	"control_size": [0.7, 1.4],
-	"control_opacity": [0.3, 1.0],
 	"sensitivity": [0.5, 2.0],
 }
 const ALLOWED := {
