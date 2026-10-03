@@ -28,7 +28,3 @@ func apply_runtime() -> void:
 	if bool(store.get_value("battery_mode")):
 		fps = mini(fps, 30)
 	Engine.max_fps = fps
-
-func vibrate(ms: int = 30) -> void:
-	if bool(store.get_value("vibration")):
-		Input.vibrate_handheld(ms)
