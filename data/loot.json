@@ -1,0 +1,71 @@
+{
+ "schema": 1,
+ "rarities": [
+  {
+   "id": "common",
+   "weight": 55,
+   "color": "#B8C0C8",
+   "dmg_mult": 1.0,
+   "mag_mult": 1.0
+  },
+  {
+   "id": "uncommon",
+   "weight": 25,
+   "color": "#5BD66F",
+   "dmg_mult": 1.05,
+   "mag_mult": 1.1
+  },
+  {
+   "id": "rare",
+   "weight": 13,
+   "color": "#4FA3FF",
+   "dmg_mult": 1.1,
+   "mag_mult": 1.2
+  },
+  {
+   "id": "epic",
+   "weight": 6,
+   "color": "#B36BFF",
+   "dmg_mult": 1.15,
+   "mag_mult": 1.3
+  },
+  {
+   "id": "legendary",
+   "weight": 1,
+   "color": "#FFB02E",
+   "dmg_mult": 1.2,
+   "mag_mult": 1.4
+  }
+ ],
+ "backpacks": [
+  {
+   "level": 1,
+   "slots": 4
+  },
+  {
+   "level": 2,
+   "slots": 7
+  },
+  {
+   "level": 3,
+   "slots": 10
+  }
+ ],
+ "items": [
+  "weapon",
+  "ammo",
+  "throwable",
+  "bandage",
+  "health_kit",
+  "ep_cell",
+  "repair_kit",
+  "helmet_l1",
+  "helmet_l2",
+  "helmet_l3",
+  "vest_l1",
+  "vest_l2",
+  "vest_l3",
+  "backpack_upgrade",
+  "jet_cell"
+ ]
+}

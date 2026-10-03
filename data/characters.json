@@ -1,0 +1,42 @@
+{
+ "schema": 2,
+ "note": "Characters are cosmetic/identity only. All gameplay stats come from data/balance.json (equal base HP/EP) and the player's loadout.",
+ "characters": [
+  {
+   "id": "rook",
+   "name": "Rook Calloway",
+   "role": "Breacher",
+   "theme": "Broad-shouldered demolitions veteran",
+   "personality": "Blunt, loyal, hates stairs",
+   "palette": "rook",
+   "suggested_preset": "assault"
+  },
+  {
+   "id": "juno",
+   "name": "Juno Vega",
+   "role": "Skirmisher",
+   "theme": "Rooftop courier turned scout",
+   "personality": "Restless, cheerful, always moving",
+   "palette": "juno",
+   "suggested_preset": "mobility"
+  },
+  {
+   "id": "mirelle",
+   "name": "Mirelle Okoye",
+   "role": "Mender",
+   "theme": "Field medic with a steady hand",
+   "personality": "Calm, dry humor, keeps everyone alive",
+   "palette": "mirelle",
+   "suggested_preset": "support"
+  },
+  {
+   "id": "kade",
+   "name": "Kade Rusk",
+   "role": "Overwatch",
+   "theme": "Quiet ex-ranger and tracker",
+   "personality": "Patient, observant, speaks rarely",
+   "palette": "kade",
+   "suggested_preset": "defensive"
+  }
+ ]
+}

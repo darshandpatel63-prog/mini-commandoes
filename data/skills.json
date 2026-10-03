@@ -1,0 +1,483 @@
+{
+ "schema": 2,
+ "skills": [
+  {
+   "id": "shockwave_slam",
+   "kind": "active",
+   "cat": "crowd_control",
+   "name": "Shockwave Slam",
+   "desc": "Ground slam: radial knockback and short stagger; damage scales with fall height.",
+   "impl": "behavior",
+   "cooldown": 18,
+   "ep_cost": 35
+  },
+  {
+   "id": "rapid_dash",
+   "kind": "active",
+   "cat": "mobility",
+   "name": "Rapid Dash",
+   "desc": "Burst dash in aim direction; 0.2 s of reduced damage taken.",
+   "impl": "behavior",
+   "cooldown": 10,
+   "ep_cost": 25
+  },
+  {
+   "id": "field_pulse",
+   "kind": "active",
+   "cat": "support",
+   "name": "Field Pulse",
+   "desc": "Deploys a 5 s healing field: 40 HP over 5 s to allies in range (including you).",
+   "impl": "pipeline",
+   "cooldown": 22,
+   "ep_cost": 40,
+   "active_effect": {
+    "type": "heal_over_time",
+    "total": 40,
+    "duration": 5
+   }
+  },
+  {
+   "id": "battle_focus",
+   "kind": "active",
+   "cat": "tactical",
+   "name": "Battle Focus",
+   "desc": "4 s of zero spread, +25% range and a steadier aim; movement slowed 30%.",
+   "impl": "behavior",
+   "cooldown": 20,
+   "ep_cost": 30
+  },
+  {
+   "id": "energy_mender",
+   "kind": "active",
+   "cat": "recovery",
+   "name": "Energy Mender",
+   "desc": "Converts up to 40 EP into 20 HP over 4 s (2 EP per HP). Needs missing HP.",
+   "impl": "pipeline",
+   "cooldown": 25,
+   "ep_cost": 0,
+   "active_effect": {
+    "type": "convert_ep",
+    "ep_total": 40,
+    "duration": 4
+   }
+  },
+  {
+   "id": "aegis_pulse",
+   "kind": "active",
+   "cat": "defense",
+   "name": "Aegis Pulse",
+   "desc": "2.5 s of 30% less damage taken (still limited by the global damage-reduction cap).",
+   "impl": "pipeline",
+   "cooldown": 30,
+   "ep_cost": 40,
+   "active_effect": {
+    "type": "temp_mods",
+    "duration": 2.5,
+    "effects": [
+     {
+      "stat": "damage_taken_mult",
+      "op": "mult",
+      "value": 0.7
+     }
+    ]
+   }
+  },
+  {
+   "id": "scan_ping",
+   "kind": "active",
+   "cat": "tactical",
+   "name": "Scan Ping",
+   "desc": "Reveals enemies within 900 px through walls for 3 s.",
+   "impl": "behavior",
+   "cooldown": 24,
+   "ep_cost": 30
+  },
+  {
+   "id": "jet_burst",
+   "kind": "active",
+   "cat": "mobility",
+   "name": "Jet Burst",
+   "desc": "Instantly refills 50% jetpack fuel.",
+   "impl": "behavior",
+   "cooldown": 20,
+   "ep_cost": 20
+  },
+  {
+   "id": "iron_knuckles",
+   "kind": "passive",
+   "cat": "combat",
+   "name": "Iron Knuckles",
+   "desc": "Heavy punch breaks 25 extra armor durability.",
+   "impl": "behavior",
+   "cost": 2,
+   "group": "melee_boost",
+   "rules": [
+    "heavy_punch_armor_break"
+   ]
+  },
+  {
+   "id": "steady_footing",
+   "kind": "passive",
+   "cat": "defense",
+   "name": "Steady Footing",
+   "desc": "Grounded knockback reduced 50%.",
+   "impl": "behavior",
+   "cost": 1,
+   "rules": [
+    "grounded_knockback_half"
+   ]
+  },
+  {
+   "id": "scrap_plating",
+   "kind": "passive",
+   "cat": "survival",
+   "name": "Scrap Plating",
+   "desc": "Melee hits repair 4 vest durability.",
+   "impl": "behavior",
+   "cost": 2,
+   "group": "armor_care",
+   "rules": [
+    "melee_repairs_vest"
+   ]
+  },
+  {
+   "id": "heavy_carry",
+   "kind": "passive",
+   "cat": "resource",
+   "name": "Heavy Carry",
+   "desc": "Heavy weapons do not use backpack slots.",
+   "impl": "behavior",
+   "cost": 1,
+   "rules": [
+    "heavy_no_slot"
+   ]
+  },
+  {
+   "id": "jet_tuning",
+   "kind": "passive",
+   "cat": "mobility",
+   "name": "Jet Tuning",
+   "desc": "Jetpack fuel recharges 30% faster.",
+   "impl": "pending_stat",
+   "cost": 2,
+   "effects": [
+    {
+     "stat": "jet_regen_mult",
+     "op": "mult",
+     "value": 1.3
+    }
+   ]
+  },
+  {
+   "id": "soft_landing",
+   "kind": "passive",
+   "cat": "survival",
+   "name": "Soft Landing",
+   "desc": "No fall damage; landing roll keeps speed.",
+   "impl": "pending_stat",
+   "cost": 1,
+   "effects": [
+    {
+     "stat": "fall_damage_mult",
+     "op": "mult",
+     "value": 0.0
+    }
+   ]
+  },
+  {
+   "id": "slide_reload",
+   "kind": "passive",
+   "cat": "utility",
+   "name": "Slide Reload",
+   "desc": "Reload continues while sliding or crouching.",
+   "impl": "behavior",
+   "cost": 1,
+   "rules": [
+    "reload_while_sliding"
+   ]
+  },
+  {
+   "id": "momentum_strike",
+   "kind": "passive",
+   "cat": "combat",
+   "name": "Momentum Strike",
+   "desc": "Melee damage scales with speed, up to +40%.",
+   "impl": "behavior",
+   "cost": 2,
+   "group": "melee_boost",
+   "rules": [
+    "melee_speed_scaling"
+   ]
+  },
+  {
+   "id": "quick_hands",
+   "kind": "passive",
+   "cat": "recovery",
+   "name": "Quick Hands",
+   "desc": "Healing and EP items apply 40% faster.",
+   "impl": "pipeline",
+   "cost": 1,
+   "group": "recovery",
+   "effects": [
+    {
+     "stat": "heal_apply_time_mult",
+     "op": "mult",
+     "value": 0.6
+    }
+   ]
+  },
+  {
+   "id": "triage",
+   "kind": "passive",
+   "cat": "recovery",
+   "name": "Triage",
+   "desc": "Below 30% HP regenerate 2 HP/s until 40% HP (20 s internal cooldown).",
+   "impl": "pipeline",
+   "cost": 3,
+   "group": "recovery",
+   "rules": [
+    "triage"
+   ],
+   "excludes": [
+    "energy_barrier"
+   ]
+  },
+  {
+   "id": "pressure_seal",
+   "kind": "passive",
+   "cat": "defense",
+   "name": "Pressure Seal",
+   "desc": "Burn and bleed durations halved.",
+   "impl": "behavior",
+   "cost": 1,
+   "rules": [
+    "dot_half"
+   ]
+  },
+  {
+   "id": "pack_mule",
+   "kind": "passive",
+   "cat": "resource",
+   "name": "Pack Mule",
+   "desc": "+2 backpack slots for healing items only.",
+   "impl": "pending_stat",
+   "cost": 1,
+   "effects": [
+    {
+     "stat": "heal_slots_bonus",
+     "op": "add",
+     "value": 2
+    }
+   ]
+  },
+  {
+   "id": "steady_breath",
+   "kind": "passive",
+   "cat": "combat",
+   "name": "Steady Breath",
+   "desc": "Standing still for 1 s halves recoil.",
+   "impl": "behavior",
+   "cost": 1,
+   "rules": [
+    "still_halves_recoil"
+   ]
+  },
+  {
+   "id": "tactical_reload",
+   "kind": "passive",
+   "cat": "utility",
+   "name": "Tactical Reload",
+   "desc": "Reloading with rounds left is 30% faster.",
+   "impl": "behavior",
+   "cost": 1,
+   "rules": [
+    "partial_reload_fast"
+   ]
+  },
+  {
+   "id": "spotters_eye",
+   "kind": "passive",
+   "cat": "tactical",
+   "name": "Spotter's Eye",
+   "desc": "Enemies under the crosshair show their HP bar.",
+   "impl": "behavior",
+   "cost": 1,
+   "rules": [
+    "show_enemy_hp"
+   ],
+   "excludes": [
+    "pip_mark"
+   ]
+  },
+  {
+   "id": "ghost_cloak",
+   "kind": "passive",
+   "cat": "survival",
+   "name": "Ghost Cloak",
+   "desc": "Not shown on enemy minimaps while standing still.",
+   "impl": "behavior",
+   "cost": 2,
+   "rules": [
+    "hidden_when_still"
+   ]
+  },
+  {
+   "id": "reinforced_plating",
+   "kind": "passive",
+   "cat": "defense",
+   "name": "Reinforced Plating",
+   "desc": "Helmet and vest lose 25% less durability.",
+   "impl": "pipeline",
+   "cost": 2,
+   "group": "armor_care",
+   "effects": [
+    {
+     "stat": "durability_loss_mult",
+     "op": "mult",
+     "value": 0.75
+    }
+   ]
+  },
+  {
+   "id": "capacitor_bank",
+   "kind": "passive",
+   "cat": "ep",
+   "name": "Capacitor Bank",
+   "desc": "+25 maximum EP.",
+   "impl": "pipeline",
+   "cost": 2,
+   "group": "ep_economy",
+   "effects": [
+    {
+     "stat": "ep_max_bonus",
+     "op": "add",
+     "value": 25
+    }
+   ]
+  },
+  {
+   "id": "quick_charge",
+   "kind": "passive",
+   "cat": "ep",
+   "name": "Quick Charge",
+   "desc": "EP recovers 30% faster.",
+   "impl": "pipeline",
+   "cost": 2,
+   "group": "ep_economy",
+   "effects": [
+    {
+     "stat": "ep_regen_mult",
+     "op": "mult",
+     "value": 1.3
+    }
+   ]
+  },
+  {
+   "id": "energy_barrier",
+   "kind": "passive",
+   "cat": "ep",
+   "name": "Energy Barrier",
+   "desc": "Spends EP to absorb 20% of damage that reaches your HP (1 EP per 1 damage absorbed).",
+   "impl": "pipeline",
+   "cost": 3,
+   "group": "mitigation",
+   "effects": [
+    {
+     "stat": "ep_barrier",
+     "op": "add",
+     "value": 0.2
+    }
+   ],
+   "excludes": [
+    "triage"
+   ]
+  },
+  {
+   "id": "hardened_helm",
+   "kind": "passive",
+   "cat": "defense",
+   "name": "Hardened Helm",
+   "desc": "10% less damage from headshots (after helmet).",
+   "impl": "pipeline",
+   "cost": 2,
+   "group": "mitigation",
+   "effects": [
+    {
+     "stat": "head_damage_taken_mult",
+     "op": "mult",
+     "value": 0.9
+    }
+   ]
+  },
+  {
+   "id": "combat_conditioning",
+   "kind": "passive",
+   "cat": "survival",
+   "name": "Combat Conditioning",
+   "desc": "5% less damage from all sources.",
+   "impl": "pipeline",
+   "cost": 2,
+   "group": "mitigation",
+   "effects": [
+    {
+     "stat": "damage_taken_mult",
+     "op": "mult",
+     "value": 0.95
+    }
+   ]
+  },
+  {
+   "id": "bulwark_ward",
+   "kind": "pet",
+   "cat": "defense",
+   "name": "Bulwark Ward",
+   "desc": "Pet shields you with a 40 HP barrier for 6 s.",
+   "impl": "pipeline",
+   "cooldown": 30,
+   "ep_cost": 20,
+   "active_effect": {
+    "type": "shield",
+    "amount": 40,
+    "duration": 6
+   }
+  },
+  {
+   "id": "pip_mark",
+   "kind": "pet",
+   "cat": "tactical",
+   "name": "Pip Mark",
+   "desc": "Pet tags the nearest enemy; tagged enemy is visible through walls for 8 s.",
+   "impl": "behavior",
+   "cooldown": 25,
+   "ep_cost": 15,
+   "excludes": [
+    "spotters_eye"
+   ]
+  },
+  {
+   "id": "biscuit_patch",
+   "kind": "pet",
+   "cat": "recovery",
+   "name": "Biscuit Patch",
+   "desc": "Pet heals the lowest-HP ally in range for 45 HP over 3 s.",
+   "impl": "pipeline",
+   "cooldown": 35,
+   "ep_cost": 25,
+   "active_effect": {
+    "type": "heal_over_time",
+    "total": 45,
+    "duration": 3
+   }
+  },
+  {
+   "id": "talon_scout",
+   "kind": "pet",
+   "cat": "utility",
+   "name": "Talon Scout",
+   "desc": "Pet flies ahead and highlights loot within 1500 px for 10 s.",
+   "impl": "behavior",
+   "cooldown": 40,
+   "ep_cost": 15
+  }
+ ]
+}

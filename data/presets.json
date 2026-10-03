@@ -1,0 +1,89 @@
+{
+ "schema": 1,
+ "presets": [
+  {
+   "id": "assault",
+   "name": "Assault",
+   "loadout": {
+    "character": "rook",
+    "active": "shockwave_slam",
+    "passives": [
+     "iron_knuckles",
+     "quick_hands",
+     "steady_footing",
+     "capacitor_bank"
+    ],
+    "pet": "bulwark",
+    "primary": "hammerhead_sg",
+    "secondary": "peacekeeper_pistol",
+    "melee": "impact_gauntlet",
+    "throwable": "splinter",
+    "start_helmet": 1,
+    "start_vest": 1
+   }
+  },
+  {
+   "id": "defensive",
+   "name": "Defensive",
+   "loadout": {
+    "character": "kade",
+    "active": "aegis_pulse",
+    "passives": [
+     "hardened_helm",
+     "reinforced_plating",
+     "quick_hands",
+     "pressure_seal"
+    ],
+    "pet": "bulwark",
+    "primary": "vanguard_ar",
+    "secondary": "burst_pistol",
+    "melee": "machete",
+    "throwable": "veil",
+    "start_helmet": 1,
+    "start_vest": 1
+   }
+  },
+  {
+   "id": "mobility",
+   "name": "Mobility",
+   "loadout": {
+    "character": "juno",
+    "active": "rapid_dash",
+    "passives": [
+     "jet_tuning",
+     "soft_landing",
+     "slide_reload",
+     "steady_footing"
+    ],
+    "pet": "pip",
+    "primary": "sidewinder_smg",
+    "secondary": "peacekeeper_pistol",
+    "melee": "fists",
+    "throwable": "glare",
+    "start_helmet": 0,
+    "start_vest": 1
+   }
+  },
+  {
+   "id": "support",
+   "name": "Support",
+   "loadout": {
+    "character": "mirelle",
+    "active": "energy_mender",
+    "passives": [
+     "quick_hands",
+     "triage",
+     "capacitor_bank",
+     "pack_mule"
+    ],
+    "pet": "biscuit",
+    "primary": "arc_lance",
+    "secondary": "peacekeeper_pistol",
+    "melee": "fists",
+    "throwable": "mend_can",
+    "start_helmet": 1,
+    "start_vest": 1
+   }
+  }
+ ]
+}

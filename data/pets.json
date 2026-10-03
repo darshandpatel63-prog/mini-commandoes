@@ -1,0 +1,42 @@
+{
+ "schema": 2,
+ "note": "Pets are not locked to characters. Any pet can be paired with any character (only skill 'excludes' rules apply).",
+ "pets": [
+  {
+   "id": "bulwark",
+   "name": "Bulwark",
+   "kind": "armored ram-beetle bot",
+   "move": "ground",
+   "follow_dist": 140,
+   "skill": "bulwark_ward",
+   "combat": "non_combat"
+  },
+  {
+   "id": "pip",
+   "name": "Pip",
+   "kind": "scout drone",
+   "move": "fly",
+   "follow_dist": 220,
+   "skill": "pip_mark",
+   "combat": "non_combat"
+  },
+  {
+   "id": "biscuit",
+   "name": "Biscuit",
+   "kind": "medic fox-bot",
+   "move": "ground",
+   "follow_dist": 120,
+   "skill": "biscuit_patch",
+   "combat": "non_combat"
+  },
+  {
+   "id": "talon",
+   "name": "Talon",
+   "kind": "mechanical falcon",
+   "move": "fly",
+   "follow_dist": 260,
+   "skill": "talon_scout",
+   "combat": "non_combat"
+  }
+ ]
+}

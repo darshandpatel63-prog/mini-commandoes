@@ -1,0 +1,35 @@
+{
+ "schema": 1,
+ "melee": [
+  {
+   "id": "fists",
+   "name": "Bare Fists",
+   "cls": "melee",
+   "dmg": 12,
+   "rate": 0.45,
+   "knockback": 1.0,
+   "armor_break": 0,
+   "special": "Always available"
+  },
+  {
+   "id": "machete",
+   "name": "Trail Machete",
+   "cls": "melee",
+   "dmg": 24,
+   "rate": 0.7,
+   "knockback": 0.8,
+   "armor_break": 5,
+   "special": "Fast chain slashes"
+  },
+  {
+   "id": "impact_gauntlet",
+   "name": "Impact Gauntlet",
+   "cls": "melee",
+   "dmg": 34,
+   "rate": 1.0,
+   "knockback": 1.6,
+   "armor_break": 20,
+   "special": "Heavy knockback, breaks armor"
+  }
+ ]
+}

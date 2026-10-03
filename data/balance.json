@@ -1,0 +1,190 @@
+{
+ "schema": 2,
+ "base_hp": 200,
+ "base_ep": 100,
+ "knockdown_hp": 50,
+ "ep": {
+  "regen_delay": 2.5,
+  "regen_per_s": 6.0,
+  "barrier_hp_per_ep": 1.0,
+  "convert_ep_per_hp": 2.0
+ },
+ "item_cooldown": 1.0,
+ "max_heal_per_s": 40.0,
+ "items": {
+  "bandage": {
+   "kind": "hp",
+   "amount": 25,
+   "apply_time": 1.5,
+   "interruptible": true
+  },
+  "health_kit": {
+   "kind": "hp",
+   "amount": 75,
+   "apply_time": 3.0,
+   "interruptible": true
+  },
+  "ep_cell": {
+   "kind": "ep",
+   "amount": 50,
+   "apply_time": 1.5,
+   "interruptible": true
+  },
+  "repair_kit": {
+   "kind": "durability",
+   "amount": 40,
+   "apply_time": 2.0,
+   "interruptible": true
+  }
+ },
+ "default_inventory": {
+  "bandage": 2,
+  "health_kit": 1,
+  "ep_cell": 1,
+  "repair_kit": 1
+ },
+ "stat_defaults": {
+  "damage_taken_mult": 1.0,
+  "head_damage_taken_mult": 1.0,
+  "durability_loss_mult": 1.0,
+  "skill_cooldown_mult": 1.0,
+  "heal_apply_time_mult": 1.0,
+  "move_speed_mult": 1.0,
+  "ep_regen_mult": 1.0,
+  "reload_time_mult": 1.0,
+  "melee_damage_mult": 1.0,
+  "jet_regen_mult": 1.0,
+  "fall_damage_mult": 1.0,
+  "ep_max_bonus": 0.0,
+  "ep_barrier": 0.0,
+  "heal_slots_bonus": 0.0
+ },
+ "stat_caps": {
+  "damage_taken_mult": [
+   0.6,
+   1.0
+  ],
+  "head_damage_taken_mult": [
+   0.85,
+   1.0
+  ],
+  "durability_loss_mult": [
+   0.7,
+   1.0
+  ],
+  "skill_cooldown_mult": [
+   0.8,
+   1.0
+  ],
+  "heal_apply_time_mult": [
+   0.6,
+   1.0
+  ],
+  "move_speed_mult": [
+   0.9,
+   1.15
+  ],
+  "ep_regen_mult": [
+   1.0,
+   1.5
+  ],
+  "reload_time_mult": [
+   0.7,
+   1.0
+  ],
+  "melee_damage_mult": [
+   1.0,
+   1.4
+  ],
+  "jet_regen_mult": [
+   1.0,
+   1.4
+  ],
+  "fall_damage_mult": [
+   0.0,
+   1.0
+  ],
+  "ep_max_bonus": [
+   0.0,
+   50.0
+  ],
+  "ep_barrier": [
+   0.0,
+   0.25
+  ],
+  "heal_slots_bonus": [
+   0.0,
+   2.0
+  ]
+ },
+ "loadout": {
+  "passive_slots": 4,
+  "passive_budget": 8,
+  "group_limits": {
+   "mitigation": 1,
+   "ep_economy": 1,
+   "recovery": 2,
+   "armor_care": 1,
+   "melee_boost": 1
+  },
+  "primary_classes": [
+   "rifle",
+   "smg",
+   "shotgun",
+   "sniper",
+   "heavy",
+   "energy",
+   "experimental"
+  ],
+  "secondary_classes": [
+   "pistol",
+   "smg",
+   "energy"
+  ],
+  "start_armor_max_level": 1,
+  "max_custom_presets": 6,
+  "preset_name_max": 16
+ },
+ "hud": {
+  "margin": 0.01,
+  "top_reserved": 0.14,
+  "scale_range": [
+   0.6,
+   1.6
+  ],
+  "opacity_range": [
+   0.2,
+   1.0
+  ],
+  "overlap_factor": 0.85
+ },
+ "haptics": {
+  "presets": {
+   "low": {
+    "intensity": 0.3,
+    "duration_ms": 15
+   },
+   "medium": {
+    "intensity": 0.6,
+    "duration_ms": 30
+   },
+   "high": {
+    "intensity": 1.0,
+    "duration_ms": 60
+   }
+  },
+  "duration_range_ms": [
+   5,
+   200
+  ]
+ },
+ "damage_pipeline_order": [
+  "hit_location",
+  "armor",
+  "skill_modifiers",
+  "temp_shield",
+  "ep_barrier",
+  "hp",
+  "death"
+ ]
+}
