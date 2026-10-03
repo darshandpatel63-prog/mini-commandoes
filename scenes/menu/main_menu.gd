@@ -40,8 +40,7 @@ func _build() -> void:
 		var note: String = e[3]
 		var b: Button
 		if path == "":
-			b = UIKit.make_button("%s
-(%s)" % [label_text, note])
+			b = UIKit.make_button("%s\n(%s)" % [label_text, note])
 			b.disabled = true
 		else:
 			b = UIKit.button(label_text, _go.bind(path, kind))

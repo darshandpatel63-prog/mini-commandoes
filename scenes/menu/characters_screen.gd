@@ -20,8 +20,7 @@ func _build() -> void:
 	for id in DataRegistry.tables["characters"]:
 		var c: Dictionary = DataRegistry.get_entry("characters", id)
 		var cid: String = String(id)
-		var b: Button = UIKit.button("%s
-%s" % [c["name"], c["role"]], _show.bind(cid))
+		var b: Button = UIKit.button("%s\n%s" % [c["name"], c["role"]], _show.bind(cid))
 		b.toggle_mode = true
 		b.button_group = grp
 		b.custom_minimum_size = Vector2(0, 150)
@@ -79,8 +78,7 @@ func _show(id: String) -> void:
 	t.append(_skill_line(String(c["pet_skill"])))
 	t.append("")
 	t.append("Values are unbalanced starting numbers (tuned in playtests).")
-	_detail.text = "
-".join(t)
+	_detail.text = "\n".join(t)
 	_refresh_select()
 
 func _refresh_select() -> void:

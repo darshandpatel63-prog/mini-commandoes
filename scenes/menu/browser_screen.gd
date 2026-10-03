@@ -46,13 +46,7 @@ func _items(kind: String) -> Array:
 			for id in DataRegistry.tables["pets"]:
 				var p: Dictionary = DataRegistry.tables["pets"][id]
 				var s: Dictionary = DataRegistry.get_entry("skills", String(p["skill"]))
-				out.append({"title": p["name"], "body": "%s
-Movement: %s
-Follow distance: %d px
-Role: %s
-
-Skill - %s [%ds cooldown]
-%s" % [
+				out.append({"title": p["name"], "body": "%s\nMovement: %s\nFollow distance: %d px\nRole: %s\n\nSkill - %s [%ds cooldown]\n%s" % [
 					p["kind"], p["move"], int(p["follow_dist"]), String(p["combat"]).replace("_", "-"),
 					s["name"], int(s["cooldown"]), s["desc"]]})
 		"skills":
@@ -61,13 +55,9 @@ Skill - %s [%ds cooldown]
 			for s in all:
 				var cd := ""
 				if s.has("cooldown"):
-					cd = "
-Cooldown: %d s" % int(s["cooldown"])
+					cd = "\nCooldown: %d s" % int(s["cooldown"])
 				out.append({"title": "[%s] %s" % [String(s["kind"]).to_upper(), s["name"]],
-					"body": "%s
-Category: %s%s
-
-%s" % [s["name"], s["cat"], cd, s["desc"]]})
+					"body": "%s\nCategory: %s%s\n\n%s" % [s["name"], s["cat"], cd, s["desc"]]})
 		"arsenal":
 			for id in DataRegistry.tables["weapons"]:
 				var w: Dictionary = DataRegistry.tables["weapons"][id]
@@ -75,33 +65,19 @@ Category: %s%s
 				if w.has("pellets"):
 					dmg += " x%d pellets" % int(w["pellets"])
 				out.append({"title": "%s (%s)" % [w["name"], w["cls"]],
-					"body": "%s - %s
-Damage %s   RPM %d   Mag %d   Reload %ss
-Range %d px   Spread %s   Recoil %s
-Ammo: %s   Projectile: %s
-
-Special: %s
-
-Unbalanced starting values." % [
+					"body": "%s - %s\nDamage %s   RPM %d   Mag %d   Reload %ss\nRange %d px   Spread %s   Recoil %s\nAmmo: %s   Projectile: %s\n\nSpecial: %s\n\nUnbalanced starting values." % [
 						w["name"], w["cls"], dmg, int(w["rpm"]), int(w["mag"]), str(w["reload"]),
 						int(w["range"]), str(w["spread"]), str(w["recoil"]), w["ammo"], w["proj"], w["special"]]})
 			for id in DataRegistry.tables["throwables"]:
 				var g: Dictionary = DataRegistry.tables["throwables"][id]
 				out.append({"title": "%s (throwable)" % g["name"],
-					"body": "%s
-Fuse %ss   Radius %d px   Damage %d
-Effect: %s" % [
+					"body": "%s\nFuse %ss   Radius %d px   Damage %d\nEffect: %s" % [
 						g["name"], str(g["fuse"]), int(g["radius"]), int(g["dmg"]), String(g["effect"]).replace("_", " ")]})
 		"maps":
 			for id in DataRegistry.tables["maps"]:
 				var m: Dictionary = DataRegistry.tables["maps"][id]
 				out.append({"title": m["name"],
-					"body": "%s
-%s
-Size: %d x %d px
-Max players: %d
-Planned for: %s
-Status: %s (not playable yet)" % [
+					"body": "%s\n%s\nSize: %d x %d px\nMax players: %d\nPlanned for: %s\nStatus: %s (not playable yet)" % [
 						m["name"], m["theme"], int(m["size"][0]), int(m["size"][1]), int(m["max_players"]), m["milestone"], m["status"]]})
 	return out
 
