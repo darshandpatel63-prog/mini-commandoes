@@ -6,6 +6,10 @@ const SETTINGS := "res://scenes/menu/settings_screen.tscn"
 const ABOUT := "res://scenes/menu/about_screen.tscn"
 const CHARACTERS := "res://scenes/menu/characters_screen.tscn"
 const BROWSER := "res://scenes/menu/browser_screen.tscn"
+const LOADOUT := "res://scenes/menu/loadout_screen.tscn"
+const HUD_EDITOR := "res://scenes/menu/hud_editor.tscn"
+const HAPTICS := "res://scenes/menu/haptics_screen.tscn"
+const COMBAT_LAB := "res://scenes/menu/combat_lab.tscn"
 
 var params: Dictionary = {}
 var _fade: ColorRect
