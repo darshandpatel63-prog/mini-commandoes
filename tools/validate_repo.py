@@ -13,10 +13,12 @@ for d in REQUIRED_DOCS:
     if not (ROOT / d).is_file():
         err(f"missing required file: {d}")
 
+sys.path.insert(0, str(ROOT / "tools"))
+import ref_model as R
+
 def load(name):
-    p = ROOT / "data" / name
     try:
-        return json.loads(p.read_text(encoding="utf-8"))
+        return json.loads((ROOT / "data" / name).read_text(encoding="utf-8"))
     except Exception as e:
         err(f"data/{name}: invalid JSON: {e}")
         return {}
@@ -30,53 +32,95 @@ def ids(items, label):
         seen.add(i)
     return seen
 
-chars = load("characters.json").get("characters", [])
-skills = load("skills.json").get("skills", [])
-pets = load("pets.json").get("pets", [])
-weapons = load("weapons.json").get("weapons", [])
-throw = load("throwables.json").get("throwables", [])
+try:
+    d = R.Data()
+except Exception as e:
+    err(f"data tables failed to load: {e}"); d = None
+
+if d is not None:
+    for name, key in [("characters.json", "characters"), ("skills.json", "skills"), ("pets.json", "pets"), ("weapons.json", "weapons"),
+                      ("throwables.json", "throwables"), ("melee.json", "melee"), ("maps.json", "maps"), ("modes.json", "modes"), ("presets.json", "presets")]:
+        ids(load(name).get(key, []), key)
+    rules = d.rules
+    # ---- equal base stats: characters are identity-only
+    allowed = {"id", "name", "role", "theme", "personality", "palette", "suggested_preset"}
+    for c in d.chars.values():
+        extra = set(c) - allowed
+        if extra: err(f"character {c['id']} has gameplay keys {sorted(extra)} (characters must be identity-only)")
+        if c.get("suggested_preset") not in {p["id"] for p in d.presets}: err(f"character {c['id']}: unknown suggested_preset")
+    if len(d.chars) < 2: err("acceptance G4 needs >= 2 characters")
+    if not isinstance(rules["base_hp"], int) or rules["base_hp"] <= 0: err("balance.base_hp must be a positive integer")
+    if not isinstance(rules["base_ep"], int) or rules["base_ep"] <= 0: err("balance.base_ep must be a positive integer")
+    # ---- armor tables
+    for piece in ("helmet", "vest"):
+        tbl = d.armor[piece]
+        if [x["level"] for x in tbl] != [0, 1, 2, 3]: err(f"armor.{piece}: levels must be 0..3")
+        for a, b in zip(tbl, tbl[1:]):
+            if not (b["reduction"] > a["reduction"] and b["durability"] > a["durability"]): err(f"armor.{piece}: level {b['level']} must beat level {a['level']}")
+        if any(x["reduction"] >= 0.6 for x in tbl): err(f"armor.{piece}: reduction >= 60% is excessive")
+    # ---- skills
+    stat_names = set(rules["stat_defaults"])
+    for s in d.skills.values():
+        sid = s["id"]
+        if s["kind"] not in ("active", "passive", "pet"): err(f"skill {sid}: bad kind")
+        if s["kind"] == "passive":
+            if s.get("cost") not in (1, 2, 3): err(f"skill {sid}: passive cost must be 1..3")
+        else:
+            for k in ("cooldown", "ep_cost"):
+                if k not in s: err(f"skill {sid}: missing {k}")
+            if s.get("cooldown", 0) < 5: err(f"skill {sid}: cooldown too short")
+        if s.get("impl") not in ("pipeline", "pending_stat", "behavior"): err(f"skill {sid}: bad impl")
+        for e in s.get("effects", []):
+            if e["stat"] not in stat_names: err(f"skill {sid}: unknown stat {e['stat']}")
+            if e["op"] not in ("mult", "add"): err(f"skill {sid}: bad op")
+        if s.get("group") and s["group"] not in rules["loadout"]["group_limits"]: err(f"skill {sid}: unknown group {s['group']}")
+        for ex in s.get("excludes", []):
+            if ex not in d.skills: err(f"skill {sid}: excludes unknown {ex}")
+            elif sid not in d.skills[ex].get("excludes", []): err(f"skill {sid}: exclusion with {ex} is not symmetric")
+        if s["kind"] == "pet" and s["id"] not in {p["skill"] for p in d.pets.values()}: err(f"pet skill {sid} used by no pet")
+    for p in d.pets.values():
+        if p["skill"] not in d.skills or d.skills[p["skill"]]["kind"] != "pet": err(f"pet {p['id']}: skill must be a pet skill")
+    # ---- weapons / melee
+    for w in d.weapons.values():
+        for f in ("dmg", "rpm", "mag", "reload", "range", "cls", "proj", "special", "head_mult", "armor_pen"):
+            if f not in w: err(f"weapon {w.get('id')}: missing {f}")
+        if not (0 <= w.get("armor_pen", 0) <= 0.5): err(f"weapon {w['id']}: armor_pen must be 0..0.5")
+    if len({w["special"] for w in d.weapons.values()}) < len(d.weapons): err("weapons: every weapon needs a distinct 'special' (no reskins)")
+    if "fists" not in d.melee: err("melee: 'fists' (always available) is required")
+    # ---- presets must be legal
+    for pr in d.presets:
+        e = R.validate_loadout(d, pr["loadout"])
+        if e: err(f"built-in preset {pr['id']} is invalid: {e}")
+    # ---- HUD defaults
+    if not d.hud: err("hud_default.json missing")
+    else:
+        for scr in ([2400, 1080], [1920, 1080], [2160, 1080]):
+            lay = R.hud_default_layout(d); san = R.hud_sanitize(d, lay, scr)
+            if lay != san and any(abs(lay[k][f] - san[k][f]) > 1e-4 for k in lay for f in ("x", "y")): err(f"default HUD gets clamped at {scr}")
+            if R.hud_overlaps(d, san, scr): err(f"default HUD overlaps at {scr}: {R.hud_overlaps(d, san, scr)}")
+        if {c["id"] for c in d.hud} - set(R.default_haptics(d)["controls"]): err("every HUD control needs a haptic default")
+    for m in d.chars and load("maps.json").get("maps", []):
+        if m.get("max_players", 0) < 40: err(f"map {m.get('id')}: max_players must be 40")
+    if len(load("maps.json").get("maps", [])) != 5: err("blueprint target is exactly 5 maps")
+    lt = load("loot.json")
+    if [x.get("id") for x in lt.get("rarities", [])] != ["common", "uncommon", "rare", "epic", "legendary"]: err("loot rarities order")
+    if [b.get("slots") for b in lt.get("backpacks", [])] != sorted(b.get("slots") for b in lt.get("backpacks", [])) or len(lt.get("backpacks", [])) != 3:
+        err("loot: need 3 backpack levels with increasing slots")
+    # ---- test vectors must be fresh
+    vec = ROOT / "tests/vectors/cases.json"
+    if not vec.exists(): err("tests/vectors/cases.json missing (run tools/gen_vectors.py)")
+    else:
+        import subprocess, tempfile
+        cur = json.loads(vec.read_text())
+        if len(cur.get("scenarios", [])) < 30: err("vectors: too few scenarios")
+
+chars = list(d.chars.values()) if d is not None else []
+skills = list(d.skills.values()) if d is not None else []
+pets = list(d.pets.values()) if d is not None else []
+weapons = list(d.weapons.values()) if d is not None else []
+throw = list(d.throwables.values()) if d is not None else []
 maps = load("maps.json").get("maps", [])
 modes = load("modes.json").get("modes", [])
-loot = load("loot.json")
-
-skill_ids = ids(skills, "skills"); pet_ids = ids(pets, "pets")
-ids(chars, "characters"); ids(weapons, "weapons"); ids(throw, "throwables"); ids(maps, "maps"); ids(modes, "modes")
-skill_by_id = {s["id"]: s for s in skills if "id" in s}
-
-# G10: each character = 1 active + 4 passive + 1 pet skill
-for c in chars:
-    cid = c.get("id", "?")
-    if c.get("active") not in skill_ids: err(f"{cid}: unknown active skill")
-    elif skill_by_id[c["active"]]["kind"] != "active": err(f"{cid}: active slot is not kind=active")
-    ps = c.get("passives", [])
-    if len(ps) != 4: err(f"{cid}: needs exactly 4 passives, has {len(ps)}")
-    for p in ps:
-        if p not in skill_ids: err(f"{cid}: unknown passive {p}")
-        elif skill_by_id[p]["kind"] != "passive": err(f"{cid}: {p} is not kind=passive")
-    if c.get("pet") not in pet_ids: err(f"{cid}: unknown pet {c.get('pet')}")
-    ps_id = c.get("pet_skill")
-    if ps_id not in skill_ids: err(f"{cid}: unknown pet skill")
-    elif skill_by_id[ps_id]["kind"] != "pet": err(f"{cid}: pet_skill not kind=pet")
-for p in pets:
-    if p.get("skill") not in skill_ids: err(f"pet {p.get('id')}: unknown skill")
-used = set()
-for c in chars: used.update([c.get("active"), c.get("pet_skill")] + c.get("passives", []))
-for s in skills:
-    if s["id"] not in used: err(f"skill {s['id']} is not used by any character")
-if len(chars) < 2: err("acceptance G6 needs >= 2 characters")
-
-for w in weapons:
-    for f in ("dmg", "rpm", "mag", "reload", "range", "cls", "proj", "special"):
-        if f not in w: err(f"weapon {w.get('id')}: missing {f}")
-if len({w["special"] for w in weapons if "special" in w}) < len(weapons):
-    err("weapons: every weapon needs a distinct 'special' (no reskins)")
-for m in maps:
-    if m.get("max_players", 0) < 40: err(f"map {m.get('id')}: max_players must be 40")
-if len(maps) != 5: err("blueprint target is exactly 5 maps")
-r = loot.get("rarities", [])
-if [x.get("id") for x in r] != ["common", "uncommon", "rare", "epic", "legendary"]: err("loot rarities order")
-if [b.get("slots") for b in loot.get("backpacks", [])] != sorted(b.get("slots") for b in loot.get("backpacks", [])) or len(loot.get("backpacks", [])) != 3:
-    err("loot: need 3 backpack levels with increasing slots")
 
 # secrets / forbidden files
 for p in ROOT.rglob("*"):
