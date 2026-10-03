@@ -16,7 +16,8 @@ func _build() -> void:
 		"Mini Commandoes  [DEBUG BUILD]",
 		Version.display_string(),
 		"Platform: %s   Window: %d x %d" % [OS.get_name(), win.x, win.y],
-		"Save source: %s" % SaveManager.load_source,
+		"Save source: profile %s, controls %s%s" % [SaveManager.load_source, ControlsManager.load_source, (" (" + ", ".join(SaveManager.load_notes) + ")") if SaveManager.load_notes.size() > 0 else ""],
+		"Base stats for every commando: HP %d, EP %d" % [int(DataRegistry.raw["balance"]["base_hp"]), int(DataRegistry.raw["balance"]["base_ep"])],
 		"Content: %d characters, %d skills, %d pets, %d weapons, %d throwables, %d maps, %d modes" % [
 			DataRegistry.count("characters"), DataRegistry.count("skills"), DataRegistry.count("pets"),
 			DataRegistry.count("weapons"), DataRegistry.count("throwables"),
