@@ -23,9 +23,16 @@ static func make_button(text: String, min_w: float = 0.0, snd: String = "click")
 
 static func _feedback(snd: String) -> void:
 	AudioManager.play_ui(snd)
-	Settings.vibrate(20)
+	Haptics.pulse("ui_button")
 
 static func button(text: String, on_press: Callable, min_w: float = 0.0, snd: String = "click") -> Button:
 	var b: Button = make_button(text, min_w, snd)
 	b.pressed.connect(on_press)
 	return b
+
+## 14.0 -> "14", 0.6 -> "0.6"
+static func num(v: Variant) -> String:
+	var f: float = float(v)
+	if is_equal_approx(f, roundf(f)):
+		return str(int(roundf(f)))
+	return str(snappedf(f, 0.01))
