@@ -16,11 +16,11 @@ Planned → In progress → Implemented → Build verified → Runtime verified 
 | G6 | Passive skills work | bp §9 | 4 passive slots + 22 passives | T24,T25 | Implemented. 9 passives `pipeline`, 3 `pending_stat`, 10 `behavior` — only `pipeline` ones change results today |
 | G7 | Pet system works | bp §10 | pets not locked to characters, 4 pets | T26 | Implemented. Bulwark/Biscuit abilities simulated in Combat Lab; Pip/Talon are `behavior`; no pet entity yet |
 | G8 | Weapons / shooting / reload | bp §8 | data only | T3,T6 | Planned |
-| G9 | Melee | bp §15 | — | T6 | Planned |
+| G9 | Melee | bp §15 | Training Range melee hit (fists/machete/gauntlet) | T6 | In progress: a single hit vs dummies exists; combos/heavy/kick/air are Planned |
 | G10 | Grenades | bp §16 | data only | T6 | Planned |
 | G11 | Health / EP / armor / damage pipeline | bp §13,39 | src/combat/* | T27,T28,T29 | Implemented. 40 scenarios hand-checked in the Python reference model; GDScript replay pending CI; **not device-verified** |
 | G12 | Loot + backpack (3 levels) | bp §11,12 | data only | T3 | Planned |
-| G13 | Jetpack | bp §14 | — | T6 | Planned |
+| G13 | Jetpack | bp §14,44 | move_sim jetpack + movement.json | T35 | Implemented. Python-hand-checked (fuel 40/s, 520 px/s cap, lockout, refuel); GDScript replay pending CI; **feel not device-verified** |
 | G14 | ≥2 complete maps (target 5) | bp §17 | data stubs | T8 | Planned |
 | G15 | LAN host/join/hotspot + manual IP | bp §19–22 | — | T11,T12 | Planned |
 | G16 | Match start/end/respawn/score | bp §34 | — | T6,T12 | Planned |
@@ -64,7 +64,7 @@ Extras (not requested): X1 kill streaks, X2 assists, X3 daily missions, X4 match
 | P1 | Disabled menu buttons PLAY (Ph 6), TRAINING (Ph 2), MISSIONS (later) | main_menu | matching phases | no (LOADOUT now functional) |
 | P2 | icon.svg | icon.svg | Phase 8 | no |
 | P3 | Weapon/skill numbers unbalanced | data/*.json | Phase 9 playtests | no |
-| P4 | Character art preview (text-only now) | characters_screen | rig, Phase 4 | no |
+| P4 | Character art: baked from the Meshy model; cut-out joints, procedural poses, code-drawn rifle | commando_rig | polish pass, weapon art | partly (portraits + rig exist) |
 | P5 | Skills / Arsenal / Maps screens are INFO ONLY browsers (Pets + slot pickers are functional) | browser_screen | real screens as systems land | no |
 | P8 | In-match HUD does not exist: HUD editor edits a preview, layout stored for Phase 2 | hud_editor | Phase 2 touch controls | no |
 | P9 | `behavior` / `pending_stat` skills have no world effect yet; helmet/vest visuals absent | skills | Phase 2-4 | no |
@@ -81,6 +81,7 @@ Extras (not requested): X1 kill streaks, X2 assists, X3 daily missions, X4 match
 | A5 | Host migration out of scope v1 | complexity | yes |
 | A6 | Art = authored SVG part rigs; audio = procedural | only workflow possible from phone, license-clean | quality risk (R4) |
 
+| A8 | Commando model license: owner's Meshy plan is unknown (Free = CC BY 4.0 with credit, Pro = private). Credit line is in About; **release is blocked until the plan is confirmed** | ASSET_SOURCES rule | yes |
 | A7 | Debug APKs are signed with a fresh keystore per CI run, so each new build must be installed after **uninstalling** the previous one | CI generates the keystore | yes (store a debug keystore as a GitHub secret) |
 
 ## Bug template
@@ -96,5 +97,6 @@ Extras (not requested): X1 kill streaks, X2 assists, X3 daily missions, X4 match
 
 ## Changelog
 - 0.0.1 Phase 0: blueprint, rules, data, scaffold, CI definitions. Build #1 verified on device.
+- 0.0.4 Phase 2 slice: Training Range (walk/jump/crouch/jetpack, hitscan weapon, dummies on the real damage pipeline), touch controls from the saved HUD, Iron Vanguard model baked to 4 colorway cut-out rigs + portraits, movement vectors, docs. Model verdict in docs/art_pipeline.md.
 - 0.0.3 Design update (owner document): equal base HP 200 + EP 100, identity-only characters, shared skill pool with player loadout (1 active + 4 passives), free pet choice, helmet/vest armor, centralized damage pipeline, separate HP/EP recovery, loadout screen + presets, HUD editor, per-control haptics, versioned persistence (profile v2, controls v1), host-side admission, Combat Lab, reference model + vectors, docs. **Supersedes** the per-character skills/pets/HP of 0.0.1-0.0.2 (their screenshots showing HP 130 etc. are obsolete).
 - 0.0.2 Phase 1: orientation fix (BUG-001), save/settings/audio/scene/input/game-state autoloads, UI theme + main menu + 4 functional screens, generated UI sounds, unit tests, validator path/GDScript checks, version-code stamping.
