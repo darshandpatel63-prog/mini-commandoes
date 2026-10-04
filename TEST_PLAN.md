@@ -46,4 +46,8 @@ Evidence levels: **P** = executed in the authoring sandbox with the Python refer
 | T33 | Existing multiplayer not broken | no multiplayer exists yet | n/a | n/a | n/a |
 | T34 | Static data invariants | `validate_repo.py` (equal stats, armor monotonic, skills, symmetric excludes, presets legal, HUD no overlap) + 3 negative tests | pass | - | - |
 
+| T35 | Movement/jetpack (Phase 2) | 19 vectors: stand, walk, jump height, wall, ceiling, one-way platforms, crouch headroom, jet fuel/lockout/refuel, fall cap, air control; map spawn + jet climb | pass (hand-asserted) | written | **Training Range feel pending** |
+| T36 | Art assets | `validate_repo.py` checks 7 parts x 4 colorways + portraits + rig parents; GDScript test checks the same via ResourceLoader | pass | written | look/size on phone pending |
+| T37 | Touch controls | multi-touch stick/button binding, layout applied from saved HUD | - | - | **device only** |
+
 Human playtesting is separate from all automation and never replaced by it.
