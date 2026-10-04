@@ -37,3 +37,4 @@ Known honesty points: behavior skills have no world effect yet; HUD editor is un
 3. If it failed: fix scripts/config from the log, give the complete changed file(s), re-run. If it passed: owner **uninstalls the old app**, installs the new APK and runs the device checklist (landscape, menu, Settings persist after force-close, Characters select persists, Back button, sounds).
 4. Only after that checklist passes: mark BUG-001, G2, G3, G19 verified in `PROJECT.md` and start Phase 2.
 5. Update `PROJECT.md` evidence and this file at the end of the session.
+
