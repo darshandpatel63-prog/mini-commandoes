@@ -20,6 +20,8 @@
 | D12 | Combat rules verified through a **Python reference model + hand-checked test vectors** replayed by GDScript tests | authoring sandbox cannot run Godot | trusting untested GDScript |
 | D13 | HUD layout + haptics in a separate `controls.json` (schema 1), gameplay in `profile.json` (schema 2) | different lifecycles, device-specific | one big save |
 | D14 | Haptics = (duration, amplitude) through `Input.vibrate_handheld`; presets differ in both because amplitude support is hardware-dependent | honest about Android limits | claiming fine intensity control |
+| D15 | Character art = 2D cut-out sprites **baked from the owner's Meshy 3D model** (`tools/bake_sprites.py`, docs/art_pipeline.md); the FBX is not shipped or committed | game is 2D; model is a 1.4M-tri static mesh | shipping the 3D mesh, hand-drawn SVG rigs (D4, superseded for the commando) |
+| D16 | Movement is a deterministic kinematic sim over a tile grid (`src/player/move_sim.gd`), verified through the Python reference + vectors like combat | netcode needs determinism (D6) | Godot physics bodies |
 | D8 | Android first: arm64-v8a, APK for sideload, AAB later for Play | Phone owner sideloads; Play needs AAB + Gradle template | armv7 (adds size; revisit if low-end test devices need it) |
 
 **Known risks (tracked, not hidden):** R1 40 players on a *phone host* may exceed CPU/radio budget → measured in stress test; fallback = lower cap per device class, bots count as players. R2 Export option names in `export_presets.cfg` are UNVERIFIED until first CI export. R3 Android UDP broadcast discovery is device-dependent (multicast lock, client isolation) → **manual IP join is the guaranteed path**. R4 Procedural audio/music quality needs human listening review.
@@ -545,6 +547,9 @@ See `docs/controls_haptics.md`. 15 controls, per-control position/size/opacity/v
 
 ## 42. Multiplayer validation of customization
 See `docs/multiplayer_validation.md`. Client sends ids only; host whitelists, validates with the same rules and derives every number from `balance.json`. Transport-level checks arrive in Phase 6.
+
+## 44. Phase 2 slice: movement + Training Range
+`data/movement.json` (px units): gravity 2200, walk 360, jump 760 (about 125 px high), air speed 380, crouch half speed and a 60 px box (needs headroom to stand), jetpack thrust 3400 up to 520 px/s rise, 100 fuel at 40/s, refuel 25/s on ground and 6/s in air, 1.5 s lockout when empty. Tile map `data/maps/training.json` ('#' solid, '=' one-way, 'S' spawn, 'D' dummy). Touch controls are built from the saved HUD layout (`src/ui/touch_controls.gd`, multi-touch, sticks fixed at their widgets). Weapons in the range are simplified hitscan with ammo/reload; hits go through the real DamagePipeline. See docs/art_pipeline.md for the character.
 
 ## 43. Combat Lab
 A menu screen (not a game mode) where the player is a test dummy running the real damage pipeline, EP, items and skills with their loadout, so rules can be verified on a phone before the match simulation exists.
