@@ -11,7 +11,7 @@
 | Known limitations | Phase 1 GDScript never executed (authoring sandbox has no Godot): expect possible parse/runtime errors on first CI run. Each CI debug APK has a new signing key: uninstall the old app before installing a new build |
 | Latest successful build | build 28 (commit 5ab9b16, v0.0.2), installed and screenshotted on owner's phone |
 | Latest failed build | none |
-| GitHub Actions status | build 28 green; v0.0.3 run pending |
+| GitHub Actions status | build 28 green; v0.0.3 run: tests 1789 passed / 1 failed (BUG-004), fix delivered, re-run pending |
 | Latest test status | `validate_repo.py` pass (sandbox, incl. path + GDScript sanity checks). Godot unit tests ran green in CI run #1 (data tests only); the new Phase 1 tests have not run |
 | Multiplayer test status | none |
 | Android device test status | boot screen verified on one phone (portrait, build 1). Menus not yet seen |
