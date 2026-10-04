@@ -56,7 +56,7 @@ Extras (not requested): X1 kill streaks, X2 assists, X3 daily missions, X4 match
 | Build #1 (v0.0.1) boot screen | screenshot, commit 0f04c1e | **Device verified** |
 | Build #28 (v0.0.2, commit 5ab9b16): landscape main menu, Settings, Characters, Pets, Skills, Arsenal, Maps, About | 10 owner screenshots, 2400x1080 landscape | **Device verified (rendering)**; BUG-001 fixed |
 | CI: validate -> import -> headless tests -> debug APK | run for build 28 produced an APK, so its tests passed | **Build verified** |
-| v0.0.3 design update: combat core, loadout, picker, presets, HUD editor, haptics, Combat Lab, authority | written; reference model executed in sandbox (40 scenarios, 8 stat, 25 loadout, 4 authority, 10 haptics, 9 HUD, all hand-asserted); static GDScript checks pass; **GDScript never executed (no Godot in sandbox)** | Implemented, UNVERIFIED in Godot/device |
+| v0.0.3 design update: combat core, loadout, picker, presets, HUD editor, haptics, Combat Lab, authority | CI run (owner screenshot): headless GDScript tests **1789 passed, 1 failed** (BUG-004, fixed). So the GDScript combat/loadout/HUD/haptics/authority/persistence code **matches the hand-checked reference vectors** and parses/runs in Godot 4.6.3. The APK export did not run because tests failed. **Not yet device-verified** | **Runtime verified (headless)**; device pending |
 
 ## Placeholder tracker
 | ID | Placeholder | Location | Replace by | Replaced? |
@@ -91,6 +91,7 @@ Extras (not requested): X1 kill streaks, X2 assists, X3 daily missions, X4 match
 | BUG-001 | App opens in portrait | Medium | Install build #1, hold phone upright | Landscape only (blueprint §32) | Portrait boot screen | Fixed in 0.0.2 (`orientation` 6 -> 4) | build 28 | **Verified**: build 28 screenshots are 2400x1080 landscape |
 | BUG-002 | Numbers shown as `14.0` | Low | Arsenal -> Vanguard AR-7 | `14` | `Damage 14.0` | Fixed in 0.0.3 (`UIKit.num`) | 0.0.3 | **Not verified** |
 | BUG-003 | First list entry not highlighted when screen opens | Low | Pets / Skills screens | selected entry highlighted | detail shown but first button not pressed-looking | Fixed in 0.0.3 (first button pressed) | 0.0.3 | **Not verified** |
+| BUG-004 | CI test failed: `ProfileData default loadout equals first built-in preset` | Low | CI run of v0.0.3 | default loadout equal | JSON preset stores armor level as float 1.0, ProfileData as int 1, so dictionary equality was false (1 of 1790 checks) | Fixed: `LoadoutData.default_loadout` now normalizes ints | pending commit | **Not verified** — needs next CI run |
 
 
 ## Changelog
