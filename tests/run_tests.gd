@@ -18,6 +18,8 @@ const Vitals := preload("res://src/combat/vitals.gd")
 const SkillExec := preload("res://src/combat/skill_exec.gd")
 const StatResolver := preload("res://src/combat/stat_resolver.gd")
 const Authority := preload("res://src/net/authority.gd")
+const MoveSim := preload("res://src/player/move_sim.gd")
+const TileGrid := preload("res://src/player/tile_grid.gd")
 
 var _fails: int = 0
 var _passes: int = 0
@@ -62,6 +64,9 @@ func _init() -> void:
 		test_vectors_authority()
 		test_vectors_haptics()
 		test_vectors_hud()
+		test_vectors_moves()
+		test_training_map()
+		test_rig_assets()
 		test_skills_change_pipeline_results()
 		test_profile_migration_and_defaults()
 		test_loadout_presets()
@@ -233,6 +238,91 @@ func test_vectors_hud() -> void:
 		for cid in _vec["hud_presets"][pname]:
 			for k in _vec["hud_presets"][pname][cid]:
 				_same(lay[cid][k], _vec["hud_presets"][pname][cid][k], "hud preset %s/%s.%s" % [pname, cid, k])
+
+func test_vectors_moves() -> void:
+	var p: Dictionary = _d["move"]
+	check(_near(p["tile"], 32) and _near(p["hw"], 18), "movement params loaded")
+	for c in _vec["moves"]:
+		var g: Dictionary = TileGrid.make(c["rows"])
+		var s: Dictionary = MoveSim.make(p, c["init"])
+		var miny: float = float(s["y"])
+		var maxvy: float = 0.0
+		for seg in c["steps"]:
+			for i in int(seg[0]):
+				s = MoveSim.step(p, g, s, seg[1], 1.0 / 60.0)
+				miny = minf(miny, float(s["y"]))
+				maxvy = maxf(maxvy, float(s["vy"]))
+		s["min_y"] = miny
+		s["max_vy"] = maxvy
+		for k in c["expect"]:
+			_same(s[k], c["expect"][k], "move/%s/%s" % [c["name"], k])
+	# identical movement for every commando: no character data enters the simulation
+	var a: Dictionary = MoveSim.make(p, {"x": 100, "y": 352, "on_ground": true})
+	var g2: Dictionary = TileGrid.make(_vec["moves"][0]["rows"])
+	var b: Dictionary = a.duplicate()
+	for i in 30:
+		a = MoveSim.step(p, g2, a, {"move": 1.0}, 1.0 / 60.0)
+		b = MoveSim.step(p, g2, b, {"move": 1.0}, 1.0 / 60.0)
+	check(a == b, "movement is deterministic")
+
+func _read_json(path: String) -> Dictionary:
+	var f := FileAccess.open(path, FileAccess.READ)
+	if f == null:
+		return {}
+	var parsed: Variant = JSON.parse_string(f.get_as_text())
+	return parsed if parsed is Dictionary else {}
+
+func test_training_map() -> void:
+	var m: Dictionary = _read_json("res://data/maps/training.json")
+	check(m.has("rows"), "training map readable")
+	var rows: Array = []
+	var spawn: Vector2 = Vector2.ZERO
+	var dummies: int = 0
+	var width: int = -1
+	for r in (m["rows"] as Array).size():
+		var line: String = String(m["rows"][r])
+		if width < 0:
+			width = line.length()
+		check(line.length() == width, "map row %d has the same width" % r)
+		var clean: String = ""
+		for c in line.length():
+			var ch: String = line.substr(c, 1)
+			if ch == "S":
+				spawn = Vector2(float(c) * 32.0 + 16.0, float(r + 1) * 32.0)
+				ch = "."
+			elif ch == "D":
+				dummies += 1
+				var below: String = String(m["rows"][r + 1]).substr(c, 1)
+				check(below == "#" or below == "=", "dummy at %d,%d stands on ground" % [c, r])
+				ch = "."
+			clean += ch
+		rows.append(clean)
+	check(spawn != Vector2.ZERO and dummies >= 3, "map has one spawn and dummies")
+	var p: Dictionary = _d["move"]
+	var g: Dictionary = TileGrid.make(rows)
+	var s: Dictionary = MoveSim.make(p, {"x": spawn.x, "y": spawn.y})
+	for i in 90:
+		s = MoveSim.step(p, g, s, {}, 1.0 / 60.0)
+	check(bool(s["on_ground"]) and _near(s["y"], spawn.y), "player stands at the spawn")
+	var top: float = float(s["y"])
+	var j: Dictionary = MoveSim.make(p, {"x": 64.0 * 32.0 + 16.0, "y": spawn.y, "on_ground": true})
+	for i in 200:
+		j = MoveSim.step(p, g, j, {"jet": true}, 1.0 / 60.0)
+		top = minf(top, float(j["y"]))
+	check(spawn.y - top > 1000.0, "jetpack climbs more than 1000 px (got %s)" % str(spawn.y - top))
+
+func test_rig_assets() -> void:
+	var rig: Dictionary = _read_json("res://assets/art/commando/rig.json")
+	check(rig.has("parts") and (rig["parts"] as Dictionary).size() == 7, "rig has 7 parts")
+	for cid in _d["characters"]:
+		check(FileAccess.file_exists("res://assets/art/commando/portrait_%s.png" % cid) or ResourceLoader.exists("res://assets/art/commando/portrait_%s.png" % cid), "portrait for %s" % cid)
+		for pn in rig["parts"]:
+			var path: String = "res://assets/art/commando/%s/%s" % [cid, String(rig["parts"][pn]["file"])]
+			check(ResourceLoader.exists(path), "sprite exists: " + path)
+	for pn in rig["parts"]:
+		var par: String = String(rig["parts"][pn]["parent"])
+		check(par == "" or (rig["parts"] as Dictionary).has(par), "rig parent of %s exists" % pn)
+	check(rig["parts"]["arm_near"].has("wrist"), "near arm has a wrist anchor for the weapon")
 
 # ------------------------------------------------------------------ gameplay effects of skills (data-driven)
 func _body_hit(passives: Array, zone: String, vest: int = 0, helmet: int = 0) -> Dictionary:
