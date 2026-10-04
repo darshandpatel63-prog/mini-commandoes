@@ -31,10 +31,13 @@
 Equal HP/EP, identity-only characters, player loadout with validation + presets, helmet/vest, DamagePipeline, EP, HUD editor, haptics, controls.json, host admission. Read `docs/combat.md`, `docs/loadout.md`, `docs/controls_haptics.md`, `docs/multiplayer_validation.md`, `docs/balance.md`. Rules are verified by `tools/ref_model.py` + `tools/gen_vectors.py` (hand-checked) and replayed by `tests/run_tests.gd`.
 Known honesty points: behavior skills have no world effect yet; HUD editor is unverified on a phone; Android amplitude support is hardware-dependent; no network transport exists.
 
+## Phase 2 slice (0.0.4)
+Training Range (`scenes/match/training_range.gd`), `MoveSim` + `TileGrid`, `TouchControls`, `CommandoRig` (baked cut-out), `DummyView`. Art: docs/art_pipeline.md. **Open question for the owner: which Meshy plan made the model (Free = credit required, Pro = private)?** Release is blocked until answered (ASSET_SOURCES, A8).
+Next candidates: Phase 3 weapons/grenades/loot in the range, melee combos, weapon art, more characters poses, then Phase 5 maps.
+
 # NEXT SESSION CHECKLIST
 1. Read `CLAUDE.md`, this file, `PROJECT.md`; open `blueprint.md` only for the section you need.
 2. Ask the owner for the latest Actions run result (or logs) of `CI`. Do not assume it passed.
 3. If it failed: fix scripts/config from the log, give the complete changed file(s), re-run. If it passed: owner **uninstalls the old app**, installs the new APK and runs the device checklist (landscape, menu, Settings persist after force-close, Characters select persists, Back button, sounds).
 4. Only after that checklist passes: mark BUG-001, G2, G3, G19 verified in `PROJECT.md` and start Phase 2.
 5. Update `PROJECT.md` evidence and this file at the end of the session.
-
