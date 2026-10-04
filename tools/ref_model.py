@@ -366,3 +366,76 @@ def hud_preset(d, name):
     elif name == "compact":
         for v in lay.values(): v["scale"] = round(v["scale"] * 0.85, 4)
     return lay
+
+# ================================================================= movement (Phase 2)
+import math as _math
+MOVE_EPS = 1e-6
+
+def load_move(): return _load("movement.json")
+
+def grid_tile(rows, cx, cy):
+    w = max(len(r) for r in rows); h = len(rows)
+    if cx < 0 or cx >= w or cy >= h: return "#"
+    if cy < 0: return "."
+    row = rows[cy]
+    return row[cx] if cx < len(row) else "."
+
+def move_blocked(P, rows, x, y, h):
+    T = P["tile"]; hw = P["hw"]
+    for cy in range(_math.floor((y - h) / T), _math.floor((y - MOVE_EPS) / T) + 1):
+        for cx in range(_math.floor((x - hw) / T), _math.floor((x + hw - MOVE_EPS) / T) + 1):
+            if grid_tile(rows, cx, cy) == "#": return True
+    return False
+
+def move_make(P, spec):
+    return {"x": float(spec["x"]), "y": float(spec["y"]), "vx": 0.0, "vy": 0.0, "on_ground": bool(spec.get("on_ground", False)),
+            "crouching": bool(spec.get("crouching", False)), "fuel": float(spec.get("fuel", P["jet_fuel_max"])),
+            "jet_lock": 0.0, "jetting": False}
+
+def _approach(a, target, d): return min(a + d, target) if a < target else max(a - d, target)
+
+def move_step(P, rows, st, inp, dt):
+    s = dict(st); T = P["tile"]; hw = P["hw"]
+    if inp.get("crouch") and s["on_ground"]: s["crouching"] = True
+    elif s["crouching"] and not inp.get("crouch"):
+        if not move_blocked(P, rows, s["x"], s["y"], P["h_stand"]): s["crouching"] = False
+    h = P["h_crouch"] if s["crouching"] else P["h_stand"]
+    mv = clamp(float(inp.get("move", 0.0)), -1.0, 1.0)
+    speed = P["walk_speed"] * P["crouch_mult"] if (s["crouching"] and s["on_ground"]) else (P["walk_speed"] if s["on_ground"] else P["air_speed"])
+    s["vx"] = _approach(s["vx"], mv * speed, (P["ground_accel"] if s["on_ground"] else P["air_accel"]) * dt)
+    if inp.get("jump") and s["on_ground"] and not s["crouching"]:
+        s["vy"] = -P["jump_speed"]; s["on_ground"] = False
+    jetting = False
+    if inp.get("jet") and s["fuel"] > 0 and s["jet_lock"] <= 0:
+        if s["vy"] > -P["jet_max_rise"]: s["vy"] = max(s["vy"] - P["jet_accel"] * dt, -P["jet_max_rise"])
+        s["fuel"] = max(0.0, s["fuel"] - P["jet_drain"] * dt); jetting = True; s["on_ground"] = False
+        if s["fuel"] <= 0: s["jet_lock"] = P["jet_lock"]
+    s["jetting"] = jetting
+    s["vy"] = min(s["vy"] + P["gravity"] * dt, P["max_fall"])
+    if not jetting:
+        if s["jet_lock"] > 0: s["jet_lock"] = max(0.0, s["jet_lock"] - dt)
+        else: s["fuel"] = min(P["jet_fuel_max"], s["fuel"] + (P["jet_regen_ground"] if s["on_ground"] else P["jet_regen_air"]) * dt)
+    # horizontal move
+    nx = s["x"] + s["vx"] * dt
+    r0 = _math.floor((s["y"] - h) / T); r1 = _math.floor((s["y"] - MOVE_EPS) / T)
+    if s["vx"] > 0:
+        col = _math.floor((nx + hw - MOVE_EPS) / T)
+        if any(grid_tile(rows, col, r) == "#" for r in range(r0, r1 + 1)): nx = col * T - hw; s["vx"] = 0.0
+    elif s["vx"] < 0:
+        col = _math.floor((nx - hw) / T)
+        if any(grid_tile(rows, col, r) == "#" for r in range(r0, r1 + 1)): nx = (col + 1) * T + hw; s["vx"] = 0.0
+    s["x"] = nx
+    # vertical move
+    ny = s["y"] + s["vy"] * dt; old_bottom = s["y"]; old_top = s["y"] - h
+    c0 = _math.floor((s["x"] - hw) / T); c1 = _math.floor((s["x"] + hw - MOVE_EPS) / T)
+    landed = False
+    if s["vy"] >= 0:
+        r = _math.floor(ny / T); b = r * T
+        if old_bottom <= b + MOVE_EPS and any(grid_tile(rows, c, r) in ("#", "=") for c in range(c0, c1 + 1)):
+            ny = float(b); s["vy"] = 0.0; landed = True
+    else:
+        r = _math.floor((ny - h) / T); edge = (r + 1) * T
+        if old_top >= edge - MOVE_EPS and any(grid_tile(rows, c, r) == "#" for c in range(c0, c1 + 1)):
+            ny = float(edge + h); s["vy"] = 0.0
+    s["y"] = ny; s["on_ground"] = landed
+    return s
