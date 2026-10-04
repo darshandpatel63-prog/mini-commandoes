@@ -25,7 +25,10 @@ static func _try_read(path: String) -> Dictionary:
 		return {"ok": false}
 	var txt: String = f.get_as_text()
 	f.close()
-	var parsed: Variant = JSON.parse_string(txt)
+	var j := JSON.new()
+	if j.parse(txt) != OK:
+		return {"ok": false}
+	var parsed: Variant = j.data
 	if not (parsed is Dictionary):
 		return {"ok": false}
 	var body: Variant = parsed.get("body", null)
@@ -34,7 +37,10 @@ static func _try_read(path: String) -> Dictionary:
 		return {"ok": false}
 	if (body as String).sha256_text() != (sig as String):
 		return {"ok": false}
-	var data: Variant = JSON.parse_string(body)
+	var j2 := JSON.new()
+	if j2.parse(String(body)) != OK:
+		return {"ok": false}
+	var data: Variant = j2.data
 	if not (data is Dictionary):
 		return {"ok": false}
 	return {"ok": true, "version": int(parsed.get("v", 0)), "data": data}
