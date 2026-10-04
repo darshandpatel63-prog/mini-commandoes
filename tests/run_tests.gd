@@ -73,6 +73,8 @@ func _init() -> void:
 	test_settings_defaults_and_validation()
 	test_settings_persistence()
 	print("tests: %d passed, %d failed" % [_passes, _fails])
+	if _reg != null:
+		_reg.free()
 	quit(1 if _fails > 0 else 0)
 
 # ------------------------------------------------------------------ data
