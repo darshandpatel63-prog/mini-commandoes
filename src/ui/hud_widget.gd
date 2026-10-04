@@ -12,13 +12,16 @@ var selected: bool = false
 var warn: bool = false
 var shown: bool = true
 var draggable: bool = true
+var interactive: bool = true        # false in matches: the TouchControls layer handles touches itself
+var knob_offset: Vector2 = Vector2.ZERO
+var held: bool = false
 var fill_alpha: float = 0.7
 var flash: float = 0.0
 var _drag: bool = false
 var _grab: Vector2 = Vector2.ZERO
 
 func _ready() -> void:
-	mouse_filter = Control.MOUSE_FILTER_STOP
+	mouse_filter = Control.MOUSE_FILTER_STOP if interactive else Control.MOUSE_FILTER_IGNORE
 
 func do_flash() -> void:
 	flash = 1.0
@@ -53,7 +56,7 @@ func _draw() -> void:
 	draw_circle(c, r, Color(0.07, 0.12, 0.10, a))
 	draw_arc(c, r - 3.0, 0.0, TAU, 48, Color(0.91, 0.64, 0.24, minf(1.0, a + 0.3)), 6.0, true)
 	if is_stick:
-		draw_circle(c, r * 0.38, Color(0.91, 0.64, 0.24, a))
+		draw_circle(c + knob_offset, r * 0.38, Color(0.91, 0.64, 0.24, minf(1.0, a + 0.15)))
 	var fs: int = int(clampf(r * 0.30, 22.0, 40.0))
 	var txt: String = label_text if shown else label_text + " (off)"
 	draw_string(ThemeDB.fallback_font, Vector2(0.0, c.y + float(fs) * 0.35), txt, HORIZONTAL_ALIGNMENT_CENTER, size.x, fs, Color(0.95, 0.96, 0.93, minf(1.0, a + 0.25)))
@@ -63,3 +66,5 @@ func _draw() -> void:
 		draw_arc(c, r + 14.0, 0.0, TAU, 48, Color(1.0, 0.35, 0.3), 5.0, true)
 	if flash > 0.0:
 		draw_circle(c, r, Color(1.0, 1.0, 1.0, flash * 0.5))
+	if held and not is_stick:
+		draw_circle(c, r, Color(0.91, 0.64, 0.24, 0.35))
