@@ -180,6 +180,51 @@ presets = {"left_handed": R.hud_preset(d, "left_handed"), "compact": R.hud_prese
 assert near(presets["left_handed"]["move"]["x"], 0.89) and near(presets["compact"]["fire"]["scale"], 0.85)
 assert all(not R.hud_overlaps(d, R.hud_sanitize(d, presets[k], SCR), SCR) for k in presets)
 
-out = {"scenarios": sc, "stats": stats, "loadouts": loadouts, "authority": authority, "haptics": haptics, "hud": hud, "hud_presets": presets}
+
+# ---- movement (Phase 2): hand-checked physical expectations, then recorded for the GDScript replay
+MP = R.load_move(); DT = 1.0 / 60.0
+def mk(rows_open, floor_row=11, w=30, extra=None):
+    rows = ["#" + "." * (w - 2) + "#" for _ in range(floor_row)] + ["#" * w]
+    return rows
+FLAT = mk(0)
+def tall(h=40): return ["#" + "." * 28 + "#" for _ in range(h - 1)] + ["#" * 30]
+moves = []
+def mv_case(name, rows, init, steps, hand):
+    s = R.move_make(MP, init); miny = s["y"]; maxvy = 0.0
+    for n, inp in steps:
+        for _ in range(n):
+            s = R.move_step(MP, rows, s, inp, DT); miny = min(miny, s["y"]); maxvy = max(maxvy, s["vy"])
+    obs = {k: s[k] for k in ("x", "y", "vx", "vy", "on_ground", "crouching", "fuel", "jet_lock")}; obs["min_y"] = miny; obs["max_vy"] = maxvy
+    hand(obs)
+    moves.append({"name": name, "rows": rows, "init": init, "steps": steps, "expect": obs})
+def A(c): assert c, "movement hand assertion failed"
+mv_case("stand_still_lands", FLAT, {"x": 100, "y": 352}, [[60, {}]], lambda o: (A(o["y"] == 352 and o["on_ground"] and o["vy"] == 0 and o["x"] == 100)))
+mv_case("walk_right_one_second", FLAT, {"x": 100, "y": 352, "on_ground": True}, [[60, {"move": 1}]], lambda o: (A(abs((o["x"] - 100) - 339.75) < 4.0), A(o["vx"] == 360.0)))
+mv_case("walk_left_is_mirror", FLAT, {"x": 500, "y": 352, "on_ground": True}, [[60, {"move": -1}]], lambda o: (A(abs((500 - o["x"]) - 339.75) < 4.0), A(o["vx"] == -360.0)))
+mv_case("jump_height_and_landing", FLAT, {"x": 100, "y": 352, "on_ground": True}, [[1, {"jump": True}], [119, {}]], lambda o: (A(120 < 352 - o["min_y"] < 135), A(o["y"] == 352 and o["on_ground"])))
+mv_case("wall_stops_walker", FLAT, {"x": 800, "y": 352, "on_ground": True}, [[200, {"move": 1}]], lambda o: (A(o["x"] == 29 * 32 - 18 and o["vx"] == 0)))
+mv_case("jet_one_second_costs_forty_fuel", tall(), {"x": 100, "y": 1248, "on_ground": True}, [[60, {"jet": True}]], lambda o: (A(abs(o["fuel"] - 60.0) < 0.01), A(-520 <= o["vy"] <= -470), A(1248 - o["y"] > 300), A(not o["on_ground"])))
+mv_case("jet_runs_dry_then_locks_out", tall(), {"x": 100, "y": 1248, "on_ground": True}, [[160, {"jet": True}]], lambda o: (A(o["fuel"] < 0.5), A(o["jet_lock"] > 0.8)))
+mv_case("jet_ignored_during_lockout", tall(), {"x": 100, "y": 1248, "on_ground": True}, [[155, {"jet": True}], [20, {"jet": True}]], lambda o: (A(o["vy"] > -100)))
+mv_case("ground_refuels_25_per_s", FLAT, {"x": 100, "y": 352, "on_ground": True, "fuel": 50}, [[60, {}]], lambda o: (A(abs(o["fuel"] - 75.0) < 0.5)))
+mv_case("air_refuels_slowly", tall(), {"x": 100, "y": 400, "fuel": 50}, [[30, {}]], lambda o: (A(50 < o["fuel"] < 53.5)))
+mv_case("fall_speed_is_capped", tall(), {"x": 100, "y": 100}, [[120, {}]], lambda o: (A(o["max_vy"] <= 1400.0)))
+ceil_rows = ["#" + "." * 28 + "#" for _ in range(11)]
+for i in range(0, 6): ceil_rows[i] = "#" * 30
+mv_case("head_bumps_ceiling", ceil_rows, {"x": 100, "y": 352, "on_ground": True}, [[1, {"jump": True}], [40, {}]], lambda o: (A(abs(o["min_y"] - (6 * 32 + 92)) < 1e-9)))
+plat = ["#" + "." * 28 + "#" for _ in range(11)] + ["#" * 30]
+plat[8] = "#" + "." * 4 + "=" * 11 + "." * 13 + "#"
+mv_case("one_way_platform_jump_through_and_land", plat, {"x": 200, "y": 352, "on_ground": True}, [[1, {"jump": True}], [119, {}]], lambda o: (A(o["y"] == 256 and o["on_ground"])))
+mv_case("one_way_platform_blocks_from_above", plat, {"x": 200, "y": 150}, [[120, {}]], lambda o: (A(o["y"] == 256 and o["on_ground"])))
+low = ["#" + "." * 28 + "#" for _ in range(11)] + ["#" * 30]
+for r in range(0, 9):
+    low[r] = "#" * 8 + low[r][8:]
+mv_case("cannot_stand_up_under_low_ceiling", low, {"x": 100, "y": 352, "on_ground": True, "crouching": True}, [[10, {}]], lambda o: (A(o["crouching"])))
+mv_case("stands_up_after_leaving_low_ceiling", low, {"x": 100, "y": 352, "on_ground": True, "crouching": True}, [[240, {"move": 1}]], lambda o: (A(not o["crouching"], ), A(o["x"] > 8 * 32 + 18)))
+mv_case("crouch_walk_is_half_speed", FLAT, {"x": 100, "y": 352, "on_ground": True}, [[1, {"crouch": True}], [59, {"crouch": True, "move": 1}]], lambda o: (A(o["crouching"]), A(o["vx"] == 180.0)))
+mv_case("cannot_jump_while_crouched", FLAT, {"x": 100, "y": 352, "on_ground": True}, [[1, {"crouch": True}], [10, {"crouch": True, "jump": True}]], lambda o: (A(o["y"] == 352)))
+mv_case("air_control_slower_than_ground", tall(), {"x": 100, "y": 300}, [[60, {"move": 1}]], lambda o: (A(o["vx"] == 380.0)))
+
+out = {"moves": moves, "scenarios": sc, "stats": stats, "loadouts": loadouts, "authority": authority, "haptics": haptics, "hud": hud, "hud_presets": presets}
 pathlib.Path(__file__).resolve().parent.parent.joinpath("tests/vectors/cases.json").write_text(json.dumps(out, indent=1))
-print(f"vectors OK: {len(sc)} scenarios, {len(stats)} stats, {len(loadouts)} loadouts, {len(authority)} authority, {len(haptics)} haptics, {len(hud)} hud (all hand assertions passed)")
+print(f"vectors OK: {len(moves)} movement, {len(sc)} scenarios, {len(stats)} stats, {len(loadouts)} loadouts, {len(authority)} authority, {len(haptics)} haptics, {len(hud)} hud (all hand assertions passed)")
