@@ -3,7 +3,7 @@ extends Node
 ## bundle() returns the pure-logic view (rules, tables) consumed by src/core and src/combat modules.
 
 const FILES := ["characters", "skills", "pets", "weapons", "throwables", "melee", "presets", "loot", "modes", "maps",
-	"balance", "armor", "hud_default"]
+	"balance", "armor", "hud_default", "movement"]
 const LIST_KEYS := {"characters": "characters", "skills": "skills", "pets": "pets", "weapons": "weapons",
 	"throwables": "throwables", "melee": "melee", "presets": "presets", "modes": "modes", "maps": "maps"}
 
@@ -49,6 +49,6 @@ func bundle() -> Dictionary:
 			"rules": raw["balance"], "armor": raw["armor"],
 			"skills": tables["skills"], "pets": tables["pets"], "characters": tables["characters"],
 			"weapons": tables["weapons"], "melee": tables["melee"], "throwables": tables["throwables"],
-			"presets": raw["presets"]["presets"], "hud": raw["hud_default"]["controls"],
+			"presets": raw["presets"]["presets"], "hud": raw["hud_default"]["controls"], "move": raw["movement"],
 		}
 	return _bundle
