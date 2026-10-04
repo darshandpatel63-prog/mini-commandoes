@@ -2,7 +2,7 @@ extends Node
 ## Single source of version info (blueprint §Versioning). CI injects BUILD_NUMBER/GIT_SHA via
 ## tools/stamp_version.py, which rewrites data/build_info.json before export.
 
-const GAME_VERSION := "0.0.3"
+const GAME_VERSION := "0.0.4"
 var build_number := 0
 var git_sha := "dev"
 
