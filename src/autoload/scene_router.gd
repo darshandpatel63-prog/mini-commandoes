@@ -10,6 +10,7 @@ const LOADOUT := "res://scenes/menu/loadout_screen.tscn"
 const HUD_EDITOR := "res://scenes/menu/hud_editor.tscn"
 const HAPTICS := "res://scenes/menu/haptics_screen.tscn"
 const COMBAT_LAB := "res://scenes/menu/combat_lab.tscn"
+const TRAINING := "res://scenes/match/training_range.tscn"
 
 var params: Dictionary = {}
 var _fade: ColorRect
