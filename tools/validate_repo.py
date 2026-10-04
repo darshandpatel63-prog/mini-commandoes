@@ -122,6 +122,38 @@ throw = list(d.throwables.values()) if d is not None else []
 maps = load("maps.json").get("maps", [])
 modes = load("modes.json").get("modes", [])
 
+# ---- Phase 2 assets: training map + baked art
+try:
+    tm = json.loads((ROOT / "data/maps/training.json").read_text())
+    rows = tm["rows"]
+    if len({len(r) for r in rows}) != 1: err("training map: rows differ in width")
+    flat = "".join(rows)
+    if flat.count("S") != 1: err("training map: exactly one spawn S required")
+    if flat.count("D") < 3: err("training map: needs >= 3 dummies (D)")
+    if d is not None:
+        mp = R.load_move(); clean = [r.replace("S", ".").replace("D", ".") for r in rows]
+        sy = None
+        for ri, r in enumerate(rows):
+            if "S" in r: sx, sy = r.index("S") * 32 + 16, (ri + 1) * 32
+        st = R.move_make(mp, {"x": sx, "y": sy})
+        for _ in range(90): st = R.move_step(mp, clean, st, {}, 1 / 60)
+        if not (st["on_ground"] and st["y"] == sy): err("training map: player does not stand at the spawn")
+except Exception as e:
+    err(f"training map invalid: {e}")
+rigf = ROOT / "assets/art/commando/rig.json"
+if not rigf.is_file(): err("assets/art/commando/rig.json missing (run tools/bake_sprites.py)")
+else:
+    rig = json.loads(rigf.read_text())
+    if len(rig["parts"]) != 7: err("rig: expected 7 parts")
+    for cid in (d.chars if d is not None else {}):
+        if not (ROOT / f"assets/art/commando/portrait_{cid}.png").is_file(): err(f"missing portrait for {cid}")
+        for pn, pv in rig["parts"].items():
+            if not (ROOT / f"assets/art/commando/{cid}/{pv['file']}").is_file(): err(f"missing sprite {cid}/{pv['file']}")
+    for pn, pv in rig["parts"].items():
+        if pv["parent"] and pv["parent"] not in rig["parts"]: err(f"rig: parent of {pn} missing")
+if any(p.suffix.lower() == ".fbx" for p in ROOT.rglob("*") if p.is_file() and ".git" not in p.parts):
+    err("FBX source models must stay out of the repo (41 MB, license unconfirmed); keep them outside and commit only baked sprites")
+
 # secrets / forbidden files
 for p in ROOT.rglob("*"):
     if not p.is_file() or ".git" in p.parts: continue
