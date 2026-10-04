@@ -5,7 +5,7 @@ const Validator := preload("res://src/core/loadout_validator.gd")
 const KEYS := ["character", "active", "passives", "pet", "primary", "secondary", "melee", "throwable", "start_helmet", "start_vest"]
 
 static func default_loadout(d: Dictionary) -> Dictionary:
-	return ((d["presets"] as Array)[0]["loadout"] as Dictionary).duplicate(true)
+	return normalize(((d["presets"] as Array)[0]["loadout"] as Dictionary).duplicate(true))
 
 ## Only whitelisted keys survive; everything else (hp, damage, ...) is dropped. Used for untrusted claims.
 static func whitelist(claimed: Variant) -> Dictionary:
