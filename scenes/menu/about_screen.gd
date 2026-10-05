@@ -25,6 +25,7 @@ func _build() -> void:
 		"",
 		"An original game. Not affiliated with any other title.",
 		"Made with Godot Engine (MIT License).",
+		"Commando character model generated with Meshy AI.",
 	])
 	for l in lines:
 		box.add_child(UIKit.label(l, 32, UITheme.C_TEXT, true))
