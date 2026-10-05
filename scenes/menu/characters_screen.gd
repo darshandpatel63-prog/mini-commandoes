@@ -1,6 +1,6 @@
 extends "res://src/ui/screen_base.gd"
 ## CHARACTERS: identity only. Every commando has the same base HP/EP; skills, pet and weapons are chosen in LOADOUT.
-## Character art preview is a PLACEHOLDER until the rig exists (Phase 4).
+## Portraits are baked from the Iron Vanguard model (tools/bake_sprites.py), one colorway per commando.
 
 const LoadoutData := preload("res://src/core/loadout_data.gd")
 
@@ -9,6 +9,7 @@ var _detail: Label
 var _select_btn: Button
 var _try_btn: Button
 var _msg: Label
+var _portrait: TextureRect
 var _shown_id: String = ""
 
 func _build() -> void:
@@ -32,7 +33,6 @@ func _build() -> void:
 		left.add_child(b)
 		if String(id) == String(SaveManager.loadout()["character"]):
 			b.button_pressed = true
-	left.add_child(UIKit.label("UI PLACEHOLDER: character art preview arrives with the rig (Phase 4).", 26, UITheme.C_TEXT_DIM, true))
 	var right := VBoxContainer.new()
 	right.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	right.add_theme_constant_override("separation", 16)
@@ -44,8 +44,17 @@ func _build() -> void:
 	var panel := PanelContainer.new()
 	panel.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	scroll.add_child(panel)
+	var prow := HBoxContainer.new()
+	prow.add_theme_constant_override("separation", 24)
+	panel.add_child(prow)
 	_detail = UIKit.label("", 32, UITheme.C_TEXT, true)
-	panel.add_child(_detail)
+	prow.add_child(_detail)
+	_portrait = TextureRect.new()
+	_portrait.custom_minimum_size = Vector2(300, 600)
+	_portrait.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
+	_portrait.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
+	_portrait.texture_filter = CanvasItem.TEXTURE_FILTER_LINEAR
+	prow.add_child(_portrait)
 	_msg = UIKit.label("", 28, UITheme.C_DAMAGE, true)
 	right.add_child(_msg)
 	var row := HBoxContainer.new()
@@ -78,6 +87,8 @@ func _show(id: String) -> void:
 	var pid: String = String(c["suggested_preset"])
 	t.append("Suggested build: " + pid.capitalize())
 	_detail.text = "\n".join(t)
+	var ppath: String = "res://assets/art/commando/portrait_%s.png" % id
+	_portrait.texture = load(ppath) if ResourceLoader.exists(ppath) else null
 	_msg.text = ""
 	var is_sel: bool = String(SaveManager.loadout()["character"]) == _shown_id
 	_select_btn.text = "SELECTED" if is_sel else "SELECT"
