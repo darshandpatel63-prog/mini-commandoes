@@ -1,0 +1,10 @@
+{
+ "schema": 1,
+ "note": "Deterministic 60 Hz kinematic movement over a tile grid. Units: px, px/s. All commandos move identically (equal base stats).",
+ "tile": 32, "hw": 18, "h_stand": 92, "h_crouch": 60,
+ "gravity": 2200.0, "max_fall": 1400.0,
+ "walk_speed": 360.0, "crouch_mult": 0.5, "air_speed": 380.0, "ground_accel": 3200.0, "air_accel": 1800.0,
+ "jump_speed": 760.0,
+ "jet_accel": 3400.0, "jet_max_rise": 520.0, "jet_fuel_max": 100.0, "jet_drain": 40.0,
+ "jet_regen_ground": 25.0, "jet_regen_air": 6.0, "jet_lock": 1.5
+}
