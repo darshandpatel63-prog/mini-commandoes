@@ -1,0 +1,146 @@
+{
+ "unit_px": 82.0,
+ "height_px": 156.05,
+ "origin": "feet-centre; x forward(right), y down",
+ "order_back_to_front": [
+  "leg_far",
+  "body",
+  "leg_near"
+ ],
+ "parts": {
+  "body": {
+   "file": "body.png",
+   "parent": "",
+   "draw": "body",
+   "pivot": [
+    -2.11,
+    -63.3
+   ],
+   "rest_rad": 0.0,
+   "texture_offset": [
+    -26.39,
+    -95.7
+   ],
+   "size": [
+    75,
+    102
+   ]
+  },
+  "arm_near": {
+   "file": "arm_near.png",
+   "parent": "body",
+   "draw": "arm_near",
+   "pivot": [
+    -15.87,
+    -124.39
+   ],
+   "rest_rad": 0.01918,
+   "texture_offset": [
+    -2.63,
+    2.39
+   ],
+   "size": [
+    42,
+    63
+   ],
+   "wrist": [
+    1.05,
+    54.53
+   ]
+  },
+  "arm_far": {
+   "file": "arm_far.png",
+   "parent": "body",
+   "draw": "arm_far",
+   "pivot": [
+    -15.33,
+    -124.39
+   ],
+   "rest_rad": 0.54146,
+   "texture_offset": [
+    0.83,
+    -4.61
+   ],
+   "size": [
+    61,
+    70
+   ],
+   "wrist": [
+    32.8,
+    54.53
+   ]
+  },
+  "thigh_near": {
+   "file": "thigh_near.png",
+   "parent": "",
+   "draw": "thigh_near",
+   "pivot": [
+    -9.53,
+    -63.3
+   ],
+   "rest_rad": -0.16836,
+   "texture_offset": [
+    -3.97,
+    -4.7
+   ],
+   "size": [
+    45,
+    43
+   ]
+  },
+  "shin_near": {
+   "file": "shin_near.png",
+   "parent": "thigh_near",
+   "draw": "shin_near",
+   "pivot": [
+    -14.83,
+    -32.14
+   ],
+   "rest_rad": -0.03252,
+   "texture_offset": [
+    0.33,
+    -5.86
+   ],
+   "size": [
+    33,
+    39
+   ]
+  },
+  "thigh_far": {
+   "file": "thigh_far.png",
+   "parent": "",
+   "draw": "thigh_far",
+   "pivot": [
+    5.31,
+    -63.3
+   ],
+   "rest_rad": -0.08827,
+   "texture_offset": [
+    -2.81,
+    -4.7
+   ],
+   "size": [
+    43,
+    43
+   ]
+  },
+  "shin_far": {
+   "file": "shin_far.png",
+   "parent": "thigh_far",
+   "draw": "shin_far",
+   "pivot": [
+    2.56,
+    -32.14
+   ],
+   "rest_rad": 0.13942,
+   "texture_offset": [
+    -0.06,
+    -5.86
+   ],
+   "size": [
+    41,
+    39
+   ]
+  }
+ }
+}
