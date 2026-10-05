@@ -13,7 +13,7 @@ func _entries() -> Array:
 		["COMBAT LAB", SceneRouter.COMBAT_LAB, "", ""],
 		["MAPS", SceneRouter.BROWSER, "maps", ""],
 		["MISSIONS", "", "", "Later"],
-		["TRAINING", "", "", "Phase 2"],
+		["TRAINING", SceneRouter.TRAINING, "", ""],
 		["SETTINGS", SceneRouter.SETTINGS, "", ""],
 		["ABOUT", SceneRouter.ABOUT, "", ""],
 	]
